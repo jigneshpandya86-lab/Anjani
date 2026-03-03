@@ -1,106 +1,97 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>Products | Anjani Premium Water</title>
+<title>Promotions | Anjani Premium Water</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+
+<!-- NAV -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">Anjani<span>Water</span></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html" >Home</a></li>
-    <li><a href="products.html" class='nav-active'>Products</a></li>
-    <li><a href="promotions.html" >Promotions</a></li>
-    <li><a href="about.html" >About Us</a></li>
-    <li><a href="contact.html" >Contact</a></li>
-    <li><a href="order.html" class="nav-cta ">Order Now</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="promotions.html" class="nav-active">Promotions</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="order.html" class="nav-cta">Order Now</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
-<div style="padding-top:80px"></div>
 
 <!-- PAGE HERO -->
+<div style="padding-top:80px"></div>
 <div class="page-hero">
   <div class="page-hero-inner">
-    <span class="section-tag">Our Range</span>
-    <h1 class="section-title">Products We Deliver</h1>
-    <p class="section-sub">Our own Anjani 200ml is the pride of Vadodara — paired with the most trusted water brands in India.</p>
+    <span class="section-tag">Offers &amp; Deals</span>
+    <h1 class="section-title">Current Promotions</h1>
+    <p class="section-sub">Exclusive deals and seasonal offers for Vadodara customers — updated regularly.</p>
   </div>
 </div>
 
-<section id="products" style="background:var(--off)">
+<!-- PROMO CAROUSEL -->
+<section id="promos">
   <div class="section-inner">
-    <div class="products-grid">
-      <!-- ANJANI FEATURED -->
-      <div class="product-card featured" onclick="openOrder('Anjani Premium Water 200ml')">
-        <div class="product-img bg-anjani">
-          <img id="anjani-img" src="https://drive.google.com/uc?export=view&id=16oFqy0md7QnlFI4ywMMiZpO5PoVe1jW-" alt="Anjani Premium Water 200ml">
-          <span class="product-badge badge-own">⭐ Our Brand</span>
-        </div>
-        <div class="product-body">
-          <div class="product-brand">Anjani — Flagship Product</div>
-          <div class="product-name">Anjani Premium Water</div>
-          <p class="product-desc">Our signature 200ml water bottle — BIS certified, sealed fresh, and crafted specifically for Vadodara's premium market. Perfect for events, offices, hotels, and everyday use.</p>
-          <div class="product-price">📦 Bulk & retail packs available &nbsp;·&nbsp; <span style="color:var(--muted)">Contact for pricing</span></div>
-          <button class="product-order">Order Anjani Water →</button>
-        </div>
-      </div>
-      <!-- BISLERI -->
-      <div class="product-card" onclick="openOrder('Bisleri')">
-        <div class="product-img bg-bisleri">
-          <img id="bisleri-img" src="https://www.bisleri.com/cdn/shop/files/200mlx48.png?v=1695987845" alt="Bisleri Water" onerror="this.style.display='none'">
-          <span class="product-badge badge-partner">Partner Brand</span>
-        </div>
-        <div class="product-body">
-          <div class="product-brand">Bisleri International</div>
-          <div class="product-name">Bisleri Water</div>
-          <p class="product-desc">India's most trusted packaged water, now delivered to your door across Vadodara by Anjani.</p>
-          <div class="product-price">Multiple pack sizes available</div>
-          <button class="product-order">Order Bisleri →</button>
-        </div>
-      </div>
-      <!-- BAILEY -->
-      <div class="product-card" onclick="openOrder('Bailley Water')">
-        <div class="product-img bg-bailey">
-          <img id="bailley-img" src="https://www.parleagro.com/assets/images/products/bailley/bailley-200.png" alt="Bailley Water" onerror="this.style.display='none'">
-          <span class="product-badge badge-partner">Partner Brand</span>
-        </div>
-        <div class="product-body">
-          <div class="product-brand">Bailley by Parle Agro</div>
-          <div class="product-name">Bailley Water</div>
-          <p class="product-desc">Premium natural water from Parle Agro — clean, crisp and refreshing for health-conscious consumers.</p>
-          <div class="product-price">Multiple pack sizes available</div>
-          <button class="product-order">Order Bailley →</button>
-        </div>
-      </div>
-      <!-- CLEAR -->
-      <div class="product-card" onclick="openOrder('Clear Water')">
-        <div class="product-img bg-clear">
-          <img id="clear-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPcSy7H-5k5E6RAMhnKYIH1jGYCEMwcl95lg&s" alt="Clear Water" onerror="this.style.display='none'">
-          <span class="product-badge badge-partner">Partner Brand</span>
-        </div>
-        <div class="product-body">
-          <div class="product-brand">Clear Premium</div>
-          <div class="product-name">Clear Water</div>
-          <p class="product-desc">Pure, clean and budget-friendly — Clear Water is the ideal choice for high-volume requirements.</p>
-          <div class="product-price">Bulk packs available</div>
-          <button class="product-order">Order Clear →</button>
-        </div>
-      </div>
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack"></div>
+      <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8249;</button>
+      <button class="carousel-btn next" onclick="moveCarousel(1)">&#8250;</button>
     </div>
-    <div style="text-align:center;margin-top:48px">
-      <a href="order.html" class="btn-primary">📦 Place a Bulk Order</a>
-      &nbsp;&nbsp;
-      <a href="https://wa.me/919925997750?text=Hi!%20I%20want%20to%20know%20about%20your%20products." class="btn-outline" target="_blank">💬 Ask on WhatsApp</a>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <div class="thumb-strip" id="thumbStrip"></div>
+    <div class="edit-guide">
+      <h4>📸 How to Update Promo Photos &amp; Text</h4>
+      <ol>
+        <li>Upload your photo to <a href="https://imgbb.com" target="_blank" style="color:var(--ocean)">imgbb.com</a> and copy the Direct Link.</li>
+        <li>Open <code>script.js</code> and find <code>ANJANI_CONFIG.promos</code> at the very top.</li>
+        <li>Paste your image URL into the <code>image: ''</code> field of the slide you want.</li>
+        <li>Update the <code>title</code>, <code>tag</code>, <code>desc</code> and <code>btnText</code> as needed.</li>
+        <li>Save and push to GitHub — live in about 2 minutes ✅</li>
+      </ol>
     </div>
   </div>
 </section>
 
+<!-- OFFER CARDS -->
+<section style="background:var(--off)">
+  <div class="section-inner">
+    <span class="section-tag">Current Deals</span>
+    <h2 class="section-title">Special Offers</h2>
+    <div class="offers-grid">
+
+      <div class="testi-card" style="text-align:center;padding:36px 28px">
+        <div style="font-size:3rem;margin-bottom:16px">🎁</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);margin-bottom:10px">Free Sample</h3>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:24px">First-time customers get a complimentary Anjani 200ml bottle delivered to their door — no strings attached.</p>
+        <a href="order.html" class="btn-primary" style="display:inline-block">Book Free Sample</a>
+      </div>
+
+      <div class="testi-card" style="text-align:center;padding:36px 28px">
+        <div style="font-size:3rem;margin-bottom:16px">📦</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);margin-bottom:10px">Bulk Discount</h3>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:24px">Order 500+ bottles and get wholesale pricing. Perfect for events, hotels &amp; offices in Vadodara.</p>
+        <a href="order.html" class="btn-primary" style="display:inline-block">Order Now</a>
+      </div>
+
+      <div class="testi-card" style="text-align:center;padding:36px 28px">
+        <div style="font-size:3rem;margin-bottom:16px">🏢</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);margin-bottom:10px">Corporate Deal</h3>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:24px">Special rates for offices and businesses in Vadodara with monthly subscription options available.</p>
+        <a href="contact.html" class="btn-primary" style="display:inline-block">Enquire Now</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -125,7 +116,7 @@
       <h4>Quick Links</h4>
       <ul>
         <li><a href="order.html">Place an Order</a></li>
-        <li><a href="order.html#sample">Free Sample</a></li>
+        <li><a href="order.html">Free Sample</a></li>
         <li><a href="contact.html">Customer Query</a></li>
         <li><a href="about.html">Why Anjani</a></li>
       </ul>
@@ -146,29 +137,18 @@
   </div>
 </footer>
 
-<a class="wa-float" aria-label="Order on WhatsApp" href="https://wa.me/919925997750?text=Hi%20Anjani%20Water!%20I%20would%20like%20to%20place%20an%20order." target="_blank">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.104 1.523 5.827L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.01-1.371l-.36-.214-3.732.886.914-3.641-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" aria-label="Order on WhatsApp"
+   href="https://wa.me/919925997750?text=Hi%20Anjani%20Water!%20I%20would%20like%20to%20place%20an%20order."
+   target="_blank">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.104 1.523 5.827L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.01-1.371l-.36-.214-3.732.886.914-3.641-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/>
+  </svg>
   <span class="wa-tooltip">Order on WhatsApp</span>
 </a>
-
-
-<!-- QUICK ORDER MODAL -->
-<div class="modal-overlay" id="orderModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('orderModal').classList.remove('open')">✕</button>
-    <h3>📦 Quick Order</h3>
-    <p id="orderModalProduct">Place your order in seconds.</p>
-    <form id="quickOrderForm" onsubmit="submitForm(event,'quickOrderForm','quickOrderSuccess','quickOrder')">
-      <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Your name" required></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
-      <div class="form-group"><label>Product</label><input type="text" name="product" id="quickProduct" readonly style="background:#e8f4fd;cursor:not-allowed"></div>
-      <div class="form-group"><label>Quantity</label><input type="text" name="quantity" placeholder="e.g. 100 bottles"></div>
-      <button type="submit" class="form-submit">Place Order →</button>
-      <div class="success-msg" id="quickOrderSuccess">✅ Order sent! We'll call you soon.</div>
-    </form>
-  </div>
-</div>
 
 <script src="../js/script.js"></script>
 </body>
 </html>
+```
