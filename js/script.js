@@ -36,7 +36,7 @@
   // ── GOOGLE SHEETS INTEGRATION ──
   // 👉 Paste your deployed Apps Script Web App URL below
   // (After deploying: Copy > Execution URL and paste here)
-  const SHEET_URL = 'https://script.googleusercontent.com/macros/echo?user_content_key=AY5xjrRGW0BdwzJ0qssc_0ZdS9VXx9TSEg_ekPyOB7HdZcYww3VWumTue9738nZbSyCC7k_WWopzuBF0S_7tqxf22IpSLpRjW2jttH3sZzcUfvTWXb18P7hHD7zSWSMBTIg4zRaDDo1QNuJP9loFP0DvvBYP2TTR1Dj-N81d4vd1d6pYRRpNt9uH8eC57hDQf0jZZZWvmlVkELGe_AfnWwLcpJuQMVCZu0SbDSThVWOjhQjYugZ6kxbjKMmyr7jEUCGVN2AUKnLpos_SG6igQcyBdcNZXIAx9PvSKffy2lvy&lib=MPzHTeP_TjGhgujRPgnZ3-ForcxrccJWn'; // <-- PASTE YOUR WEB APP URL HERE after deploying
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz_w5sjcT2gXwl8ZqWizHtkpeJ9I9AXkB3fEfJVXAdjmaiLRTTeqAO-ekkXxU0I1PD9-g/exec'; // <-- PASTE YOUR WEB APP URL HERE after deploying
 
   async function sendToSheet(data) {
     if (!SHEET_URL) {
