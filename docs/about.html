@@ -130,38 +130,6 @@
   <span class="wa-tooltip">Order on WhatsApp</span>
 </a>
 
-<!-- SAMPLE MODAL -->
-<div class="modal-overlay" id="sampleModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeSampleModal()">✕</button>
-    <h3>🎁 Book Your Free Sample</h3>
-    <p>Get a complimentary Anjani Premium Water 200ml delivered to your door — no cost, no commitment.</p>
-    <form id="sampleForm" onsubmit="submitForm(event,'sampleForm','sampleSuccess','sample')">
-      <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Your name" required></div>
-      <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
-      <div class="form-group"><label>Delivery Address *</label><input type="text" name="address" placeholder="Your address in Vadodara" required></div>
-      <button type="submit" class="form-submit">🎁 Request Free Sample</button>
-      <div class="success-msg" id="sampleSuccess">🎉 Sample booked! We'll deliver within 24 hours.</div>
-    </form>
-  </div>
-</div>
-
-<!-- QUICK ORDER MODAL -->
-<div class="modal-overlay" id="orderModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('orderModal').classList.remove('open')">✕</button>
-    <h3>📦 Quick Order</h3>
-    <p id="orderModalProduct">Place your order in seconds.</p>
-    <form id="quickOrderForm" onsubmit="submitForm(event,'quickOrderForm','quickOrderSuccess','quickOrder')">
-      <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Your name" required></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
-      <div class="form-group"><label>Product</label><input type="text" name="product" id="quickProduct" readonly style="background:#e8f4fd;cursor:not-allowed"></div>
-      <div class="form-group"><label>Quantity</label><input type="text" name="quantity" placeholder="e.g. 100 bottles"></div>
-      <button type="submit" class="form-submit">Place Order →</button>
-      <div class="success-msg" id="quickOrderSuccess">✅ Order sent! We'll call you soon.</div>
-    </form>
-  </div>
-</div>
 
 <script src="../js/script.js"></script>
 </body>
