@@ -88,7 +88,7 @@
             </a>
             <a href="mailto:annapurnafoods27@gmail.com" style="display:flex;align-items:center;gap:16px;padding:18px;background:var(--off);border-radius:14px;text-decoration:none;color:var(--text);transition:box-shadow 0.2s" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,119,182,0.15)'" onmouseout="this.style.boxShadow='none'">
               <div style="width:48px;height:48px;border-radius:14px;background:rgba(0,119,182,0.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">✉️</div>
-              <div><div style="font-weight:600;color:var(--deep)">Email</div><div style="font-size:0.88rem;color:var(--muted)">annapurnafoods27@gmail.com</div></div>
+              <div><div style="font-weight:600;color:var(--deep)">Email</div><div style="font-size:0.88rem;color:var(--muted)"><span class="__cf_email__" data-cfemail="b3d2ddddd2c3c6c1ddd2d5dcdcd7c08184f3d4ded2dadf9dd0dcde">[email&#160;protected]</span></div></div>
             </a>
             <div style="display:flex;align-items:center;gap:16px;padding:18px;background:var(--off);border-radius:14px">
               <div style="width:48px;height:48px;border-radius:14px;background:rgba(0,119,182,0.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">📍</div>
@@ -168,23 +168,6 @@
       <div class="form-group"><label>Delivery Address *</label><input type="text" name="address" placeholder="Your address in Vadodara" required></div>
       <button type="submit" class="form-submit">🎁 Request Free Sample</button>
       <div class="success-msg" id="sampleSuccess">🎉 Sample booked! We'll deliver within 24 hours.</div>
-    </form>
-  </div>
-</div>
-
-<!-- QUICK ORDER MODAL -->
-<div class="modal-overlay" id="orderModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('orderModal').classList.remove('open')">✕</button>
-    <h3>📦 Quick Order</h3>
-    <p id="orderModalProduct">Place your order in seconds.</p>
-    <form id="quickOrderForm" onsubmit="submitForm(event,'quickOrderForm','quickOrderSuccess','quickOrder')">
-      <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Your name" required></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
-      <div class="form-group"><label>Product</label><input type="text" name="product" id="quickProduct" readonly style="background:#e8f4fd;cursor:not-allowed"></div>
-      <div class="form-group"><label>Quantity</label><input type="text" name="quantity" placeholder="e.g. 100 bottles"></div>
-      <button type="submit" class="form-submit">Place Order →</button>
-      <div class="success-msg" id="quickOrderSuccess">✅ Order sent! We'll call you soon.</div>
     </form>
   </div>
 </div>
