@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Anjani Premium Water – Pure. Premium. Vadodara.</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
@@ -301,7 +301,7 @@
             <label>Special Instructions</label>
             <textarea name="notes" placeholder="Any special requirements, preferred delivery time, etc."></textarea>
           </div>
-          <button type="submit" class="form-submit" id="orderBtn">📦 Place Order</button>
+          <button type="submit" class="form-submit" autocomplete="off" id="orderBtn">📦 Place Order</button>
           <div class="success-msg" id="orderSuccess">✅ Order received! We'll call/WhatsApp you within 60 minutes.</div>
         </form>
       </div>
@@ -349,7 +349,7 @@
               <option>Any time</option>
             </select>
           </div>
-          <button type="submit" class="form-submit" id="queryBtn">📨 Send Query</button>
+          <button type="submit" class="form-submit" autocomplete="off" id="queryBtn">📨 Send Query</button>
           <div class="success-msg" id="querySuccess">✅ Query received! We'll reach out at your preferred time.</div>
         </form>
       </div>
@@ -534,7 +534,7 @@
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a class="wa-float" href="https://wa.me/919925997750?text=Hi%20Anjani%20Water!%20I%20would%20like%20to%20place%20an%20order." target="_blank">
+<a class="wa-float" aria-label="Order on WhatsApp" href="https://wa.me/919925997750?text=Hi%20Anjani%20Water!%20I%20would%20like%20to%20place%20an%20order." target="_blank">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.104 1.523 5.827L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.01-1.371l-.36-.214-3.732.886.914-3.641-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
   <span class="wa-tooltip">Order on WhatsApp</span>
 </a>
@@ -558,7 +558,7 @@
         <label>Delivery Address *</label>
         <input type="text" name="address" placeholder="Your address in Vadodara" required>
       </div>
-      <button type="submit" class="form-submit">🎁 Request Free Sample</button>
+      <button type="submit" class="form-submit" autocomplete="off">🎁 Request Free Sample</button>
       <div class="success-msg" id="sampleSuccess">🎉 Sample booked! We'll deliver within 24 hours.</div>
     </form>
   </div>
@@ -587,4 +587,4 @@
         <label>Quantity</label>
         <input type="text" name="quantity" placeholder="e.g. 100 bottles">
       </div>
-      <button type="submit" class="form-submit">Place Orde
+      <button type="submit" class="form-submit" autocomplete="off">Place Orde
