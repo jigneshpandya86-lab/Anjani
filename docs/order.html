@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>Order Now | Anjani Premium Water</title>
+<title>Promotions | Anjani Premium Water</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,10 +13,10 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html" >Home</a></li>
     <li><a href="products.html" >Products</a></li>
-    <li><a href="promotions.html" >Promotions</a></li>
+    <li><a href="promotions.html" class='nav-active'>Promotions</a></li>
     <li><a href="about.html" >About Us</a></li>
     <li><a href="contact.html" >Contact</a></li>
-    <li><a href="order.html" class="nav-cta nav-cta-active">Order Now</a></li>
+    <li><a href="order.html" class="nav-cta ">Order Now</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -24,79 +24,60 @@
 </nav>
 <div style="padding-top:80px"></div>
 
-<div class="page-hero" style="background:linear-gradient(135deg,var(--deep) 0%,var(--ocean) 100%);color:white">
+<div class="page-hero">
   <div class="page-hero-inner">
-    <span class="section-tag" style="color:var(--sky)">Fast Delivery</span>
-    <h1 class="section-title" style="color:white">Place Your Order</h1>
-    <p class="section-sub" style="color:rgba(255,255,255,0.8)">Fill in your details — we'll confirm your order and arrange delivery within Vadodara.</p>
+    <span class="section-tag">Offers & Deals</span>
+    <h1 class="section-title">Current Promotions</h1>
+    <p class="section-sub">Exclusive deals and seasonal offers for Vadodara customers — updated regularly.</p>
   </div>
 </div>
 
-<section id="forms" style="background:var(--off)">
+<section id="promos">
   <div class="section-inner">
-
-    <!-- FREE SAMPLE STRIP -->
-    <div id="sample" style="background:linear-gradient(135deg,var(--deep),var(--ocean));border-radius:24px;padding:40px;color:white;text-align:center;margin-bottom:48px">
-      <span style="font-size:2rem">🎁</span>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:white;margin:12px 0 8px">Try Before You Order</h3>
-      <p style="color:rgba(255,255,255,0.8);margin-bottom:24px;font-size:0.95rem">First time? Request a free Anjani 200ml sample delivered to your door — no commitment.</p>
-      <button class="btn-white" onclick="openSampleModal()">🎁 Book Free Sample</button>
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack"></div>
+      <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8249;</button>
+      <button class="carousel-btn next" onclick="moveCarousel(1)">&#8250;</button>
     </div>
-
-    <!-- ORDER FORM -->
-    <div class="form-card" style="max-width:800px;margin:0 auto">
-      <h3>📦 Place an Order</h3>
-      <p>Fill in your details and we'll confirm your order within 60 minutes.</p>
-      <form id="orderForm" onsubmit="submitForm(event,'orderForm','orderSuccess','order')">
-        <div class="form-row">
-          <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Ramesh Patel" required></div>
-          <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
-        </div>
-        <div class="form-group"><label>Delivery Address *</label><input type="text" name="address" placeholder="Flat no, Street, Area, Vadodara" required></div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Product *</label>
-            <select name="product" required>
-              <option value="">Select product</option>
-              <option>Anjani Premium Water 200ml</option>
-              <option>Bisleri</option>
-              <option>Bailley</option>
-              <option>Clear Water</option>
-              <option>Mixed / Multiple</option>
-            </select>
-          </div>
-          <div class="form-group"><label>Quantity *</label><input type="text" name="quantity" placeholder="e.g. 100 bottles / 5 cartons" required></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Order Type</label>
-            <select name="orderType">
-              <option>One-time order</option>
-              <option>Monthly subscription</option>
-              <option>Weekly recurring</option>
-              <option>Event / Bulk supply</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Preferred Delivery Time</label>
-            <select name="callTime">
-              <option>Morning (9am–12pm)</option>
-              <option>Afternoon (12pm–4pm)</option>
-              <option>Evening (4pm–8pm)</option>
-              <option>Any time</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group"><label>Special Instructions</label><textarea name="notes" placeholder="Any special requirements, preferred delivery time, etc."></textarea></div>
-        <button type="submit" class="form-submit" autocomplete="off">📦 Place Order</button>
-        <div class="success-msg" id="orderSuccess">✅ Order received! We'll call/WhatsApp you within 60 minutes.</div>
-      </form>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <div class="thumb-strip" id="thumbStrip"></div>
+    <div class="edit-guide">
+      <h4>📸 How to Update Promo Photos</h4>
+      <ol>
+        <li>Upload photo to <a href="https://imgbb.com" target="_blank" style="color:var(--ocean)">imgbb.com</a> → copy Direct Link.</li>
+        <li>Open <code>script.js</code> → find <code>ANJANI_CONFIG.promos</code> at the very top.</li>
+        <li>Paste your URL into the <code>image: ''</code> field of the slide you want to update.</li>
+        <li>Also update <code>title</code>, <code>tag</code>, <code>desc</code> text in the same block.</li>
+        <li>Save & push to GitHub — live in ~2 minutes ✅</li>
+      </ol>
     </div>
+  </div>
+</section>
 
-    <!-- CONTACT CHIPS -->
-    <div style="display:flex;gap:16px;justify-content:center;margin-top:40px;flex-wrap:wrap">
-      <a href="tel:919925997750" class="btn-outline">📞 Call Us</a>
-      <a href="https://wa.me/919925997750?text=Hi!%20I%20want%20to%20place%20an%20order." class="btn-outline" target="_blank">💬 WhatsApp Order</a>
+<!-- OFFER CARDS -->
+<section style="background:var(--off)">
+  <div class="section-inner">
+    <span class="section-tag">Current Deals</span>
+    <h2 class="section-title">Special Offers</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px" class="offers-grid">
+      <div class="testi-card" style="text-align:center;padding:36px 28px">
+        <div style="font-size:3rem;margin-bottom:16px">🎁</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);margin-bottom:10px">Free Sample</h3>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:20px">First-time customers get a complimentary Anjani 200ml bottle delivered to their door.</p>
+        <button class="btn-primary" onclick="openSampleModal()" style="width:100%;justify-content:center">Book Free Sample</button>
+      </div>
+      <div class="testi-card" style="text-align:center;padding:36px 28px">
+        <div style="font-size:3rem;margin-bottom:16px">📦</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);margin-bottom:10px">Bulk Discount</h3>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:20px">Order 500+ bottles and get wholesale pricing. Perfect for events, hotels & offices.</p>
+        <a href="order.html" class="btn-primary" style="display:flex;width:100%;justify-content:center">Order Now</a>
+      </div>
+      <div class="testi-card" style="text-align:center;padding:36px 28px">
+        <div style="font-size:3rem;margin-bottom:16px">🏢</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--deep);margin-bottom:10px">Corporate Deal</h3>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:20px">Special rates for offices and businesses in Vadodara with monthly subscription options.</p>
+        <a href="contact.html" class="btn-primary" style="display:flex;width:100%;justify-content:center">Enquire Now</a>
+      </div>
     </div>
   </div>
 </section>
@@ -163,23 +144,6 @@
       <div class="form-group"><label>Delivery Address *</label><input type="text" name="address" placeholder="Your address in Vadodara" required></div>
       <button type="submit" class="form-submit">🎁 Request Free Sample</button>
       <div class="success-msg" id="sampleSuccess">🎉 Sample booked! We'll deliver within 24 hours.</div>
-    </form>
-  </div>
-</div>
-
-<!-- QUICK ORDER MODAL -->
-<div class="modal-overlay" id="orderModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('orderModal').classList.remove('open')">✕</button>
-    <h3>📦 Quick Order</h3>
-    <p id="orderModalProduct">Place your order in seconds.</p>
-    <form id="quickOrderForm" onsubmit="submitForm(event,'quickOrderForm','quickOrderSuccess','quickOrder')">
-      <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Your name" required></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
-      <div class="form-group"><label>Product</label><input type="text" name="product" id="quickProduct" readonly style="background:#e8f4fd;cursor:not-allowed"></div>
-      <div class="form-group"><label>Quantity</label><input type="text" name="quantity" placeholder="e.g. 100 bottles"></div>
-      <button type="submit" class="form-submit">Place Order →</button>
-      <div class="success-msg" id="quickOrderSuccess">✅ Order sent! We'll call you soon.</div>
     </form>
   </div>
 </div>
