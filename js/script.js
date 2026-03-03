@@ -11,52 +11,60 @@
 
 const ANJANI_CONFIG = {
 
-  // ── 🔗 GOOGLE SHEETS (paste your Web App URL here) ──
-  SHEET_URL: 'https://script.google.com/macros/s/AKfycbz_w5sjcT2gXwl8ZqWizHtkpeJ9I9AXkB3fEfJVXAdjmaiLRTTeqAO-ekkXxU0I1PD9-g/exec', // <-- Paste your Apps Script Web App URL here
+  // ╔══════════════════════════════════════════════════════════╗
+  // ║  🔗 GOOGLE SHEETS — DO NOT CHANGE THIS                  ║
+  // ╚══════════════════════════════════════════════════════════╝
+  SHEET_URL: 'https://script.google.com/macros/s/AKfycbz_w5sjcT2gXwl8ZqWizHtkpeJ9I9AXkB3fEfJVXAdjmaiLRTTeqAO-ekkXxU0I1PD9-g/exec',
 
-  // ── 📸 HERO BOTTLE IMAGE ──
-  // The large bottle shown on the homepage hero section
+  // ╔══════════════════════════════════════════════════════════╗
+  // ║  📸 IMAGE URLs — UPDATE HERE ANYTIME                    ║
+  // ║  Just replace the URL string, nothing else!             ║
+  // ╚══════════════════════════════════════════════════════════╝
+
+  // Hero section — large bottle on homepage
   heroBottleImage: 'https://drive.google.com/uc?export=view&id=16oFqy0md7QnlFI4ywMMiZpO5PoVe1jW-',
 
-  // ── 📦 PRODUCT CARD IMAGES ──
-  // Each brand's bottle image shown in the Products section
+  // Product cards — one URL per brand
   products: {
-    anjani:  'https://drive.google.com/uc?export=view&id=16oFqy0md7QnlFI4ywMMiZpO5PoVe1jW-',
-    bisleri: 'https://www.bisleri.com/cdn/shop/files/200mlx48.png?v=1695987845',
-    bailley: 'https://www.parleagro.com/assets/images/products/bailley/bailley-200.png',
-    clear:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPcSy7H-5k5E6RAMhnKYIH1jGYCEMwcl95lg&s',
+    anjani:  'https://drive.google.com/uc?export=view&id=16oFqy0md7QnlFI4ywMMiZpO5PoVe1jW-',  // ← your Anjani bottle photo
+    bisleri: 'https://www.bisleri.com/cdn/shop/files/200mlx48.png?v=1695987845',               // ← Bisleri official
+    bailley: 'https://www.parleagro.com/assets/images/products/bailley/bailley-200.png',       // ← Bailley official
+    clear:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPcSy7H-5k5E6RAMhnKYIH1jGYCEMwcl95lg&s', // ← Clear Water
   },
 
-  // ── 🎯 PROMO CAROUSEL SLIDES ──
-  // Update title, description, tag, button text & image for each slide
-  // To add/remove slides: add/remove objects from this array
+  // ╔══════════════════════════════════════════════════════════╗
+  // ║  🎯 PROMO SLIDES — UPDATE HERE ANYTIME                  ║
+  // ║  Change image, title, desc, tag for each slide          ║
+  // ║  Add a new slide by copy-pasting a { } block           ║
+  // ║  Remove a slide by deleting its { } block              ║
+  // ╚══════════════════════════════════════════════════════════╝
   promos: [
     {
-      image:    '',   // Leave empty to show gradient background
-      tag:      '🔥 Limited Offer',
-      title:    'Bulk Order Special<br>Save Big Today',
-      desc:     'Order 500+ Anjani 200ml bottles and get exclusive wholesale pricing. Perfect for events, hotels & offices in Vadodara.',
-      btnText:  '📦 Order Now →',
-      btnLink:  '#forms',
-      bgColor:  'linear-gradient(135deg, #b8d8f0 0%, #7ec8e3 100%)',
+      image:   '',   // ← paste promo photo URL here (or leave empty for gradient)
+      tag:     '🔥 Limited Offer',
+      title:   'Bulk Order Special<br>Save Big Today',
+      desc:    'Order 500+ Anjani 200ml bottles and get exclusive wholesale pricing. Perfect for events, hotels & offices in Vadodara.',
+      btnText: '📦 Order Now →',
+      btnLink: '#forms',
+      bgColor: 'linear-gradient(135deg, #b8d8f0 0%, #7ec8e3 100%)',
     },
     {
-      image:    '',   // Leave empty to show gradient background
-      tag:      '🎁 Free Sample',
-      title:    'Try Anjani Water<br>Absolutely Free',
-      desc:     'First-time customers in Vadodara can request a complimentary 200ml sample — delivered to your door, no strings attached.',
-      btnText:  '🎁 Book Sample →',
-      btnLink:  'sample-modal',  // special value — opens sample modal
-      bgColor:  'linear-gradient(135deg, #a8d8f0 0%, #5bb8d4 100%)',
+      image:   '',   // ← paste promo photo URL here (or leave empty for gradient)
+      tag:     '🎁 Free Sample',
+      title:   'Try Anjani Water<br>Absolutely Free',
+      desc:    'First-time customers in Vadodara can request a complimentary 200ml sample — delivered to your door, no strings attached.',
+      btnText: '🎁 Book Sample →',
+      btnLink: 'sample-modal',
+      bgColor: 'linear-gradient(135deg, #a8d8f0 0%, #5bb8d4 100%)',
     },
     {
-      image:    '',   // Leave empty to show gradient background
-      tag:      '🏢 Corporate',
-      title:    'Office & Event<br>Water Partner',
-      desc:     'Trusted by offices, hotels and event planners across Vadodara. Branded Anjani water — the premium touch your guests deserve.',
-      btnText:  '💬 WhatsApp Us →',
-      btnLink:  'https://wa.me/919925997750?text=Hi!%20I%20need%20water%20for%20my%20event.',
-      bgColor:  'linear-gradient(135deg, #d0eafa 0%, #6ab8d8 100%)',
+      image:   '',   // ← paste promo photo URL here (or leave empty for gradient)
+      tag:     '🏢 Corporate',
+      title:   'Office & Event<br>Water Partner',
+      desc:    'Trusted by offices, hotels and event planners across Vadodara. Branded Anjani water — the premium touch your guests deserve.',
+      btnText: '💬 WhatsApp Us →',
+      btnLink: 'https://wa.me/919925997750?text=Hi!%20I%20need%20water%20for%20my%20event.',
+      bgColor: 'linear-gradient(135deg, #d0eafa 0%, #6ab8d8 100%)',
     },
   ],
 
@@ -71,8 +79,29 @@ const ANJANI_CONFIG = {
   });
 
   function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('open');
+    const nav = document.getElementById('navLinks');
+    const isOpen = nav.classList.toggle('open');
+    // Prevent body scroll when menu is open on mobile
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   }
+
+  // Close mobile menu when any nav link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close mobile menu on outside tap
+  document.addEventListener('click', (e) => {
+    const nav = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+      nav.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
 
   // MODALS
   function openSampleModal() {
@@ -97,7 +126,7 @@ const ANJANI_CONFIG = {
   // ── GOOGLE SHEETS INTEGRATION ──
   // 👉 Paste your deployed Apps Script Web App URL below
   // (After deploying: Copy > Execution URL and paste here)
-  const SHEET_URL = ANJANI_CONFIG.SHEET_URL; // Set in config above ☝️
+  const SHEET_URL = ANJANI_CONFIG.SHEET_URL;
 
   async function sendToSheet(data) {
     if (!SHEET_URL) {
