@@ -529,7 +529,7 @@ footer ul a:hover{opacity:1}
       <div class="footer-social">
         <a href="https://wa.me/919925997750" class="social-btn">&#128172;</a>
         <a href="tel:919925997750" class="social-btn">&#128222;</a>
-        <a href="mailto:annapurnafoods27@gmail.com" class="social-btn">&#9993;</a>
+        <a href="/cdn-cgi/l/email-protection#4e2f20202f3e3b3c202f2821212a3d7c790e29232f2722602d2123" class="social-btn">&#9993;</a>
       </div>
     </div>
     <div>
@@ -555,7 +555,7 @@ footer ul a:hover{opacity:1}
       <ul>
         <li><a href="tel:919925997750">9925997750</a></li>
         <li><a href="https://wa.me/919925997750">WhatsApp Us</a></li>
-        <li><a href="mailto:annapurnafoods27@gmail.com">annapurnafoods27@gmail.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#0c6d62626d7c797e626d6a6363687f3e3b4c6b616d6560226f6361"><span class="__cf_email__" data-cfemail="aacbc4c4cbdadfd8c4cbccc5c5ced9989deacdc7cbc3c684c9c5c7">[email&#160;protected]</span></a></li>
         <li>Vadodara, Gujarat</li>
       </ul>
     </div>
@@ -586,7 +586,7 @@ footer ul a:hover{opacity:1}
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const CONFIG = {
   SHEET_URL: 'https://script.google.com/macros/s/AKfycbz_w5sjcT2gXwl8ZqWizHtkpeJ9I9AXkB3fEfJVXAdjmaiLRTTeqAO-ekkXxU0I1PD9-g/exec',
   images: {
@@ -598,6 +598,7 @@ const CONFIG = {
   }
 };
 
+// Apply images
 window.addEventListener('DOMContentLoaded', function() {
   var map = {'hero-bottle':CONFIG.images.hero,'anjani-img':CONFIG.images.anjani,'bisleri-img':CONFIG.images.bisleri,'bailley-img':CONFIG.images.bailley,'clear-img':CONFIG.images.clear};
   Object.keys(map).forEach(function(id) {
@@ -607,10 +608,12 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Nav scroll
 window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 
+// Mobile menu
 function toggleMenu() {
   var nav = document.getElementById('navLinks'), ham = document.getElementById('hamburger');
   var open = nav.classList.toggle('open');
@@ -627,21 +630,41 @@ document.addEventListener('click', function(e) {
   if (nav.classList.contains('open') && !nav.contains(e.target) && !ham.contains(e.target)) closeMenu();
 });
 
-
+// Order Now scroll
 function openOrderModal() {
   document.getElementById('forms').scrollIntoView({behavior:'smooth'});
 }
 
+// Sample modal
 function openSampleModal() { document.getElementById('sampleModal').classList.add('open'); }
 function closeSampleModal() { document.getElementById('sampleModal').classList.remove('open'); }
 document.getElementById('sampleModal').addEventListener('click', function(e) { if (e.target===this) closeSampleModal(); });
 
+// Welcome popup
+function openWelcome() { document.getElementById('welcomeModal').classList.add('open'); }
+function closeWelcome() {
+  document.getElementById('welcomeModal').classList.remove('open');
+  sessionStorage.setItem('wSeen','1');
+}
+document.getElementById('welcomeModal').addEventListener('click', function(e) { if (e.target===this) closeWelcome(); });
+function submitWelcome(e) {
+  e.preventDefault();
+  var name = document.getElementById('wName').value;
+  var phone = document.getElementById('wPhone').value;
+  if (!phone) return;
+  sendToSheet({type:'welcome', name:name, phone:phone});
+  document.getElementById('welcomeSuccess').classList.add('show');
+  setTimeout(function(){ closeWelcome(); }, 2500);
+}
+
+// Send to Google Sheets
 async function sendToSheet(data) {
   if (!CONFIG.SHEET_URL) return;
   try { await fetch(CONFIG.SHEET_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); }
   catch(e) { console.log('Sheet error:',e); }
 }
 
+// Form submit
 function submitForm(e, formId, successId, type) {
   e.preventDefault();
   var form = document.getElementById(formId), data = {type:type};
@@ -653,11 +676,13 @@ function submitForm(e, formId, successId, type) {
   setTimeout(function(){msg.classList.remove('show');}, 5000);
 }
 
+// Scroll reveal
 var observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) { if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);} });
 }, {threshold:0.1});
 document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
 
+// Visitor tracking
 async function trackVisitor() {
   if (!CONFIG.SHEET_URL) return;
   var ua = navigator.userAgent;
@@ -668,31 +693,16 @@ async function trackVisitor() {
   sendToSheet({type:'visitor',page:document.title,referrer:document.referrer||'Direct',device,browser,screenSize:window.screen.width+'x'+window.screen.height,language:navigator.language,city:loc.city||'',region:loc.region||'',country:loc.country_name||'',ip:loc.ip||'',sessionId:'sid_'+Date.now()});
 }
 
-// Welcome popup
-function openWelcome() { document.getElementById('welcomeModal').classList.add('open'); }
-function closeWelcome() {
-  document.getElementById('welcomeModal').classList.remove('open');
-  sessionStorage.setItem('wSeen','1');
-}
-document.getElementById('welcomeModal').addEventListener('click', function(e){ if(e.target===this) closeWelcome(); });
-function submitWelcome(e) {
-  e.preventDefault();
-  var name = document.getElementById('wName').value;
-  var phone = document.getElementById('wPhone').value;
-  if (!phone) return;
-  sendToSheet({type:'welcome', name:name, phone:phone});
-  document.getElementById('welcomeSuccess').classList.add('show');
-  setTimeout(function(){ closeWelcome(); }, 2500);
-}
-// Show after 4 seconds, only once per session
+// Show welcome popup after 4 seconds, once per session
 window.addEventListener('load', function(){
+  trackVisitor();
   if (!sessionStorage.getItem('wSeen')) {
     setTimeout(openWelcome, 4000);
   }
 });
-
 </script>
 
+<!-- WELCOME POPUP -->
 <div class="welcome-overlay" id="welcomeModal">
   <div class="welcome-popup">
     <button class="welcome-close" onclick="closeWelcome()">&#10005;</button>
