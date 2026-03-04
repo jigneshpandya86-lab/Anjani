@@ -667,7 +667,6 @@ async function trackVisitor() {
   try{loc=await(await fetch('https://ipapi.co/json/')).json();}catch(e){}
   sendToSheet({type:'visitor',page:document.title,referrer:document.referrer||'Direct',device,browser,screenSize:window.screen.width+'x'+window.screen.height,language:navigator.language,city:loc.city||'',region:loc.region||'',country:loc.country_name||'',ip:loc.ip||'',sessionId:'sid_'+Date.now()});
 }
-window.addEventListener('load', function(){   trackVisitor();   if (!sessionStorage.getItem('wSeen')) {     setTimeout(openWelcome, 4000);   } });
 
 // Welcome popup
 function openWelcome() { document.getElementById('welcomeModal').classList.add('open'); }
@@ -693,5 +692,32 @@ window.addEventListener('load', function(){
 });
 
 </script>
+
+<div class="welcome-overlay" id="welcomeModal">
+  <div class="welcome-popup">
+    <button class="welcome-close" onclick="closeWelcome()">&#10005;</button>
+    <div class="welcome-popup-top">
+      <span class="wp-emoji">&#128167;</span>
+      <h3>Place an Order Today!</h3>
+      <p>Get Anjani premium water delivered to your door. Leave your number &#8212; we'll call you back with the best price!</p>
+    </div>
+    <div class="welcome-popup-body">
+      <form id="welcomeForm" onsubmit="submitWelcome(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="wName" placeholder="Ramesh Patel">
+        </div>
+        <div class="form-group">
+          <label>Mobile Number *</label>
+          <input type="tel" id="wPhone" placeholder="98765 43210" required>
+        </div>
+        <button type="submit" class="welcome-popup-submit">&#128222; Call Me &mdash; Best Price</button>
+        <div class="welcome-success" id="welcomeSuccess">&#9989; Thank you! We will call you shortly.</div>
+      </form>
+      <span class="welcome-skip" onclick="closeWelcome()">No thanks, I'll browse first &rarr;</span>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
