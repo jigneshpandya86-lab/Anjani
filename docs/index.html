@@ -667,7 +667,7 @@ async function trackVisitor() {
   try{loc=await(await fetch('https://ipapi.co/json/')).json();}catch(e){}
   sendToSheet({type:'visitor',page:document.title,referrer:document.referrer||'Direct',device,browser,screenSize:window.screen.width+'x'+window.screen.height,language:navigator.language,city:loc.city||'',region:loc.region||'',country:loc.country_name||'',ip:loc.ip||'',sessionId:'sid_'+Date.now()});
 }
-window.addEventListener('load', trackVisitor);
+window.addEventListener('load', function(){   trackVisitor();   if (!sessionStorage.getItem('wSeen')) {     setTimeout(openWelcome, 4000);   } });
 
 // Welcome popup
 function openWelcome() { document.getElementById('welcomeModal').classList.add('open'); }
