@@ -179,7 +179,7 @@ section{padding:72px 5%}
 .section-sub{color:var(--muted);font-size:0.9rem;line-height:1.75;max-width:540px;margin-bottom:36px}
 
 /* ============================================================
-   LATEST UPDATES SECTION
+   LATEST UPDATES SECTION — Updated March 2026
    ============================================================ */
 #updates{background:#fff;padding:64px 5%}
 .updates-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px}
@@ -192,6 +192,8 @@ section{padding:72px 5%}
 .update-card.news .update-card-top{background:linear-gradient(135deg,#065f46,#059669)}
 .update-card.season .update-card-top{background:linear-gradient(135deg,#92400e,#d97706)}
 .update-card.tip .update-card-top{background:linear-gradient(135deg,#1e3a5f,#2563eb)}
+.update-card.war .update-card-top{background:linear-gradient(135deg,#7f1d1d,#b91c1c)}
+.update-card.local .update-card-top{background:linear-gradient(135deg,#14532d,#16a34a)}
 .update-type-badge{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:50px;background:rgba(255,255,255,0.2);color:#fff;margin-bottom:10px}
 .update-card-top h3{font-size:1.05rem;font-weight:700;color:#fff;line-height:1.35;margin-bottom:6px}
 .update-card-top .update-emoji{font-size:1.6rem;position:absolute;top:18px;right:18px;opacity:0.7}
@@ -201,23 +203,41 @@ section{padding:72px 5%}
 .update-card.news .update-date::before{background:#059669}
 .update-card.season .update-date::before{background:#d97706}
 .update-card.tip .update-date::before{background:#2563eb}
+.update-card.war .update-date::before{background:#b91c1c}
+.update-card.local .update-date::before{background:#16a34a}
 .update-body-text{font-size:0.82rem;color:var(--muted);line-height:1.75;margin-bottom:12px}
 .update-cta-link{font-size:0.8rem;font-weight:600;color:var(--ocean);display:inline-flex;align-items:center;gap:4px}
 .update-card.news .update-cta-link{color:#059669}
 .update-card.season .update-cta-link{color:#d97706}
+.update-card.war .update-cta-link{color:#b91c1c}
+.update-card.local .update-cta-link{color:#16a34a}
 .update-cta-link:hover{text-decoration:underline}
 .updates-view-all{font-size:0.82rem;font-weight:600;color:var(--ocean);display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--ocean);padding:7px 18px;border-radius:50px;transition:all 0.2s}
 .updates-view-all:hover{background:var(--ocean);color:#fff}
+
+/* War illustration banner */
+.war-banner{background:linear-gradient(135deg,#1a0505,#7f1d1d);border-radius:16px;padding:28px 28px 0;margin-bottom:24px;overflow:hidden;position:relative;display:flex;align-items:flex-end;gap:24px;min-height:160px}
+.war-banner-text{flex:1;padding-bottom:28px;z-index:2}
+.war-banner-tag{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:50px;background:rgba(255,255,255,0.15);color:#fca5a5;margin-bottom:10px}
+.war-banner-title{font-size:1.25rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px}
+.war-banner-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);line-height:1.65}
+.war-illustration{width:180px;flex-shrink:0;align-self:flex-end}
+.war-illustration svg{display:block;width:100%}
+.war-banner-dots{position:absolute;top:0;right:0;bottom:0;width:40%;background:radial-gradient(ellipse at 80% 50%,rgba(185,28,28,0.3),transparent 70%);pointer-events:none}
+
 @media(max-width:900px){
   .updates-grid{grid-template-columns:1fr 1fr}
   .update-card.pinned{grid-column:span 2;grid-template-columns:1fr}
+  .war-banner{flex-direction:column;align-items:flex-start}
+  .war-illustration{width:120px;align-self:flex-end;margin-top:-20px}
 }
 @media(max-width:600px){
   .updates-grid{grid-template-columns:1fr}
   .update-card.pinned{grid-column:span 1;display:block}
+  .war-illustration{display:none}
 }
 /* ============================================================ */
-
+-->
 /* PRODUCTS */
 #products{background:var(--off)}
 .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -512,42 +532,100 @@ footer ul a:hover{opacity:1}
      Card types: offer | news | season | tip
      To make a card wide (pinned): add class "pinned" to .update-card
      ============================================================ -->
+
+<!-- PASTE THIS HTML replacing your old <section id="updates"> block -->
+
 <section id="updates">
   <div class="section-inner">
+
     <div class="updates-header">
       <div>
         <span class="section-tag">Latest Updates</span>
-        <h2 class="section-title" style="margin-bottom:0">News &amp; Offers</h2>
+        <h2 class="section-title" style="margin-bottom:0">News &amp; Updates</h2>
       </div>
       <a href="#forms" class="updates-view-all">Place an Order &#8594;</a>
     </div>
+
+    <!-- WAR IMPACT BANNER -->
+    <div class="war-banner reveal">
+      <div class="war-banner-dots"></div>
+      <div class="war-banner-text">
+        <div class="war-banner-tag">&#127758; Global Alert — March 2026</div>
+        <div class="war-banner-title">Global Trade Tensions &amp; Tariff Wars:<br>What It Means for Packaged Water in Vadodara</div>
+        <div class="war-banner-sub">Rising US-China trade tensions, new global tariffs and supply chain disruptions are pushing up costs for packaging raw materials like PET plastic and bottle caps worldwide — including India. Despite this, <strong style="color:#fff">Anjani Water is committed to holding our prices steady</strong> and keeping your supply uninterrupted across all of Vadodara.</div>
+      </div>
+      <!-- Inline SVG cartoon: globe with cracks + dollar signs flying -->
+      <div class="war-illustration" aria-hidden="true">
+        <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- Globe body -->
+          <circle cx="90" cy="120" r="68" fill="#1e3a5f" opacity="0.9"/>
+          <circle cx="90" cy="120" r="68" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 4"/>
+          <!-- Continent blobs -->
+          <ellipse cx="75" cy="105" rx="22" ry="14" fill="#16a34a" opacity="0.7"/>
+          <ellipse cx="108" cy="118" rx="18" ry="22" fill="#16a34a" opacity="0.6"/>
+          <ellipse cx="68" cy="135" rx="12" ry="8" fill="#16a34a" opacity="0.5"/>
+          <!-- Cracks on globe -->
+          <path d="M90 55 L85 80 L95 95 L88 120" stroke="#ef4444" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M130 90 L112 105 L118 125 L105 140" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M50 110 L68 118 L62 135" stroke="#fca5a5" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- Globe equator lines -->
+          <ellipse cx="90" cy="120" rx="68" ry="20" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="90" y1="52" x2="90" y2="188" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <!-- Explosion burst top -->
+          <g transform="translate(90,52)">
+            <circle cx="0" cy="0" r="14" fill="#f97316" opacity="0.9"/>
+            <circle cx="0" cy="0" r="9" fill="#fbbf24"/>
+            <line x1="0" y1="-20" x2="0" y2="-14" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="14" y1="-14" x2="10" y2="-10" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="20" y1="0" x2="14" y2="0" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="-14" y1="-14" x2="-10" y2="-10" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="-20" y1="0" x2="-14" y2="0" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="-6" y="5" font-size="11" font-weight="bold" fill="#7f1d1d">!</text>
+          </g>
+          <!-- Flying dollar/rupee signs -->
+          <text x="20" y="72" font-size="16" fill="#fbbf24" opacity="0.85" transform="rotate(-18,20,72)">₹</text>
+          <text x="138" y="80" font-size="13" fill="#fbbf24" opacity="0.75" transform="rotate(12,138,80)">$</text>
+          <text x="28" y="155" font-size="11" fill="#fbbf24" opacity="0.6" transform="rotate(-8,28,155)">₹</text>
+          <text x="148" y="150" font-size="10" fill="#fca5a5" opacity="0.7" transform="rotate(15,148,150)">$</text>
+          <!-- Water bottle icon at bottom -->
+          <rect x="78" y="170" width="24" height="36" rx="5" fill="#38bdf8" opacity="0.9"/>
+          <rect x="82" y="164" width="16" height="10" rx="3" fill="#0ea5e9"/>
+          <text x="84" y="193" font-size="9" fill="#fff" font-weight="bold">💧</text>
+          <!-- Shield over bottle -->
+          <path d="M90 158 L76 164 L76 180 Q76 192 90 198 Q104 192 104 180 L104 164 Z" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.7"/>
+          <text x="84" y="178" font-size="10" fill="#4ade80">✓</text>
+        </svg>
+      </div>
+    </div>
+    <!-- END WAR BANNER -->
+
     <div class="updates-grid">
 
-      <!-- CARD 1 — PINNED WIDE — Best for main seasonal campaign -->
-      <div class="update-card offer pinned reveal">
+      <!-- CARD 1 — WAR IMPACT (pinned wide) -->
+      <div class="update-card war pinned reveal">
         <div class="update-card-top">
-          <span class="update-emoji">&#128149;</span>
-          <div class="update-type-badge">&#128308; Special Offer</div>
-          <h3>Wedding Season 2025&#8211;26: Book Water Bottles in Advance for Vadodara Marriages</h3>
+          <span class="update-emoji">&#127758;</span>
+          <div class="update-type-badge">&#128308; Global Impact</div>
+          <h3>Trade Wars &amp; Tariffs: Will Your Water Supply Be Affected?</h3>
         </div>
         <div class="update-card-body">
           <div class="update-date">March 2026</div>
-          <p class="update-body-text">Planning a wedding or reception in Vadodara? Secure your 200ml water bottle supply early this season. We supply Anjani, Bisleri and Bailley for 500 to 50,000 guests &#8212; on-time delivery guaranteed for every party plot and banquet hall across Vadodara.</p>
-          <a href="#forms" class="update-cta-link">Book your order &#8594;</a>
+          <p class="update-body-text">Global trade conflicts and new US tariffs are disrupting supply chains for PET plastic, packaging materials and imported bottle components. Some large national brands have already signaled price increases. <strong>At Anjani Water, we are a local Vadodara brand</strong> — our sourcing, production and delivery are all within Gujarat. This keeps us insulated from international disruptions and means <strong>your bulk orders are safe, timely and priced fairly.</strong></p>
+          <a href="#forms" class="update-cta-link">Lock in your order now &#8594;</a>
         </div>
       </div>
 
-      <!-- CARD 2 — NEWS -->
-      <div class="update-card news reveal">
+      <!-- CARD 2 — LOCAL STRENGTH -->
+      <div class="update-card local reveal">
         <div class="update-card-top">
-          <span class="update-emoji">&#127881;</span>
-          <div class="update-type-badge">&#128994; News</div>
-          <h3>Now Delivering to Waghodia &amp; Savli Road Areas</h3>
+          <span class="update-emoji">&#127968;</span>
+          <div class="update-type-badge">&#128994; Our Promise</div>
+          <h3>100% Local — Your Supply Is Safe With Us</h3>
         </div>
         <div class="update-card-body">
-          <div class="update-date">February 2026</div>
-          <p class="update-body-text">Anjani Water now covers Waghodia, Savli Road and surrounding GIDC areas. Offices, factories and events in these zones can place bulk orders directly.</p>
-          <a href="tel:919925997750" class="update-cta-link">Call to order &#8594;</a>
+          <div class="update-date">March 2026</div>
+          <p class="update-body-text">Unlike imported brands, Anjani Water is made, bottled and delivered entirely within Vadodara and Gujarat. No global shipping. No import dependency. Your weddings, events and offices will never face a shortage because of what's happening on the world stage.</p>
+          <a href="tel:919925997750" class="update-cta-link">Call us anytime &#8594;</a>
         </div>
       </div>
 
@@ -556,32 +634,33 @@ footer ul a:hover{opacity:1}
         <div class="update-card-top">
           <span class="update-emoji">&#9728;&#65039;</span>
           <div class="update-type-badge">&#128993; Summer Ready</div>
-          <h3>Summer Bulk Orders Open &#8212; Beat the Heat in Vadodara</h3>
+          <h3>Book Summer Supply Early — Beat Demand &amp; Price Hikes</h3>
         </div>
         <div class="update-card-body">
           <div class="update-date">March 2026</div>
-          <p class="update-body-text">Temperatures are rising. Lock in bulk water supply for your office, factory or event at best rates. Early bookings get priority delivery slots across all Vadodara areas.</p>
-          <a href="#forms" class="update-cta-link">Get bulk rates &#8594;</a>
+          <p class="update-body-text">With global material costs rising, early bookings help us guarantee you the best rates. Lock in your summer bulk order now for offices, factories and events across Vadodara before peak season demand hits.</p>
+          <a href="#forms" class="update-cta-link">Book early rates &#8594;</a>
         </div>
       </div>
 
-      <!-- CARD 4 — TIP -->
+      <!-- CARD 4 — TIP / REASSURANCE -->
       <div class="update-card tip reveal">
         <div class="update-card-top">
-          <span class="update-emoji">&#128161;</span>
-          <div class="update-type-badge">&#128309; Did You Know</div>
-          <h3>Free Sample Available &#8212; Try Anjani 200ml Before You Order</h3>
+          <span class="update-emoji">&#128167;</span>
+          <div class="update-type-badge">&#128309; Anjani Commitment</div>
+          <h3>We Are Here for Vadodara — No Matter What</h3>
         </div>
         <div class="update-card-body">
           <div class="update-date">Ongoing</div>
-          <p class="update-body-text">First time ordering? We deliver a complimentary Anjani 200ml bottle to your door in Vadodara &#8212; no cost, no commitment. Just call or WhatsApp us.</p>
-          <a href="#sample" class="update-cta-link">Claim free sample &#8594;</a>
+          <p class="update-body-text">Geopolitical tensions come and go — but clean, affordable water for Vadodara's families, events and businesses is our mission every single day. Anjani Water stands with our city. Call, WhatsApp or order online — we will be there.</p>
+          <a href="https://wa.me/919925997750" class="update-cta-link">WhatsApp us &#8594;</a>
         </div>
       </div>
 
     </div>
   </div>
 </section>
+<!-- END LATEST UPDATES -->
 <!-- END LATEST UPDATES -->
 
 <section id="products" style="background:var(--off)">
