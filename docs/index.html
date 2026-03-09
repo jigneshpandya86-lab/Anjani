@@ -527,13 +527,9 @@ footer ul a:hover{opacity:1}
 </div>
 
 <!-- ============================================================
-     LATEST UPDATES — Edit the cards below to post new content
-     HOW TO UPDATE: Change date, heading, body text and emoji
-     Card types: offer | news | season | tip
-     To make a card wide (pinned): add class "pinned" to .update-card
+     REPLACE your entire <section id="updates">...</section> block
+     with this HTML below
      ============================================================ -->
-
-<!-- PASTE THIS HTML replacing your old <section id="updates"> block -->
 
 <section id="updates">
   <div class="section-inner">
@@ -550,50 +546,112 @@ footer ul a:hover{opacity:1}
     <div class="war-banner reveal">
       <div class="war-banner-dots"></div>
       <div class="war-banner-text">
-        <div class="war-banner-tag">&#127758; Global Alert — March 2026</div>
-        <div class="war-banner-title">Global Trade Tensions &amp; Tariff Wars:<br>What It Means for Packaged Water in Vadodara</div>
-        <div class="war-banner-sub">Rising US-China trade tensions, new global tariffs and supply chain disruptions are pushing up costs for packaging raw materials like PET plastic and bottle caps worldwide — including India. Despite this, <strong style="color:#fff">Anjani Water is committed to holding our prices steady</strong> and keeping your supply uninterrupted across all of Vadodara.</div>
+        <div class="war-banner-tag">&#127758; Middle East Crisis — March 2026</div>
+        <div class="war-banner-title">US–Iran–Israel Conflict &amp; Its Impact<br>on Packaged Drinking Water in India</div>
+        <div class="war-banner-sub">The escalating military conflict in the Middle East is disrupting global oil supply routes. Higher crude oil prices directly push up the cost of PET plastic — the material used in every water bottle. National brands are already signaling price hikes. <strong style="color:#fff">Anjani Water is committed to protecting Vadodara customers</strong> from these global shocks as much as possible.</div>
       </div>
-      <!-- Inline SVG cartoon: globe with cracks + dollar signs flying -->
       <div class="war-illustration" aria-hidden="true">
-        <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg">
-          <!-- Globe body -->
-          <circle cx="90" cy="120" r="68" fill="#1e3a5f" opacity="0.9"/>
-          <circle cx="90" cy="120" r="68" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 4"/>
-          <!-- Continent blobs -->
-          <ellipse cx="75" cy="105" rx="22" ry="14" fill="#16a34a" opacity="0.7"/>
-          <ellipse cx="108" cy="118" rx="18" ry="22" fill="#16a34a" opacity="0.6"/>
-          <ellipse cx="68" cy="135" rx="12" ry="8" fill="#16a34a" opacity="0.5"/>
-          <!-- Cracks on globe -->
-          <path d="M90 55 L85 80 L95 95 L88 120" stroke="#ef4444" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M130 90 L112 105 L118 125 L105 140" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M50 110 L68 118 L62 135" stroke="#fca5a5" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <!-- Globe equator lines -->
-          <ellipse cx="90" cy="120" rx="68" ry="20" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <line x1="90" y1="52" x2="90" y2="188" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <!-- Explosion burst top -->
-          <g transform="translate(90,52)">
-            <circle cx="0" cy="0" r="14" fill="#f97316" opacity="0.9"/>
-            <circle cx="0" cy="0" r="9" fill="#fbbf24"/>
-            <line x1="0" y1="-20" x2="0" y2="-14" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="14" y1="-14" x2="10" y2="-10" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="20" y1="0" x2="14" y2="0" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="-14" y1="-14" x2="-10" y2="-10" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="-20" y1="0" x2="-14" y2="0" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-            <text x="-6" y="5" font-size="11" font-weight="bold" fill="#7f1d1d">!</text>
+        <svg viewBox="0 0 180 210" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sky / background -->
+          <rect x="0" y="80" width="180" height="130" fill="#1c1917" rx="8"/>
+          <rect x="0" y="0" width="180" height="90" fill="#1e1b4b" rx="8"/>
+
+          <!-- Stars -->
+          <circle cx="20" cy="15" r="1.5" fill="#fbbf24"/>
+          <circle cx="55" cy="8" r="1" fill="#fff" opacity="0.6"/>
+          <circle cx="90" cy="20" r="1.5" fill="#fff" opacity="0.5"/>
+          <circle cx="130" cy="10" r="1" fill="#fbbf24" opacity="0.7"/>
+          <circle cx="160" cy="25" r="1.5" fill="#fff" opacity="0.6"/>
+          <circle cx="40" cy="35" r="1" fill="#fff" opacity="0.4"/>
+          <circle cx="150" cy="40" r="1" fill="#fbbf24" opacity="0.5"/>
+
+          <!-- Moon -->
+          <circle cx="145" cy="22" r="12" fill="#fef3c7"/>
+          <circle cx="150" cy="18" r="9" fill="#1e1b4b"/>
+
+          <!-- Ground / desert -->
+          <ellipse cx="90" cy="205" rx="100" ry="18" fill="#78350f" opacity="0.8"/>
+          <rect x="0" y="195" width="180" height="20" fill="#92400e"/>
+
+          <!-- Buildings silhouette left -->
+          <rect x="5" y="130" width="18" height="70" fill="#292524"/>
+          <rect x="10" y="120" width="8" height="15" fill="#292524"/>
+          <rect x="28" y="145" width="22" height="55" fill="#1c1917"/>
+          <rect x="33" y="138" width="12" height="12" fill="#1c1917"/>
+
+          <!-- Buildings silhouette right -->
+          <rect x="135" y="138" width="20" height="62" fill="#292524"/>
+          <rect x="140" y="128" width="10" height="15" fill="#292524"/>
+          <rect x="158" y="148" width="18" height="52" fill="#1c1917"/>
+
+          <!-- Dome (Middle East style) center building -->
+          <rect x="68" y="155" width="44" height="45" fill="#44403c"/>
+          <ellipse cx="90" cy="155" rx="22" ry="12" fill="#57534e"/>
+          <!-- Windows with orange glow (fire) -->
+          <rect x="74" y="163" width="8" height="10" rx="2" fill="#f97316" opacity="0.9"/>
+          <rect x="86" y="163" width="8" height="10" rx="2" fill="#fbbf24" opacity="0.8"/>
+          <rect x="98" y="163" width="8" height="10" rx="2" fill="#f97316" opacity="0.7"/>
+          <rect x="80" y="178" width="20" height="22" rx="2" fill="#292524"/>
+
+          <!-- Missile / projectile 1 -->
+          <g transform="translate(30,60) rotate(45)">
+            <rect x="-3" y="-18" width="6" height="20" rx="3" fill="#94a3b8"/>
+            <polygon points="0,-22 -4,-18 4,-18" fill="#cbd5e1"/>
+            <rect x="-5" y="2" width="4" height="6" fill="#64748b"/>
+            <rect x="1" y="2" width="4" height="6" fill="#64748b"/>
+            <!-- Flame trail -->
+            <ellipse cx="0" cy="10" rx="4" ry="8" fill="#f97316" opacity="0.8"/>
+            <ellipse cx="0" cy="14" rx="2.5" ry="5" fill="#fbbf24" opacity="0.9"/>
           </g>
-          <!-- Flying dollar/rupee signs -->
-          <text x="20" y="72" font-size="16" fill="#fbbf24" opacity="0.85" transform="rotate(-18,20,72)">₹</text>
-          <text x="138" y="80" font-size="13" fill="#fbbf24" opacity="0.75" transform="rotate(12,138,80)">$</text>
-          <text x="28" y="155" font-size="11" fill="#fbbf24" opacity="0.6" transform="rotate(-8,28,155)">₹</text>
-          <text x="148" y="150" font-size="10" fill="#fca5a5" opacity="0.7" transform="rotate(15,148,150)">$</text>
-          <!-- Water bottle icon at bottom -->
-          <rect x="78" y="170" width="24" height="36" rx="5" fill="#38bdf8" opacity="0.9"/>
-          <rect x="82" y="164" width="16" height="10" rx="3" fill="#0ea5e9"/>
-          <text x="84" y="193" font-size="9" fill="#fff" font-weight="bold">💧</text>
-          <!-- Shield over bottle -->
-          <path d="M90 158 L76 164 L76 180 Q76 192 90 198 Q104 192 104 180 L104 164 Z" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.7"/>
-          <text x="84" y="178" font-size="10" fill="#4ade80">✓</text>
+
+          <!-- Missile / projectile 2 -->
+          <g transform="translate(148,50) rotate(130)">
+            <rect x="-3" y="-18" width="6" height="20" rx="3" fill="#94a3b8"/>
+            <polygon points="0,-22 -4,-18 4,-18" fill="#cbd5e1"/>
+            <rect x="-5" y="2" width="4" height="6" fill="#64748b"/>
+            <rect x="1" y="2" width="4" height="6" fill="#64748b"/>
+            <ellipse cx="0" cy="10" rx="4" ry="8" fill="#ef4444" opacity="0.8"/>
+            <ellipse cx="0" cy="14" rx="2.5" ry="5" fill="#fbbf24" opacity="0.9"/>
+          </g>
+
+          <!-- Explosion over dome -->
+          <circle cx="90" cy="108" r="22" fill="#f97316" opacity="0.25"/>
+          <circle cx="90" cy="108" r="14" fill="#f97316" opacity="0.5"/>
+          <circle cx="90" cy="108" r="8" fill="#fbbf24" opacity="0.9"/>
+          <!-- Burst rays -->
+          <line x1="90" y1="88" x2="90" y2="96" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="107" y1="91" x2="103" y2="95" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+          <line x1="110" y1="108" x2="102" y2="108" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+          <line x1="107" y1="125" x2="103" y2="121" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+          <line x1="73" y1="91" x2="77" y2="95" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+          <line x1="70" y1="108" x2="78" y2="108" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+          <line x1="73" y1="125" x2="77" y2="121" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Smoke clouds -->
+          <ellipse cx="90" cy="88" rx="18" ry="10" fill="#44403c" opacity="0.7"/>
+          <ellipse cx="78" cy="83" rx="12" ry="8" fill="#57534e" opacity="0.6"/>
+          <ellipse cx="102" cy="82" rx="10" ry="7" fill="#44403c" opacity="0.5"/>
+
+          <!-- Oil barrel with $ sign -->
+          <rect x="12" y="158" width="20" height="26" rx="4" fill="#292524" stroke="#f97316" stroke-width="1.5"/>
+          <line x1="12" y1="168" x2="32" y2="168" stroke="#f97316" stroke-width="1"/>
+          <line x1="12" y1="176" x2="32" y2="176" stroke="#f97316" stroke-width="1"/>
+          <text x="17" y="172" font-size="9" fill="#fbbf24" font-weight="bold">$</text>
+          <!-- Arrow up (price rising) -->
+          <line x1="22" y1="155" x2="22" y2="143" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="22,140 18,146 26,146" fill="#ef4444"/>
+          <text x="27" y="145" font-size="7" fill="#ef4444" font-weight="bold">↑</text>
+
+          <!-- Water bottle protected (right side) -->
+          <rect x="148" y="162" width="16" height="24" rx="4" fill="#38bdf8" opacity="0.9"/>
+          <rect x="151" y="157" width="10" height="8" rx="2" fill="#0ea5e9"/>
+          <!-- Shield -->
+          <path d="M156 154 L144 158 L144 172 Q144 182 156 187 Q168 182 168 172 L168 158 Z" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.85"/>
+          <text x="151" y="174" font-size="9" fill="#4ade80" font-weight="bold">✓</text>
+
+          <!-- "OIL" smoke label -->
+          <text x="55" y="78" font-size="7" fill="#fca5a5" opacity="0.8" font-weight="bold">OIL PRICES</text>
+          <text x="60" y="86" font-size="7" fill="#f97316" opacity="0.8" font-weight="bold">↑ RISING</text>
         </svg>
       </div>
     </div>
@@ -601,59 +659,59 @@ footer ul a:hover{opacity:1}
 
     <div class="updates-grid">
 
-      <!-- CARD 1 — WAR IMPACT (pinned wide) -->
+      <!-- CARD 1 — WAR IMPACT pinned wide -->
       <div class="update-card war pinned reveal">
         <div class="update-card-top">
-          <span class="update-emoji">&#127758;</span>
-          <div class="update-type-badge">&#128308; Global Impact</div>
-          <h3>Trade Wars &amp; Tariffs: Will Your Water Supply Be Affected?</h3>
+          <span class="update-emoji">&#128308;</span>
+          <div class="update-type-badge">&#9888;&#65039; War Impact</div>
+          <h3>US–Iran–Israel War: How It Affects Packaged Water Prices in India</h3>
         </div>
         <div class="update-card-body">
           <div class="update-date">March 2026</div>
-          <p class="update-body-text">Global trade conflicts and new US tariffs are disrupting supply chains for PET plastic, packaging materials and imported bottle components. Some large national brands have already signaled price increases. <strong>At Anjani Water, we are a local Vadodara brand</strong> — our sourcing, production and delivery are all within Gujarat. This keeps us insulated from international disruptions and means <strong>your bulk orders are safe, timely and priced fairly.</strong></p>
-          <a href="#forms" class="update-cta-link">Lock in your order now &#8594;</a>
+          <p class="update-body-text">The ongoing military escalation between the US, Iran and Israel is disrupting Middle East oil supply routes. Since <strong>PET plastic</strong> — used in every water bottle — is an oil-based product, rising crude oil prices directly increase bottling costs across India. Several national brands have already started passing these costs to customers. <strong>We are working hard to absorb these pressures</strong> and protect your bulk order pricing for as long as possible. Lock in your order now before any price revision becomes unavoidable.</p>
+          <a href="#forms" class="update-cta-link">Secure your order today &#8594;</a>
         </div>
       </div>
 
-      <!-- CARD 2 — LOCAL STRENGTH -->
+      <!-- CARD 2 — LOCAL SHIELD -->
       <div class="update-card local reveal">
         <div class="update-card-top">
           <span class="update-emoji">&#127968;</span>
-          <div class="update-type-badge">&#128994; Our Promise</div>
-          <h3>100% Local — Your Supply Is Safe With Us</h3>
+          <div class="update-type-badge">&#128994; Anjani Promise</div>
+          <h3>Local Brand, Local Supply — We Will Not Let You Down</h3>
         </div>
         <div class="update-card-body">
           <div class="update-date">March 2026</div>
-          <p class="update-body-text">Unlike imported brands, Anjani Water is made, bottled and delivered entirely within Vadodara and Gujarat. No global shipping. No import dependency. Your weddings, events and offices will never face a shortage because of what's happening on the world stage.</p>
+          <p class="update-body-text">Anjani Water is produced, bottled and delivered entirely within Gujarat. We are not dependent on imports or Middle East supply chains. Your weddings, events and daily needs in Vadodara will not face a shortage due to global conflicts. We are here — every single day.</p>
           <a href="tel:919925997750" class="update-cta-link">Call us anytime &#8594;</a>
         </div>
       </div>
 
-      <!-- CARD 3 — SEASON -->
+      <!-- CARD 3 — BOOK EARLY -->
       <div class="update-card season reveal">
         <div class="update-card-top">
-          <span class="update-emoji">&#9728;&#65039;</span>
-          <div class="update-type-badge">&#128993; Summer Ready</div>
-          <h3>Book Summer Supply Early — Beat Demand &amp; Price Hikes</h3>
+          <span class="update-emoji">&#128230;</span>
+          <div class="update-type-badge">&#128993; Urgent Advisory</div>
+          <h3>Book Bulk Orders Early — Prices May Rise With Oil Costs</h3>
         </div>
         <div class="update-card-body">
           <div class="update-date">March 2026</div>
-          <p class="update-body-text">With global material costs rising, early bookings help us guarantee you the best rates. Lock in your summer bulk order now for offices, factories and events across Vadodara before peak season demand hits.</p>
-          <a href="#forms" class="update-cta-link">Book early rates &#8594;</a>
+          <p class="update-body-text">Caterers, party plots, hotels and offices — if you have summer events planned, we strongly recommend booking your water supply now. Current pricing is our best offer. As oil and material costs rise due to Middle East tensions, rates may need adjustment after April.</p>
+          <a href="#forms" class="update-cta-link">Book at current rates &#8594;</a>
         </div>
       </div>
 
-      <!-- CARD 4 — TIP / REASSURANCE -->
+      <!-- CARD 4 — REASSURANCE -->
       <div class="update-card tip reveal">
         <div class="update-card-top">
           <span class="update-emoji">&#128167;</span>
-          <div class="update-type-badge">&#128309; Anjani Commitment</div>
-          <h3>We Are Here for Vadodara — No Matter What</h3>
+          <div class="update-type-badge">&#128309; Our Commitment</div>
+          <h3>Wars May Shake the World — Vadodara's Water Is Safe With Us</h3>
         </div>
         <div class="update-card-body">
           <div class="update-date">Ongoing</div>
-          <p class="update-body-text">Geopolitical tensions come and go — but clean, affordable water for Vadodara's families, events and businesses is our mission every single day. Anjani Water stands with our city. Call, WhatsApp or order online — we will be there.</p>
-          <a href="https://wa.me/919925997750" class="update-cta-link">WhatsApp us &#8594;</a>
+          <p class="update-body-text">No matter what happens globally, Anjani Water's mission is simple — pure, affordable, on-time water delivery for every home, event and business in Vadodara. We stand with our city. Call, WhatsApp or order online — we will always be here for you.</p>
+          <a href="https://wa.me/919925997750" class="update-cta-link">WhatsApp us now &#8594;</a>
         </div>
       </div>
 
@@ -661,8 +719,6 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 <!-- END LATEST UPDATES -->
-<!-- END LATEST UPDATES -->
-
 <section id="products" style="background:var(--off)">
   <div class="section-inner">
     <span class="section-tag">Our Range</span>
