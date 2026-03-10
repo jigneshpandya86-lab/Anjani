@@ -386,6 +386,10 @@ footer ul a:hover{opacity:1}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+/* UPDATE CARD IMAGE */
+.update-card-img{width:100%;overflow:hidden;max-height:180px}
+.update-card-img img{width:100%;height:180px;object-fit:cover;display:block;transition:transform 0.3s}
+.update-card:hover .update-card-img img{transform:scale(1.04)}
 
 /* WELCOME POPUP */
 .welcome-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.52);z-index:3000;align-items:center;justify-content:center;padding:20px}
@@ -983,23 +987,30 @@ fetch('updates.json')
       return;
     }
     grid.innerHTML = updates.map(function(u, i) {
-      var pinned = (i === 0) ? ' pinned' : '';
-      var dateStr = '';
-      try { dateStr = new Date(u.date).toLocaleDateString('en-IN', {month:'long', year:'numeric'}); }
-      catch(e) { dateStr = u.date; }
-      return '<div class="update-card ' + (u.type||'offer') + pinned + ' reveal">' +
-        '<div class="update-card-top">' +
-          '<span class="update-emoji">' + (u.emoji||'💧') + '</span>' +
-          '<div class="update-type-badge">' + (u.tag||'Update') + '</div>' +
-          '<h3>' + u.title + '</h3>' +
-        '</div>' +
-        '<div class="update-card-body">' +
-          '<div class="update-date">' + dateStr + '</div>' +
-          '<p class="update-body-text">' + u.body + '</p>' +
-          '<a href="' + (u.ctaLink||'#forms') + '" class="update-cta-link">' + (u.cta||'Learn more →') + '</a>' +
-        '</div>' +
-      '</div>';
-    }).join('');
+  var pinned = (i === 0) ? ' pinned' : '';
+  var dateStr = '';
+  try { dateStr = new Date(u.date).toLocaleDateString('en-IN', {month:'long', year:'numeric'}); }
+  catch(e) { dateStr = u.date; }
+
+  // optional image block
+  var imgHtml = u.image
+    ? '<div class="update-card-img"><img src="' + u.image + '" alt="' + u.title + '" loading="lazy"></div>'
+    : '';
+
+  return '<div class="update-card ' + (u.type||'offer') + pinned + ' reveal">' +
+    '<div class="update-card-top">' +
+      '<span class="update-emoji">' + (u.emoji||'💧') + '</span>' +
+      '<div class="update-type-badge">' + (u.tag||'Update') + '</div>' +
+      '<h3>' + u.title + '</h3>' +
+    '</div>' +
+    imgHtml +
+    '<div class="update-card-body">' +
+      '<div class="update-date">' + dateStr + '</div>' +
+      '<p class="update-body-text">' + u.body + '</p>' +
+      '<a href="' + (u.ctaLink||'#forms') + '" class="update-cta-link">' + (u.cta||'Learn more →') + '</a>' +
+    '</div>' +
+  '</div>';
+}).join('');
     /* re-run observer on freshly injected cards */
     grid.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
   })
