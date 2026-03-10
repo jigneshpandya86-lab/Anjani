@@ -1,22 +1,42 @@
 [
   {
     "date": "2026-03-10",
-    "type": "war",
-    "tag": "⚠️ War Impact",
-    "emoji": "🔴",
-    "title": "US–Iran–Israel War: Impact on Water Prices in India",
-    "body": "Rising crude oil prices are pushing up PET plastic costs. We are absorbing these pressures to protect your bulk order pricing for as long as possible.",
-    "cta": "Secure your order today →",
+    "type": "season",
+    "tag": "🌡️ Summer Alert",
+    "emoji": "☀️",
+    "title": "Vadodara Summer Has Arrived — 37°C Today, 40°C+ Coming!",
+    "body": "Temperatures in Vadodara have already crossed 37°C today — and forecasts show April touching 42°C and May reaching 40°C+. Summer weddings, events and daily hydration needs are at their peak. Make sure your home, office and event venue has enough Anjani 200ml water stocked up. We deliver same-day across all Vadodara areas.",
+    "cta": "Order bulk water now →",
     "ctaLink": "#forms"
   },
   {
     "date": "2026-03-10",
     "type": "local",
-    "tag": "🟢 Anjani Promise",
-    "emoji": "🏘️",
-    "title": "Local Brand, Local Supply — We Will Not Let You Down",
-    "body": "Anjani Water is bottled entirely within Gujarat. Your weddings, events and daily needs in Vadodara will never face a shortage due to global conflicts.",
-    "cta": "Call us anytime →",
-    "ctaLink": "tel:919925997750"
+    "tag": "🟢 Vadodara News",
+    "emoji": "🏗️",
+    "title": "Delhi–Vadodara Expressway Ready by May — More Events, More Guests!",
+    "body": "Union Minister Nitin Gadkari announced the Delhi–Vadodara Expressway section will be ready by May 2026. This means more visitors, more weddings, more corporate events and more party plots active in Vadodara this summer season. Anjani Water is ready to supply bulk packaged drinking water for every event that comes to our city.",
+    "cta": "Book your event water supply →",
+    "ctaLink": "#forms"
+  },
+  {
+    "date": "2026-03-10",
+    "type": "war",
+    "tag": "⚠️ Price Advisory",
+    "emoji": "🔴",
+    "title": "Middle East Conflict Pushing Up Water Bottle Costs Across India",
+    "body": "The ongoing US–Iran–Israel conflict is disrupting global oil supply routes. PET plastic — used in every water bottle — is an oil-based product, so rising crude prices are directly increasing bottling costs. National brands are already signalling price hikes. <strong>Anjani Water is absorbing these pressures</strong> to protect Vadodara customers for as long as possible. Lock in your bulk order now at current rates.",
+    "cta": "Secure today's price →",
+    "ctaLink": "#forms"
+  },
+  {
+    "date": "2026-03-10",
+    "type": "tip",
+    "tag": "💧 Hydration Tip",
+    "emoji": "🌿",
+    "title": "Summer Health Tip — Adults Need 3–4 Litres of Water Daily in This Heat",
+    "body": "With Vadodara temperatures rising above 37°C, doctors recommend adults drink at least 3–4 litres of water every day to avoid dehydration and heat stroke. Keep sealed, BIS certified Anjani 200ml bottles at your home, office and event. Pure water, trusted quality — delivered across all Vadodara areas.",
+    "cta": "Get Anjani water delivered →",
+    "ctaLink": "#forms"
   }
 ]
