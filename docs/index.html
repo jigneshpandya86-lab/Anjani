@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://anjaniwater.in">
 
-<!-- LocalBusiness Schema -->
+<!-- LocalBusiness Schema — FIXED: added offers to each product -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,10 +30,7 @@
     "addressCountry": "IN"
   },
   "description": "Packaged drinking water supplier in Vadodara. Anjani 200ml, Bisleri, Bailley and Clear water for weddings, marriages, party plots, catering services, corporate events and offices. BIS certified, bulk orders welcome.",
-  "areaServed": {
-    "@type": "City",
-    "name": "Vadodara"
-  },
+  "areaServed": { "@type": "City", "name": "Vadodara" },
   "priceRange": "₹",
   "openingHours": "Mo-Su 08:00-20:00",
   "sameAs": ["https://wa.me/919925997750"],
@@ -41,16 +38,68 @@
     "@type": "OfferCatalog",
     "name": "Packaged Drinking Water",
     "itemListElement": [
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Anjani Premium Water 200ml","description":"BIS certified 200ml packaged water, Vadodara's own brand"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Bisleri Water","description":"Bisleri packaged drinking water delivered across Vadodara"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Bailley Water","description":"Bailley by Parle Agro, available in Vadodara"}},
-      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Clear Water","description":"Budget-friendly bulk packaged water for events in Vadodara"}}
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Anjani Premium Water 200ml",
+          "description": "BIS certified 200ml packaged water, Vadodara's own brand",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@type": "Organization", "name": "Anjani Water – Annapurna Foods" }
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Bisleri Water",
+          "description": "Bisleri packaged drinking water delivered across Vadodara",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@type": "Organization", "name": "Anjani Water – Annapurna Foods" }
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Bailley Water",
+          "description": "Bailley by Parle Agro, available in Vadodara",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@type": "Organization", "name": "Anjani Water – Annapurna Foods" }
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Clear Water",
+          "description": "Budget-friendly bulk packaged water for events in Vadodara",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@type": "Organization", "name": "Anjani Water – Annapurna Foods" }
+          }
+        }
+      }
     ]
   }
 }
 </script>
 
-<!-- Product / ItemList Schema -->
+<!-- ItemList Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -178,12 +227,11 @@ section{padding:72px 5%}
 .section-title{font-size:2.2rem;font-weight:700;color:var(--deep);line-height:1.15;margin-bottom:10px}
 .section-sub{color:var(--muted);font-size:0.9rem;line-height:1.75;max-width:540px;margin-bottom:36px}
 
-/* ============================================================
-   LATEST UPDATES SECTION — Updated March 2026
-   ============================================================ */
+/* LATEST UPDATES */
 #updates{background:#fff;padding:64px 5%}
 .updates-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px}
 .updates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.updates-loading{color:var(--muted);font-size:0.85rem;padding:20px 0}
 .update-card{border-radius:16px;overflow:hidden;box-shadow:0 3px 16px rgba(0,119,182,0.08);transition:transform 0.3s,box-shadow 0.3s;cursor:default;border:1.5px solid #e8f4fd}
 .update-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,119,182,0.14)}
 .update-card.pinned{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
@@ -215,29 +263,6 @@ section{padding:72px 5%}
 .updates-view-all{font-size:0.82rem;font-weight:600;color:var(--ocean);display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--ocean);padding:7px 18px;border-radius:50px;transition:all 0.2s}
 .updates-view-all:hover{background:var(--ocean);color:#fff}
 
-/* War illustration banner */
-.war-banner{background:linear-gradient(135deg,#1a0505,#7f1d1d);border-radius:16px;padding:28px 28px 0;margin-bottom:24px;overflow:hidden;position:relative;display:flex;align-items:flex-end;gap:24px;min-height:160px}
-.war-banner-text{flex:1;padding-bottom:28px;z-index:2}
-.war-banner-tag{display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:50px;background:rgba(255,255,255,0.15);color:#fca5a5;margin-bottom:10px}
-.war-banner-title{font-size:1.25rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px}
-.war-banner-sub{font-size:0.8rem;color:rgba(255,255,255,0.7);line-height:1.65}
-.war-illustration{width:180px;flex-shrink:0;align-self:flex-end}
-.war-illustration svg{display:block;width:100%}
-.war-banner-dots{position:absolute;top:0;right:0;bottom:0;width:40%;background:radial-gradient(ellipse at 80% 50%,rgba(185,28,28,0.3),transparent 70%);pointer-events:none}
-
-@media(max-width:900px){
-  .updates-grid{grid-template-columns:1fr 1fr}
-  .update-card.pinned{grid-column:span 2;grid-template-columns:1fr}
-  .war-banner{flex-direction:column;align-items:flex-start}
-  .war-illustration{width:120px;align-self:flex-end;margin-top:-20px}
-}
-@media(max-width:600px){
-  .updates-grid{grid-template-columns:1fr}
-  .update-card.pinned{grid-column:span 1;display:block}
-  .war-illustration{display:none}
-}
-/* ============================================================ */
--->
 /* PRODUCTS */
 #products{background:var(--off)}
 .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -362,6 +387,27 @@ footer ul a:hover{opacity:1}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* WELCOME POPUP */
+.welcome-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.52);z-index:3000;align-items:center;justify-content:center;padding:20px}
+.welcome-overlay.open{display:flex}
+.welcome-popup{background:#fff;border-radius:20px;max-width:420px;width:100%;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.welcome-popup-top{background:linear-gradient(135deg,var(--deep),var(--ocean));padding:28px 28px 20px;text-align:center;color:#fff}
+.welcome-popup-top .wp-emoji{font-size:2.4rem;display:block;margin-bottom:10px}
+.welcome-popup-top h3{font-size:1.45rem;font-weight:700;margin-bottom:6px}
+.welcome-popup-top p{font-size:0.83rem;opacity:.85;line-height:1.6}
+.welcome-popup-body{padding:22px 24px 24px}
+.welcome-popup-body .form-group{margin-bottom:12px}
+.welcome-popup-body label{display:block;font-size:0.67rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.welcome-popup-body input{width:100%;padding:10px 14px;border:1.5px solid #d0e8f5;border-radius:10px;font-family:var(--font);font-size:0.9rem;color:var(--text);background:var(--off);outline:none;transition:border-color 0.2s}
+.welcome-popup-body input:focus{border-color:var(--ocean);background:#fff}
+.welcome-popup-submit{width:100%;padding:13px;background:var(--ocean);color:#fff;border:none;border-radius:50px;font-size:0.92rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:background 0.2s;margin-top:4px}
+.welcome-popup-submit:hover{background:var(--deep)}
+.welcome-skip{display:block;text-align:center;margin-top:12px;font-size:0.78rem;color:var(--muted);cursor:pointer;transition:color 0.2s}
+.welcome-skip:hover{color:var(--ocean)}
+.welcome-close{position:absolute;top:11px;right:11px;background:rgba(255,255,255,0.15);border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;color:#fff;font-size:0.78rem;display:flex;align-items:center;justify-content:center}
+.welcome-success{display:none;text-align:center;padding:11px;background:#d4edda;color:#155724;border-radius:9px;margin-top:12px;font-size:0.85rem}
+.welcome-success.show{display:block}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;text-align:center;gap:28px;padding:32px 5%}
@@ -378,6 +424,8 @@ footer ul a:hover{opacity:1}
   .testimonials-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
   .usecases-grid{grid-template-columns:1fr 1fr}
+  .updates-grid{grid-template-columns:1fr 1fr}
+  .update-card.pinned{grid-column:span 2;grid-template-columns:1fr}
 }
 @media(max-width:768px){
   .hamburger{display:flex}
@@ -405,28 +453,9 @@ footer ul a:hover{opacity:1}
   .wa-float{width:48px;height:48px;bottom:16px;right:12px}
   .wa-tooltip{display:none}
   .usecases-grid{grid-template-columns:1fr}
+  .updates-grid{grid-template-columns:1fr}
+  .update-card.pinned{grid-column:span 1;display:block}
 }
-
-/* WELCOME POPUP */
-.welcome-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.52);z-index:3000;align-items:center;justify-content:center;padding:20px}
-.welcome-overlay.open{display:flex}
-.welcome-popup{background:#fff;border-radius:20px;max-width:420px;width:100%;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
-.welcome-popup-top{background:linear-gradient(135deg,var(--deep),var(--ocean));padding:28px 28px 20px;text-align:center;color:#fff}
-.welcome-popup-top .wp-emoji{font-size:2.4rem;display:block;margin-bottom:10px}
-.welcome-popup-top h3{font-size:1.45rem;font-weight:700;margin-bottom:6px}
-.welcome-popup-top p{font-size:0.83rem;opacity:.85;line-height:1.6}
-.welcome-popup-body{padding:22px 24px 24px}
-.welcome-popup-body .form-group{margin-bottom:12px}
-.welcome-popup-body label{display:block;font-size:0.67rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.welcome-popup-body input{width:100%;padding:10px 14px;border:1.5px solid #d0e8f5;border-radius:10px;font-family:var(--font);font-size:0.9rem;color:var(--text);background:var(--off);outline:none;transition:border-color 0.2s}
-.welcome-popup-body input:focus{border-color:var(--ocean);background:#fff}
-.welcome-popup-submit{width:100%;padding:13px;background:var(--ocean);color:#fff;border:none;border-radius:50px;font-size:0.92rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:background 0.2s;margin-top:4px}
-.welcome-popup-submit:hover{background:var(--deep)}
-.welcome-skip{display:block;text-align:center;margin-top:12px;font-size:0.78rem;color:var(--muted);cursor:pointer;transition:color 0.2s}
-.welcome-skip:hover{color:var(--ocean)}
-.welcome-close{position:absolute;top:11px;right:11px;background:rgba(255,255,255,0.15);border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;color:#fff;font-size:0.78rem;display:flex;align-items:center;justify-content:center}
-.welcome-success{display:none;text-align:center;padding:11px;background:#d4edda;color:#155724;border-radius:9px;margin-top:12px;font-size:0.85rem}
-.welcome-success.show{display:block}
 </style>
 </head>
 <body>
@@ -458,6 +487,7 @@ footer ul a:hover{opacity:1}
   </div>
 </div>
 
+<!-- NAV -->
 <nav id="navbar">
   <a href="#home" class="nav-logo">Anjani<span>Water</span></a>
   <ul class="nav-links" id="navLinks">
@@ -474,6 +504,7 @@ footer ul a:hover{opacity:1}
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-inner">
@@ -509,6 +540,7 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 
+<!-- MARQUEE -->
 <div class="marquee-band">
   <div class="marquee-track">
     <span class="marquee-item"><span class="marquee-dot"></span>BIS Certified Pure Water</span>
@@ -526,14 +558,9 @@ footer ul a:hover{opacity:1}
   </div>
 </div>
 
-<!-- ============================================================
-     REPLACE your entire <section id="updates">...</section> block
-     with this HTML below
-     ============================================================ -->
-
+<!-- LATEST UPDATES — dynamic, loaded from updates.json -->
 <section id="updates">
   <div class="section-inner">
-
     <div class="updates-header">
       <div>
         <span class="section-tag">Latest Updates</span>
@@ -541,184 +568,13 @@ footer ul a:hover{opacity:1}
       </div>
       <a href="#forms" class="updates-view-all">Place an Order &#8594;</a>
     </div>
-
-    <!-- WAR IMPACT BANNER -->
-    <div class="war-banner reveal">
-      <div class="war-banner-dots"></div>
-      <div class="war-banner-text">
-        <div class="war-banner-tag">&#127758; Middle East Crisis — March 2026</div>
-        <div class="war-banner-title">US–Iran–Israel Conflict &amp; Its Impact<br>on Packaged Drinking Water in India</div>
-        <div class="war-banner-sub">The escalating military conflict in the Middle East is disrupting global oil supply routes. Higher crude oil prices directly push up the cost of PET plastic — the material used in every water bottle. National brands are already signaling price hikes. <strong style="color:#fff">Anjani Water is committed to protecting Vadodara customers</strong> from these global shocks as much as possible.</div>
-      </div>
-      <div class="war-illustration" aria-hidden="true">
-        <svg viewBox="0 0 180 210" xmlns="http://www.w3.org/2000/svg">
-          <!-- Sky / background -->
-          <rect x="0" y="80" width="180" height="130" fill="#1c1917" rx="8"/>
-          <rect x="0" y="0" width="180" height="90" fill="#1e1b4b" rx="8"/>
-
-          <!-- Stars -->
-          <circle cx="20" cy="15" r="1.5" fill="#fbbf24"/>
-          <circle cx="55" cy="8" r="1" fill="#fff" opacity="0.6"/>
-          <circle cx="90" cy="20" r="1.5" fill="#fff" opacity="0.5"/>
-          <circle cx="130" cy="10" r="1" fill="#fbbf24" opacity="0.7"/>
-          <circle cx="160" cy="25" r="1.5" fill="#fff" opacity="0.6"/>
-          <circle cx="40" cy="35" r="1" fill="#fff" opacity="0.4"/>
-          <circle cx="150" cy="40" r="1" fill="#fbbf24" opacity="0.5"/>
-
-          <!-- Moon -->
-          <circle cx="145" cy="22" r="12" fill="#fef3c7"/>
-          <circle cx="150" cy="18" r="9" fill="#1e1b4b"/>
-
-          <!-- Ground / desert -->
-          <ellipse cx="90" cy="205" rx="100" ry="18" fill="#78350f" opacity="0.8"/>
-          <rect x="0" y="195" width="180" height="20" fill="#92400e"/>
-
-          <!-- Buildings silhouette left -->
-          <rect x="5" y="130" width="18" height="70" fill="#292524"/>
-          <rect x="10" y="120" width="8" height="15" fill="#292524"/>
-          <rect x="28" y="145" width="22" height="55" fill="#1c1917"/>
-          <rect x="33" y="138" width="12" height="12" fill="#1c1917"/>
-
-          <!-- Buildings silhouette right -->
-          <rect x="135" y="138" width="20" height="62" fill="#292524"/>
-          <rect x="140" y="128" width="10" height="15" fill="#292524"/>
-          <rect x="158" y="148" width="18" height="52" fill="#1c1917"/>
-
-          <!-- Dome (Middle East style) center building -->
-          <rect x="68" y="155" width="44" height="45" fill="#44403c"/>
-          <ellipse cx="90" cy="155" rx="22" ry="12" fill="#57534e"/>
-          <!-- Windows with orange glow (fire) -->
-          <rect x="74" y="163" width="8" height="10" rx="2" fill="#f97316" opacity="0.9"/>
-          <rect x="86" y="163" width="8" height="10" rx="2" fill="#fbbf24" opacity="0.8"/>
-          <rect x="98" y="163" width="8" height="10" rx="2" fill="#f97316" opacity="0.7"/>
-          <rect x="80" y="178" width="20" height="22" rx="2" fill="#292524"/>
-
-          <!-- Missile / projectile 1 -->
-          <g transform="translate(30,60) rotate(45)">
-            <rect x="-3" y="-18" width="6" height="20" rx="3" fill="#94a3b8"/>
-            <polygon points="0,-22 -4,-18 4,-18" fill="#cbd5e1"/>
-            <rect x="-5" y="2" width="4" height="6" fill="#64748b"/>
-            <rect x="1" y="2" width="4" height="6" fill="#64748b"/>
-            <!-- Flame trail -->
-            <ellipse cx="0" cy="10" rx="4" ry="8" fill="#f97316" opacity="0.8"/>
-            <ellipse cx="0" cy="14" rx="2.5" ry="5" fill="#fbbf24" opacity="0.9"/>
-          </g>
-
-          <!-- Missile / projectile 2 -->
-          <g transform="translate(148,50) rotate(130)">
-            <rect x="-3" y="-18" width="6" height="20" rx="3" fill="#94a3b8"/>
-            <polygon points="0,-22 -4,-18 4,-18" fill="#cbd5e1"/>
-            <rect x="-5" y="2" width="4" height="6" fill="#64748b"/>
-            <rect x="1" y="2" width="4" height="6" fill="#64748b"/>
-            <ellipse cx="0" cy="10" rx="4" ry="8" fill="#ef4444" opacity="0.8"/>
-            <ellipse cx="0" cy="14" rx="2.5" ry="5" fill="#fbbf24" opacity="0.9"/>
-          </g>
-
-          <!-- Explosion over dome -->
-          <circle cx="90" cy="108" r="22" fill="#f97316" opacity="0.25"/>
-          <circle cx="90" cy="108" r="14" fill="#f97316" opacity="0.5"/>
-          <circle cx="90" cy="108" r="8" fill="#fbbf24" opacity="0.9"/>
-          <!-- Burst rays -->
-          <line x1="90" y1="88" x2="90" y2="96" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="107" y1="91" x2="103" y2="95" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
-          <line x1="110" y1="108" x2="102" y2="108" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
-          <line x1="107" y1="125" x2="103" y2="121" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
-          <line x1="73" y1="91" x2="77" y2="95" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
-          <line x1="70" y1="108" x2="78" y2="108" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
-          <line x1="73" y1="125" x2="77" y2="121" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
-
-          <!-- Smoke clouds -->
-          <ellipse cx="90" cy="88" rx="18" ry="10" fill="#44403c" opacity="0.7"/>
-          <ellipse cx="78" cy="83" rx="12" ry="8" fill="#57534e" opacity="0.6"/>
-          <ellipse cx="102" cy="82" rx="10" ry="7" fill="#44403c" opacity="0.5"/>
-
-          <!-- Oil barrel with $ sign -->
-          <rect x="12" y="158" width="20" height="26" rx="4" fill="#292524" stroke="#f97316" stroke-width="1.5"/>
-          <line x1="12" y1="168" x2="32" y2="168" stroke="#f97316" stroke-width="1"/>
-          <line x1="12" y1="176" x2="32" y2="176" stroke="#f97316" stroke-width="1"/>
-          <text x="17" y="172" font-size="9" fill="#fbbf24" font-weight="bold">$</text>
-          <!-- Arrow up (price rising) -->
-          <line x1="22" y1="155" x2="22" y2="143" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
-          <polygon points="22,140 18,146 26,146" fill="#ef4444"/>
-          <text x="27" y="145" font-size="7" fill="#ef4444" font-weight="bold">↑</text>
-
-          <!-- Water bottle protected (right side) -->
-          <rect x="148" y="162" width="16" height="24" rx="4" fill="#38bdf8" opacity="0.9"/>
-          <rect x="151" y="157" width="10" height="8" rx="2" fill="#0ea5e9"/>
-          <!-- Shield -->
-          <path d="M156 154 L144 158 L144 172 Q144 182 156 187 Q168 182 168 172 L168 158 Z" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.85"/>
-          <text x="151" y="174" font-size="9" fill="#4ade80" font-weight="bold">✓</text>
-
-          <!-- "OIL" smoke label -->
-          <text x="55" y="78" font-size="7" fill="#fca5a5" opacity="0.8" font-weight="bold">OIL PRICES</text>
-          <text x="60" y="86" font-size="7" fill="#f97316" opacity="0.8" font-weight="bold">↑ RISING</text>
-        </svg>
-      </div>
-    </div>
-    <!-- END WAR BANNER -->
-
-    <div class="updates-grid">
-
-      <!-- CARD 1 — WAR IMPACT pinned wide -->
-      <div class="update-card war pinned reveal">
-        <div class="update-card-top">
-          <span class="update-emoji">&#128308;</span>
-          <div class="update-type-badge">&#9888;&#65039; War Impact</div>
-          <h3>US–Iran–Israel War: How It Affects Packaged Water Prices in India</h3>
-        </div>
-        <div class="update-card-body">
-          <div class="update-date">March 2026</div>
-          <p class="update-body-text">The ongoing military escalation between the US, Iran and Israel is disrupting Middle East oil supply routes. Since <strong>PET plastic</strong> — used in every water bottle — is an oil-based product, rising crude oil prices directly increase bottling costs across India. Several national brands have already started passing these costs to customers. <strong>We are working hard to absorb these pressures</strong> and protect your bulk order pricing for as long as possible. Lock in your order now before any price revision becomes unavoidable.</p>
-          <a href="#forms" class="update-cta-link">Secure your order today &#8594;</a>
-        </div>
-      </div>
-
-      <!-- CARD 2 — LOCAL SHIELD -->
-      <div class="update-card local reveal">
-        <div class="update-card-top">
-          <span class="update-emoji">&#127968;</span>
-          <div class="update-type-badge">&#128994; Anjani Promise</div>
-          <h3>Local Brand, Local Supply — We Will Not Let You Down</h3>
-        </div>
-        <div class="update-card-body">
-          <div class="update-date">March 2026</div>
-          <p class="update-body-text">Anjani Water is produced, bottled and delivered entirely within Gujarat. We are not dependent on imports or Middle East supply chains. Your weddings, events and daily needs in Vadodara will not face a shortage due to global conflicts. We are here — every single day.</p>
-          <a href="tel:919925997750" class="update-cta-link">Call us anytime &#8594;</a>
-        </div>
-      </div>
-
-      <!-- CARD 3 — BOOK EARLY -->
-      <div class="update-card season reveal">
-        <div class="update-card-top">
-          <span class="update-emoji">&#128230;</span>
-          <div class="update-type-badge">&#128993; Urgent Advisory</div>
-          <h3>Book Bulk Orders Early — Prices May Rise With Oil Costs</h3>
-        </div>
-        <div class="update-card-body">
-          <div class="update-date">March 2026</div>
-          <p class="update-body-text">Caterers, party plots, hotels and offices — if you have summer events planned, we strongly recommend booking your water supply now. Current pricing is our best offer. As oil and material costs rise due to Middle East tensions, rates may need adjustment after April.</p>
-          <a href="#forms" class="update-cta-link">Book at current rates &#8594;</a>
-        </div>
-      </div>
-
-      <!-- CARD 4 — REASSURANCE -->
-      <div class="update-card tip reveal">
-        <div class="update-card-top">
-          <span class="update-emoji">&#128167;</span>
-          <div class="update-type-badge">&#128309; Our Commitment</div>
-          <h3>Wars May Shake the World — Vadodara's Water Is Safe With Us</h3>
-        </div>
-        <div class="update-card-body">
-          <div class="update-date">Ongoing</div>
-          <p class="update-body-text">No matter what happens globally, Anjani Water's mission is simple — pure, affordable, on-time water delivery for every home, event and business in Vadodara. We stand with our city. Call, WhatsApp or order online — we will always be here for you.</p>
-          <a href="https://wa.me/919925997750" class="update-cta-link">WhatsApp us now &#8594;</a>
-        </div>
-      </div>
-
+    <div class="updates-grid" id="updates-grid">
+      <p class="updates-loading">Loading updates&#8230;</p>
     </div>
   </div>
 </section>
-<!-- END LATEST UPDATES -->
+
+<!-- PRODUCTS -->
 <section id="products" style="background:var(--off)">
   <div class="section-inner">
     <span class="section-tag">Our Range</span>
@@ -781,6 +637,7 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 
+<!-- WHO WE SERVE -->
 <section id="usecases">
   <div class="section-inner">
     <span class="section-tag">Who We Serve</span>
@@ -806,6 +663,7 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 
+<!-- WHY US -->
 <section id="why">
   <div class="section-inner">
     <span class="section-tag">Why Choose Anjani</span>
@@ -828,6 +686,7 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 
+<!-- FREE SAMPLE -->
 <section id="sample">
   <div class="section-inner" style="text-align:center">
     <span class="section-tag">First Time?</span>
@@ -837,6 +696,7 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 
+<!-- CONTACT FORMS -->
 <section id="forms" style="background:var(--off)">
   <div class="section-inner">
     <span class="section-tag">Get In Touch</span>
@@ -923,6 +783,7 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 
+<!-- FAQ -->
 <section id="faq">
   <div class="section-inner">
     <span class="section-tag">Common Questions</span>
@@ -938,6 +799,7 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="section-inner">
     <span class="section-tag">Happy Customers</span>
@@ -950,10 +812,12 @@ footer ul a:hover{opacity:1}
   </div>
 </section>
 
+<!-- SEO hidden text -->
 <div style="display:none" aria-hidden="true">
-  Anjani Water is a packaged drinking water supplier in Vadodara Gujarat. We supply 200ml mineral water bottles for marriages, weddings, parties, party plots, catering services, corporate events, hotels and offices across Vadodara. We also supply Bisleri water, Bailley water and Clear water in Vadodara. Contact Annapurna Foods at 9925997750 for bulk water bottle orders in Vadodara. Best water bottle supplier for caterers and party plots in Vadodara.
+  Anjani Water is a packaged drinking water supplier in Vadodara Gujarat. We supply 200ml mineral water bottles for marriages, weddings, parties, party plots, catering services, corporate events, hotels and offices across Vadodara. We also supply Bisleri water, Bailley water and Clear water in Vadodara. Contact Annapurna Foods at 9925997750 for bulk water bottle orders in Vadodara.
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -1000,11 +864,13 @@ footer ul a:hover{opacity:1}
   </div>
 </footer>
 
+<!-- WhatsApp float -->
 <a class="wa-float" href="https://wa.me/919925997750?text=Hi%20Anjani%20Water!%20I%20would%20like%20to%20place%20an%20order." target="_blank" aria-label="WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.104 1.523 5.827L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.01-1.371l-.36-.214-3.732.886.914-3.641-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
   <span class="wa-tooltip">Order on WhatsApp</span>
 </a>
 
+<!-- Sample Modal -->
 <div class="modal-overlay" id="sampleModal">
   <div class="modal">
     <button class="modal-close" onclick="closeSampleModal()">&#10005;</button>
@@ -1021,19 +887,27 @@ footer ul a:hover{opacity:1}
 </div>
 
 <script>
-const CONFIG = {
+/* ── CONFIG ─────────────────────────────────────────────── */
+var CONFIG = {
   SHEET_URL: 'https://script.google.com/macros/s/AKfycbz_w5sjcT2gXwl8ZqWizHtkpeJ9I9AXkB3fEfJVXAdjmaiLRTTeqAO-ekkXxU0I1PD9-g/exec',
   images: {
     hero:    'https://i.ibb.co/Pvq1x6LX/Gemini-Generated-Image-dmp22zdmp22zdmp2.png',
     anjani:  'https://i.ibb.co/Pvq1x6LX/Gemini-Generated-Image-dmp22zdmp22zdmp2.png',
     bisleri: 'https://i.ibb.co/xKzpWyx4/bisleri-500ml-bottle.jpg',
     bailley: 'https://i.ibb.co/XfVcLwMz/1-L-3000-X2518-PIX.png',
-    clear:   'https://i.ibb.co/Lzzm2DMv/clearimages.jpg',
+    clear:   'https://i.ibb.co/Lzzm2DMv/clearimages.jpg'
   }
 };
 
+/* ── IMAGES ──────────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', function() {
-  var map = {'hero-bottle':CONFIG.images.hero,'anjani-img':CONFIG.images.anjani,'bisleri-img':CONFIG.images.bisleri,'bailley-img':CONFIG.images.bailley,'clear-img':CONFIG.images.clear};
+  var map = {
+    'hero-bottle': CONFIG.images.hero,
+    'anjani-img':  CONFIG.images.anjani,
+    'bisleri-img': CONFIG.images.bisleri,
+    'bailley-img': CONFIG.images.bailley,
+    'clear-img':   CONFIG.images.clear
+  };
   Object.keys(map).forEach(function(id) {
     var el = document.getElementById(id);
     if (!el) return;
@@ -1041,6 +915,7 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+/* ── SCROLL / NAV ────────────────────────────────────────── */
 window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
@@ -1061,54 +936,98 @@ document.addEventListener('click', function(e) {
   if (nav.classList.contains('open') && !nav.contains(e.target) && !ham.contains(e.target)) closeMenu();
 });
 
-function openOrderModal() {
-  document.getElementById('forms').scrollIntoView({behavior:'smooth'});
-}
-
+/* ── MODALS ──────────────────────────────────────────────── */
+function openOrderModal()  { document.getElementById('forms').scrollIntoView({behavior:'smooth'}); }
 function openSampleModal() { document.getElementById('sampleModal').classList.add('open'); }
-function closeSampleModal() { document.getElementById('sampleModal').classList.remove('open'); }
-document.getElementById('sampleModal').addEventListener('click', function(e) { if (e.target===this) closeSampleModal(); });
+function closeSampleModal(){ document.getElementById('sampleModal').classList.remove('open'); }
+document.getElementById('sampleModal').addEventListener('click', function(e){ if(e.target===this) closeSampleModal(); });
 
+/* ── GOOGLE SHEET ────────────────────────────────────────── */
 async function sendToSheet(data) {
   if (!CONFIG.SHEET_URL) return;
-  try { await fetch(CONFIG.SHEET_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); }
-  catch(e) { console.log('Sheet error:',e); }
+  try {
+    await fetch(CONFIG.SHEET_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+  } catch(e) { console.log('Sheet error:', e); }
 }
 
 function submitForm(e, formId, successId, type) {
   e.preventDefault();
-  var form = document.getElementById(formId), data = {type:type};
-  new FormData(form).forEach(function(v,k){data[k]=v;});
+  var form = document.getElementById(formId), data = {type: type};
+  new FormData(form).forEach(function(v,k){ data[k]=v; });
   sendToSheet(data);
   form.reset();
   var msg = document.getElementById(successId);
   msg.classList.add('show');
-  setTimeout(function(){msg.classList.remove('show');}, 5000);
+  setTimeout(function(){ msg.classList.remove('show'); }, 5000);
 }
 
+/* ── REVEAL ON SCROLL ────────────────────────────────────── */
 var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) { if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);} });
-}, {threshold:0.1});
-document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
 
+/* ── DYNAMIC UPDATES (reads updates.json — never touch index.html again) ── */
+fetch('updates.json')
+  .then(function(r) { return r.json(); })
+  .then(function(updates) {
+    var grid = document.getElementById('updates-grid');
+    if (!updates || !updates.length) {
+      grid.innerHTML = '<p class="updates-loading">No updates at this time.</p>';
+      return;
+    }
+    grid.innerHTML = updates.map(function(u, i) {
+      var pinned = (i === 0) ? ' pinned' : '';
+      var dateStr = '';
+      try { dateStr = new Date(u.date).toLocaleDateString('en-IN', {month:'long', year:'numeric'}); }
+      catch(e) { dateStr = u.date; }
+      return '<div class="update-card ' + (u.type||'offer') + pinned + ' reveal">' +
+        '<div class="update-card-top">' +
+          '<span class="update-emoji">' + (u.emoji||'💧') + '</span>' +
+          '<div class="update-type-badge">' + (u.tag||'Update') + '</div>' +
+          '<h3>' + u.title + '</h3>' +
+        '</div>' +
+        '<div class="update-card-body">' +
+          '<div class="update-date">' + dateStr + '</div>' +
+          '<p class="update-body-text">' + u.body + '</p>' +
+          '<a href="' + (u.ctaLink||'#forms') + '" class="update-cta-link">' + (u.cta||'Learn more →') + '</a>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    /* re-run observer on freshly injected cards */
+    grid.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+  })
+  .catch(function() {
+    document.getElementById('updates-grid').innerHTML =
+      '<p class="updates-loading">Updates temporarily unavailable. Please check back soon.</p>';
+  });
+
+/* ── VISITOR TRACKING ────────────────────────────────────── */
 async function trackVisitor() {
   if (!CONFIG.SHEET_URL) return;
   var ua = navigator.userAgent;
-  var device = /mobile|android|iphone/i.test(ua)?'Mobile':/tablet|ipad/i.test(ua)?'Tablet':'Desktop';
-  var browser = ua.includes('Firefox')?'Firefox':ua.includes('Edg')?'Edge':(ua.includes('Chrome')&&!ua.includes('Edg'))?'Chrome':(ua.includes('Safari')&&!ua.includes('Chrome'))?'Safari':'Other';
-  var loc={};
-  try{loc=await(await fetch('https://ipapi.co/json/')).json();}catch(e){}
-  sendToSheet({type:'visitor',page:document.title,referrer:document.referrer||'Direct',device,browser,screenSize:window.screen.width+'x'+window.screen.height,language:navigator.language,city:loc.city||'',region:loc.region||'',country:loc.country_name||'',ip:loc.ip||'',sessionId:'sid_'+Date.now()});
+  var device = /mobile|android|iphone/i.test(ua) ? 'Mobile' : /tablet|ipad/i.test(ua) ? 'Tablet' : 'Desktop';
+  var browser = ua.includes('Firefox') ? 'Firefox' : ua.includes('Edg') ? 'Edge' :
+    (ua.includes('Chrome') && !ua.includes('Edg')) ? 'Chrome' :
+    (ua.includes('Safari') && !ua.includes('Chrome')) ? 'Safari' : 'Other';
+  var loc = {};
+  try { loc = await (await fetch('https://ipapi.co/json/')).json(); } catch(e) {}
+  sendToSheet({
+    type:'visitor', page:document.title, referrer:document.referrer||'Direct',
+    device, browser, screenSize:window.screen.width+'x'+window.screen.height,
+    language:navigator.language, city:loc.city||'', region:loc.region||'',
+    country:loc.country_name||'', ip:loc.ip||'', sessionId:'sid_'+Date.now()
+  });
 }
 
-window.addEventListener('load', function() {
-  trackVisitor();
-  if (!sessionStorage.getItem('wSeen')) {
-    setTimeout(openWelcome, 4000);
-  }
-});
-
-function openWelcome() { document.getElementById('welcomeModal').classList.add('open'); }
+/* ── WELCOME POPUP ───────────────────────────────────────── */
+function openWelcome()  { document.getElementById('welcomeModal').classList.add('open'); }
 function closeWelcome() {
   document.getElementById('welcomeModal').classList.remove('open');
   sessionStorage.setItem('wSeen','1');
@@ -1124,6 +1043,14 @@ function submitWelcome(e) {
   setTimeout(function(){ closeWelcome(); }, 2500);
 }
 
+window.addEventListener('load', function() {
+  trackVisitor();
+  if (!sessionStorage.getItem('wSeen')) {
+    setTimeout(openWelcome, 4000);
+  }
+});
+
+/* ── FAQ ─────────────────────────────────────────────────── */
 function toggleFaq(btn) {
   var item = btn.closest('.faq-item');
   var isOpen = item.classList.contains('open');
