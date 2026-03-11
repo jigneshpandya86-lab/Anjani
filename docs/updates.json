@@ -1,42 +1,42 @@
 [
   {
-    "date": "2026-03-10",
+    "date": "2026-03-11",
     "type": "season",
     "tag": "🌡️ Summer Alert",
     "emoji": "☀️",
-    "title": "Vadodara Summer Has Arrived — 37°C Today, 40°C+ Coming!",
-    "body": "Temperatures in Vadodara have already crossed 37°C today — and forecasts show April touching 42°C and May reaching 40°C+. Summer weddings, events and daily hydration needs are at their peak. Make sure your home, office and event venue has enough Anjani 200ml water stocked up. We deliver same-day across all Vadodara areas.",
-    "cta": "Order bulk water now →",
+    "title": "Vadodara at 41°C — Hottest Week of the Year So Far",
+    "body": "Today's forecast touches 41°C in Vadodara — and it's only March. Summer has arrived early this year. Keep your family safe with clean, sealed drinking water at home. Anjani Water delivers same-day across all areas.",
+    "cta": "Order now →",
     "ctaLink": "#forms"
   },
   {
-    "date": "2026-03-10",
-    "type": "local",
+    "date": "2026-03-11",
+    "type": "news",
     "tag": "🟢 Vadodara News",
-    "emoji": "🏗️",
-    "title": "Delhi–Vadodara Expressway Ready by May — More Events, More Guests!",
-    "body": "Union Minister Nitin Gadkari announced the Delhi–Vadodara Expressway section will be ready by May 2026. This means more visitors, more weddings, more corporate events and more party plots active in Vadodara this summer season. Anjani Water is ready to supply bulk packaged drinking water for every event that comes to our city.",
-    "cta": "Book your event water supply →",
+    "emoji": "🚌",
+    "title": "42 Electric Buses Coming to Vadodara by Month End",
+    "body": "Vadodara is going green! 42 electric buses are arriving by March end under the PMe-Bus Sewa scheme. Charging hubs at Gotri and Sayajigunj are nearly ready. A cleaner, smarter Vadodara — and Anjani Water is proud to be part of this growing city.",
+    "cta": "Learn about our city delivery →",
     "ctaLink": "#forms"
   },
   {
-    "date": "2026-03-10",
-    "type": "war",
-    "tag": "⚠️ Price Advisory",
-    "emoji": "🔴",
-    "title": "Middle East Conflict Pushing Up Water Bottle Costs Across India",
-    "body": "The ongoing US–Iran–Israel conflict is disrupting global oil supply routes. PET plastic — used in every water bottle — is an oil-based product, so rising crude prices are directly increasing bottling costs. National brands are already signalling price hikes. <strong>Anjani Water is absorbing these pressures</strong> to protect Vadodara customers for as long as possible. Lock in your bulk order now at current rates.",
-    "cta": "Secure today's price →",
-    "ctaLink": "#forms"
-  },
-  {
-    "date": "2026-03-10",
+    "date": "2026-03-11",
     "type": "tip",
-    "tag": "💧 Hydration Tip",
-    "emoji": "🌿",
-    "title": "Summer Health Tip — Adults Need 3–4 Litres of Water Daily in This Heat",
-    "body": "With Vadodara temperatures rising above 37°C, doctors recommend adults drink at least 3–4 litres of water every day to avoid dehydration and heat stroke. Keep sealed, BIS certified Anjani 200ml bottles at your home, office and event. Pure water, trusted quality — delivered across all Vadodara areas.",
-    "cta": "Get Anjani water delivered →",
+    "tag": "💧 Health Tip",
+    "emoji": "🧴",
+    "title": "At 40°C+, Dehydration Sets In Faster Than You Think",
+    "body": "In extreme heat, your body loses water rapidly — even before you feel thirsty. Doctors advise drinking at least 3–4 litres of clean water daily in summer. Keep Anjani BIS certified water stocked at home, office and in your vehicle.",
+    "cta": "Subscribe for daily delivery →",
+    "ctaLink": "#forms"
+  },
+  {
+    "date": "2026-03-11",
+    "type": "local",
+    "tag": "🌍 World Water Day",
+    "emoji": "💧",
+    "title": "World Water Day is March 22 — Clean Water for Every Family",
+    "body": "Just 11 days to World Water Day. At Anjani Water, our promise is simple — every bottle is BIS certified, sealed and safe. Because clean drinking water is not a luxury. It is a right for every family in Vadodara.",
+    "cta": "Order Anjani Water →",
     "ctaLink": "#forms"
   }
 ]
