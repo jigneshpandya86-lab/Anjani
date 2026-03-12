@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Contact & Order | Anjani Water Vadodara – 9925997750</title>
+<meta name="description" content="Place a bulk water order or request a free sample from Anjani Water Vadodara. Call 9925997750 or fill the form. Serving weddings, party plots, caterers, offices across Vadodara.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://anjaniwater.in/contact.html">
+<link rel="stylesheet" href="style.css">
+<style>
+.contact-info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 48px; }
+.contact-info-card { background: #fff; border-radius: var(--r); padding: 24px 20px; text-align: center; box-shadow: 0 3px 14px rgba(0,119,182,0.07); transition: transform 0.2s; }
+.contact-info-card:hover { transform: translateY(-3px); }
+.contact-info-card .ci-icon { font-size: 2rem; margin-bottom: 10px; }
+.contact-info-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--deep); margin-bottom: 5px; }
+.contact-info-card a, .contact-info-card p { font-size: 0.85rem; color: var(--ocean); font-weight: 500; }
+#sample { scroll-margin-top: 80px; }
+@media(max-width:600px){ .contact-info-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<nav id="navbar"></nav>
+
+<div class="page-hero">
+  <span class="page-hero-tag">Get In Touch</span>
+  <h1>Order or Ask Us Anything</h1>
+  <p>Place a bulk order, request a free sample, or just ask a question. We confirm orders within 60 minutes.</p>
+</div>
+
+<!-- CONTACT INFO -->
+<section style="background:var(--off)">
+  <div class="section-inner">
+    <div class="contact-info-grid">
+      <div class="contact-info-card reveal">
+        <div class="ci-icon">📞</div>
+        <h4>Call Us</h4>
+        <a href="tel:919925997750">9925997750</a>
+      </div>
+      <div class="contact-info-card reveal">
+        <div class="ci-icon">💬</div>
+        <h4>WhatsApp</h4>
+        <a href="https://wa.me/919925997750?text=Hi%20Anjani%20Water!%20I%20would%20like%20to%20place%20an%20order." target="_blank">Chat on WhatsApp</a>
+      </div>
+      <div class="contact-info-card reveal">
+        <div class="ci-icon">✉️</div>
+        <h4>Email</h4>
+        <a href="mailto:annapurnafoods27@gmail.com">annapurnafoods27@gmail.com</a>
+      </div>
+    </div>
+
+    <!-- ORDER + QUERY FORMS -->
+    <div class="forms-grid">
+      <div class="form-card reveal">
+        <h3>📦 Place an Order</h3>
+        <p>Fill in your details and we will confirm your order within 60 minutes.</p>
+        <form id="orderForm" onsubmit="SITE.submitForm(event,'orderForm','orderSuccess','order')">
+          <div class="form-row">
+            <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Ramesh Patel" required></div>
+            <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
+          </div>
+          <div class="form-group"><label>Delivery Address *</label><input type="text" name="address" placeholder="Street, Area, Vadodara" required></div>
+          <div class="form-row">
+            <div class="form-group"><label>Product *</label>
+              <select name="product" required>
+                <option value="">Select product</option>
+                <option>Anjani Premium Water 200ml</option>
+                <option>Bisleri</option>
+                <option>Bailley</option>
+                <option>Clear Water</option>
+                <option>Mixed / Multiple</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Quantity *</label><input type="text" name="quantity" placeholder="e.g. 100 bottles" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Order Type</label>
+              <select name="orderType">
+                <option>One-time order</option>
+                <option>Monthly subscription</option>
+                <option>Weekly recurring</option>
+                <option>Event / Bulk supply</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Best Time to Call</label>
+              <select name="callTime">
+                <option>Morning (9am–12pm)</option>
+                <option>Afternoon (12pm–4pm)</option>
+                <option>Evening (4pm–8pm)</option>
+                <option>Any time</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label>Special Instructions</label><textarea name="notes" placeholder="Any special requirements..."></textarea></div>
+          <button type="submit" class="form-submit">📦 Place Order</button>
+          <div class="success-msg" id="orderSuccess">✅ Order received! We will call you within 60 minutes.</div>
+        </form>
+      </div>
+      <div class="form-card reveal">
+        <h3>💬 Send a Query</h3>
+        <p>Pricing, bulk deals, delivery area or anything else — ask away!</p>
+        <form id="queryForm" onsubmit="SITE.submitForm(event,'queryForm','querySuccess','query')">
+          <div class="form-row">
+            <div class="form-group"><label>Your Name *</label><input type="text" name="name" placeholder="Meena Shah" required></div>
+            <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
+          </div>
+          <div class="form-group"><label>Email (optional)</label><input type="email" name="email" placeholder="you@example.com"></div>
+          <div class="form-group"><label>Query Type</label>
+            <select name="queryType">
+              <option>Pricing / Rates</option>
+              <option>Bulk / Corporate Order</option>
+              <option>Delivery Area</option>
+              <option>Free Sample Request</option>
+              <option>Distributor / Partnership</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Your Message *</label><textarea name="message" placeholder="Tell us what you would like to know..." style="min-height:120px" required></textarea></div>
+          <div class="form-group"><label>Best Time to Call</label>
+            <select name="callTime">
+              <option>Morning (9am–12pm)</option>
+              <option>Afternoon (12pm–4pm)</option>
+              <option>Evening (4pm–8pm)</option>
+              <option>Any time</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">📨 Send Query</button>
+          <div class="success-msg" id="querySuccess">✅ Query received! We will reach out at your preferred time.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE SAMPLE -->
+<section id="sample" style="background:#fff">
+  <div class="section-inner">
+    <span class="section-tag">First Time?</span>
+    <h2 class="section-title">🎁 Book a Free Sample</h2>
+    <p class="section-sub">Get a complimentary Anjani 200ml packaged drinking water bottle delivered to your door — no cost, no commitment. Only for Vadodara.</p>
+    <div style="max-width:480px">
+      <div class="form-card">
+        <h3>Request Your Free Sample</h3>
+        <p>We'll deliver within 24 hours to your Vadodara address.</p>
+        <form id="sampleForm" onsubmit="SITE.submitForm(event,'sampleForm','sampleSuccess','sample')">
+          <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Your name" required></div>
+          <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
+          <div class="form-group"><label>Delivery Address *</label><input type="text" name="address" placeholder="Your address in Vadodara" required></div>
+          <button type="submit" class="form-submit">🎁 Request Free Sample</button>
+          <div class="success-msg" id="sampleSuccess">🎉 Sample booked! We will deliver within 24 hours.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--off)">
+  <div class="section-inner">
+    <span class="section-tag">Common Questions</span>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal"><button class="faq-q" onclick="SITE.toggleFaq(this)">Who supplies water bottles for weddings in Vadodara? <span class="faq-arrow">▼</span></button><div class="faq-a">Anjani Water (Annapurna Foods) is a trusted packaged drinking water supplier in Vadodara for weddings, marriages and events. We supply Anjani 200ml, Bisleri, Bailley and Clear water in bulk. Call 9925997750 for pricing.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="SITE.toggleFaq(this)">Do you supply water to party plots and catering services? <span class="faq-arrow">▼</span></button><div class="faq-a">Yes! We are a dedicated water bottle supplier for party plots, catering services and event organizers across Vadodara. We offer bulk rates and reliable on-time delivery so your events run smoothly.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="SITE.toggleFaq(this)">Which water brands do you supply in Vadodara? <span class="faq-arrow">▼</span></button><div class="faq-a">We supply Anjani Premium Water 200ml (our own BIS certified brand), Bisleri, Bailley by Parle Agro, and Clear Water. All brands are available for bulk orders and event supply across Vadodara.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="SITE.toggleFaq(this)">What is the minimum order quantity? <span class="faq-arrow">▼</span></button><div class="faq-a">We accept bulk orders of all sizes — from 50 to 50,000 bottles. Whether it's a small office or a large wedding, we cater to all needs across Vadodara. Contact us at 9925997750 for pricing.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="SITE.toggleFaq(this)">Is Anjani packaged water BIS certified? <span class="faq-arrow">▼</span></button><div class="faq-a">Yes. Anjani Premium Packaged Drinking Water 200ml is fully BIS certified, ensuring it meets the Bureau of Indian Standards for purity and safety. You can serve it with confidence at any event.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="SITE.toggleFaq(this)">Which areas of Vadodara do you deliver to? <span class="faq-arrow">▼</span></button><div class="faq-a">We deliver to all areas of Vadodara including Alkapuri, Sayajigunj, Fatehgunj, Waghodia, Manjalpur, Gotri, Vasna, Harni and more. If you're in Vadodara, we deliver to you.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="SITE.toggleFaq(this)">Who is the best bulk water bottle supplier near me in Vadodara? <span class="faq-arrow">▼</span></button><div class="faq-a">Anjani Water (Annapurna Foods) is Vadodara's most trusted bulk water bottle supplier. We supply Anjani 200ml, Bisleri, Bailley and Clear water in bulk for weddings, party plots, catering, hotels and offices. Call 9925997750.</div></div>
+      <div class="faq-item reveal"><button class="faq-q" onclick="SITE.toggleFaq(this)">Vadodara ma pani bottle supply near me kya available che? <span class="faq-arrow">▼</span></button><div class="faq-a">Haa! Anjani Water Vadodara na darak kona ma pani bottle supply kare che. Anjani 200ml, Bisleri, Bailley ane Clear Water na bulk orders accept kariye chiye. Call 9925997750.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<script src="site.js"></script>
+<script>SITE.init('contact.html');</script>
+</body>
+</html>
