@@ -249,32 +249,127 @@ footer ul a:hover { opacity: 1; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .usecases-grid { grid-template-columns: 1fr 1fr; }
   .updates-grid { grid-template-columns: 1fr 1fr; }
-  .update-card.pinned { grid-column: span 2; grid-template-columns: 1fr; }
+  .update-card.pinned { grid-column: span 2; grid-template-columns: 1fr; display: block; }
   .page-hero h1 { font-size: 2.2rem; }
+  .page-hero { padding: 90px 5% 44px; }
 }
+
 @media (max-width: 768px) {
+  /* ── Hamburger nav ── */
   .hamburger { display: flex; }
   .nav-links { display: none; flex-direction: column; align-items: flex-start; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: #fff; padding: 12px 5% 18px; box-shadow: 0 10px 26px rgba(0,0,0,0.09); border-top: 1px solid var(--off); }
   .nav-links.open { display: flex; }
   .nav-links li { width: 100%; }
-  .nav-link { display: block; padding: 10px 0; font-size: 0.95rem; border-bottom: 1px solid var(--off); color: var(--text); }
-  .nav-links li:last-child .nav-link { border-bottom: none; }
-  .nav-cta { background: none !important; color: var(--ocean) !important; padding: 10px 0 !important; border-radius: 0 !important; box-shadow: none !important; }
-}
-@media (max-width: 600px) {
-  section { padding: 48px 4%; }
-  .section-title { font-size: 1.75rem; }
-  .products-grid { grid-template-columns: 1fr; }
-  .product-card.featured { grid-column: span 1; }
-  .testimonials-grid { grid-template-columns: 1fr; }
+  .nav-link { display: block; padding: 12px 0; font-size: 1rem; border-bottom: 1px solid var(--off); color: var(--text); }
+  .nav-links li:last-child .nav-link, .nav-links li:last-child a { border-bottom: none; }
+  .nav-cta { background: none !important; color: var(--ocean) !important; padding: 12px 0 !important; border-radius: 0 !important; box-shadow: none !important; font-size: 1rem !important; }
+
+  /* ── Forms ── */
   .form-row { grid-template-columns: 1fr; }
+  .forms-grid { grid-template-columns: 1fr; }
+
+  /* ── Updates pinned card ── */
+  .update-card.pinned { grid-column: span 2; display: block; }
+}
+
+@media (max-width: 600px) {
+  /* ── Spacing ── */
+  section { padding: 44px 4%; }
+  .page-hero { padding: 80px 4% 36px; }
+
+  /* ── Typography ── */
+  .section-title { font-size: 1.6rem; }
+  .section-sub { font-size: 0.85rem; }
+  .page-hero h1 { font-size: 1.75rem; }
+  .page-hero p { font-size: 0.87rem; }
+
+  /* ── Grids → single column ── */
+  .products-grid { grid-template-columns: 1fr; }
+  .product-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; text-align: center; gap: 5px; }
-  .wa-float { width: 48px; height: 48px; bottom: 16px; right: 12px; }
-  .wa-tooltip { display: none; }
   .usecases-grid { grid-template-columns: 1fr; }
   .updates-grid { grid-template-columns: 1fr; }
   .update-card.pinned { grid-column: span 1; display: block; }
-  .page-hero h1 { font-size: 1.8rem; }
-  .stats-row { gap: 20px; }
+  .why-grid { grid-template-columns: 1fr; }
+
+  /* ── Footer ── */
+  .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
+  .footer-grid { gap: 28px; }
+
+  /* ── Buttons ── */
+  .btn-primary, .btn-outline, .btn-white { width: 100%; justify-content: center; padding: 13px 20px; font-size: 0.9rem; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+
+  /* ── Stats ── */
+  .stats-row { gap: 16px; justify-content: center; }
+  .stat-num { font-size: 1.6rem; }
+
+  /* ── WhatsApp button ── */
+  .wa-float { width: 48px; height: 48px; bottom: 16px; right: 12px; }
+  .wa-tooltip { display: none; }
+
+  /* ── Forms ── */
+  .form-card { padding: 20px 16px; }
+  .form-group input, .form-group select, .form-group textarea { font-size: 16px; /* prevents iOS zoom on focus */ }
+
+  /* ── Update cards ── */
+  .update-card-top { padding: 18px 16px 12px; }
+  .update-card-body { padding: 14px 16px 18px; }
+  .update-card-top h3 { font-size: 0.95rem; }
+
+  /* ── Product cards ── */
+  .product-img { height: 160px; }
+  .product-body { padding: 16px; }
+  .product-name { font-size: 1.15rem; }
+
+  /* ── Use case cards ── */
+  .usecase-card { padding: 18px 16px; }
+
+  /* ── Sample band ── */
+  .sample-band { padding: 48px 4%; }
+  .sample-band p { font-size: 0.87rem; }
+
+  /* ── FAQ ── */
+  .faq-q { font-size: 0.85rem; padding: 14px 16px; }
+  .faq-a { padding: 0 16px 14px; font-size: 0.82rem; }
+
+  /* ── Testimonials ── */
+  .testi-card { padding: 18px 16px; }
+
+  /* ── Why visual ── */
+  .why-visual { padding: 28px 20px; }
+  .why-visual h3 { font-size: 1.4rem; }
+
+  /* ── Contact info grid ── */
+  .contact-info-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Comparison table scroll ── */
+  .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 520px; }
+  .compare-table th, .compare-table td { padding: 10px 12px; font-size: 0.78rem; }
+
+  /* ── Serve detail sections ── */
+  .serve-detail { grid-template-columns: 1fr !important; gap: 20px; }
+  .serve-detail.reverse .serve-content { order: 1 !important; }
+  .serve-detail.reverse .serve-visual { order: 2 !important; }
+  .serve-visual { min-height: 140px; font-size: 3.5rem !important; }
+
+  /* ── Why page area chips ── */
+  .areas-grid { grid-template-columns: 1fr 1fr !important; }
+  .pillars-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Pages grid on home ── */
+  .pages-grid { grid-template-columns: 1fr !important; }
+  .updates-preview-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Filter bar ── */
+  .filter-bar { gap: 7px; }
+  .filter-btn { padding: 5px 12px; font-size: 0.74rem; }
+
+  /* ── Welcome popup ── */
+  .welcome-popup { margin: 10px; }
+  .welcome-popup-top { padding: 22px 20px 16px; }
+  .welcome-popup-top h3 { font-size: 1.2rem; }
+  .welcome-popup-body { padding: 16px 18px 20px; }
 }
