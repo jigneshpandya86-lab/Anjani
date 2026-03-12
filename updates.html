@@ -40,7 +40,7 @@
       <button class="filter-btn" onclick="filterUpdates('local',this)">Local</button>
     </div>
     <div class="updates-full-grid" id="updates-full-grid">
-      <p style="color:var(--muted);font-size:0.85rem">Loading updates…</p>
+      <p style="color:var(--muted);font-size:0.85rem" id="updates-loading">Loading updates...</p>
     </div>
   </div>
 </section>
@@ -68,10 +68,8 @@
 ];
 allUpdates = updatesData;
 renderUpdates(allUpdates);
-    })
-    .catch(function(){
-      document.getElementById('updates-full-grid').innerHTML = '<p style="color:var(--muted)">Updates temporarily unavailable.</p>';
-    });
+var loadingEl = document.getElementById('updates-loading');
+if(loadingEl) loadingEl.remove();
 </script>
 </body>
 </html>
