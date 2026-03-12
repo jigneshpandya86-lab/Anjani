@@ -11,7 +11,7 @@ var SITE = {
   SHEET_URL: 'https://script.google.com/macros/s/AKfycbz_w5sjcT2gXwl8ZqWizHtkpeJ9I9AXkB3fEfJVXAdjmaiLRTTeqAO-ekkXxU0I1PD9-g/exec',
 
   /* ── GitHub raw image base ── */
-  IMG: 'https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/Images/',
+  IMG: 'https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/images/',
 
   /* ── Image filenames (upload these to /images/ in your repo) ── */
   images: {
@@ -194,6 +194,57 @@ SITE.injectWelcomePopup = function() {
   div.innerHTML = '<div class="welcome-popup"><button class="welcome-close" onclick="SITE.closeWelcome()">✕</button><div class="welcome-popup-top"><span class="wp-emoji">💧</span><h3>Get a Free Water Sample!</h3><p>Leave your number and we\'ll deliver a complimentary Anjani 200ml bottle — no cost, no commitment.</p></div><div class="welcome-popup-body"><form onsubmit="SITE.submitWelcome(event)"><div class="form-group"><label>Your Name</label><input type="text" id="wName" placeholder="Ramesh Patel"></div><div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" id="wPhone" placeholder="98765 43210" required></div><button type="submit" class="welcome-popup-submit">🎁 Claim Free Sample</button><div class="welcome-success" id="welcomeSuccess">✅ Done! We\'ll be in touch soon.</div></form><span class="welcome-skip" onclick="SITE.closeWelcome()">No thanks, maybe later</span></div></div>';
   document.body.appendChild(div);
 };
+
+/* ── Updates renderer ── */
+var allUpdates = [];
+
+function renderUpdates(list) {
+  var grid = document.getElementById('updates-full-grid');
+  if (!grid) return;
+  if (!list || list.length === 0) {
+    grid.innerHTML = '<p style="color:var(--muted)">No updates in this category.</p>';
+    return;
+  }
+  grid.innerHTML = list.map(function(u, i) {
+    var first = (i === 0);
+    var d = u.date ? new Date(u.date) : null;
+    var dateStr = d ? d.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' }).toUpperCase() : '';
+    var typeColors = { offer: '#0077B6', news: '#1a9e6e', season: '#b06a00', local: '#5a3db5', tip: '#c0392b' };
+    var bg = typeColors[u.type] || '#0077B6';
+    var imgHtml = u.image
+      ? '<div style="overflow:hidden;' + (first ? 'border-radius:0 12px 12px 0;' : 'height:140px;border-radius:12px 12px 0 0;') + '"><img src="' + u.image + '" alt="' + u.title + '" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>'
+      : '';
+    var topHtml = '<div style="background:' + bg + ';padding:22px 20px 18px;' + (first ? 'border-radius:12px 0 0 12px;' : 'border-radius:12px 12px 0 0;') + '">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">' +
+      '<span style="font-size:1.3rem">' + (u.emoji || '💧') + '</span>' +
+      '<span style="font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.15);padding:3px 10px;border-radius:50px;">' + (u.tag || 'Update') + '</span>' +
+      '</div>' +
+      '<h3 style="font-size:' + (first ? '1.1rem' : '0.92rem') + ';font-weight:700;color:#fff;line-height:1.3;margin-bottom:' + (first ? '12px' : '0') + ';">' + u.title + '</h3>' +
+      (first ? '<p style="font-size:0.8rem;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:12px;">' + u.body + '</p>' +
+        '<div style="font-size:0.72rem;color:rgba(255,255,255,0.6);margin-bottom:10px;">' + dateStr + '</div>' +
+        '<a href="' + (u.ctaLink || 'contact.html') + '" style="font-size:0.8rem;font-weight:700;color:#fff;text-decoration:underline;">' + (u.cta || 'Learn more →') + '</a>' : '') +
+      '</div>';
+    var bodyHtml = !first ? '<div style="padding:14px 16px 18px;">' +
+      '<div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">' + dateStr + '</div>' +
+      '<p style="font-size:0.8rem;color:var(--text);line-height:1.65;margin-bottom:10px;">' + u.body + '</p>' +
+      '<a href="' + (u.ctaLink || 'contact.html') + '" style="font-size:0.78rem;font-weight:600;color:var(--ocean);">' + (u.cta || 'Learn more →') + '</a>' +
+      '</div>' : '';
+    var cardStyle = first
+      ? 'border-radius:12px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 4px 20px rgba(0,0,0,0.1);'
+      : 'border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.08);';
+    return '<div class="update-card reveal" style="' + cardStyle + '">' +
+      (first ? topHtml + (u.image ? imgHtml : '<div style="background:rgba(0,119,182,0.15);display:flex;align-items:center;justify-content:center;font-size:4rem;">💧</div>') : imgHtml + topHtml + bodyHtml) +
+      '</div>';
+  }).join('');
+  SITE.initReveal();
+}
+
+function filterUpdates(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var filtered = (type === 'all') ? allUpdates : allUpdates.filter(function(u) { return (u.type || 'offer') === type; });
+  renderUpdates(filtered);
+}
 
 /* ── Page init (call at bottom of every page) ── */
 SITE.init = function(activePage) {
