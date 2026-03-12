@@ -2,7 +2,7 @@
    ANJANI WATER — SHARED SITE CONFIG
    GitHub repo: jigneshpandya86-lab/Anjani
    All images live in /images/ folder of that repo
-   Raw URL base: https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/images/
+   Raw URL base: https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/Images/
 ═══════════════════════════════════════════════════ */
 
 var SITE = {
