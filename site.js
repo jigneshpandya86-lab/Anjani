@@ -11,7 +11,7 @@ var SITE = {
   SHEET_URL: 'https://script.google.com/macros/s/AKfycbz_w5sjcT2gXwl8ZqWizHtkpeJ9I9AXkB3fEfJVXAdjmaiLRTTeqAO-ekkXxU0I1PD9-g/exec',
 
   /* ── GitHub raw image base ── */
-  IMG: 'https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/Images/',
+  IMG: 'https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/Images/',
 
   /* ── Image filenames (upload these to /images/ in your repo) ── */
   images: {
