@@ -67,7 +67,30 @@
     if (!list.length) { grid.innerHTML = '<p style="color:var(--muted)">No updates in this category.</p>'; return; }
     grid.innerHTML = list.map(function(u, i) {
       var first = (i === 0);
-      var cls = 'update-card ' + (u.type || 'offer') + (first ? ' pinned' : '') + ' reveal';
+      var pinnedImgCol = (first && !u.image) 
+  ? '<div style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">💧</div>'
+  : '';
+
+return '<div class="'+cls+'">'+
+  '<div class="update-card-top">'+
+    '<span class="update-emoji">'+(u.emoji||'💧')+'</span>'+
+    '<div class="update-type-badge">'+(u.tag||'Update')+'</div>'+
+    '<h3>'+u.title+'</h3>'+
+    '<div class="update-card-body" style="background:transparent;padding:16px 0 0;">'+
+      '<div class="update-date" style="color:rgba(255,255,255,0.6);">'+dateStr+'</div>'+
+      '<p style="font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:12px;">'+u.body+'</p>'+
+      '<a href="'+(u.ctaLink||'contact.html')+'" style="font-size:0.8rem;font-weight:600;color:#fff;text-decoration:underline;">'+(u.cta||'Learn more →')+'</a>'+
+    '</div>'+
+  '</div>'+
+  (u.image ? '<div class="update-card-img"><img src="'+u.image+'" alt="'+u.title+'" loading="lazy"></div>' : pinnedImgCol)+
+  (first ? '' : 
+    '<div class="update-card-body">'+
+      '<div class="update-date">'+dateStr+'</div>'+
+      '<p class="update-body-text">'+u.body+'</p>'+
+      '<a href="'+(u.ctaLink||'contact.html')+'" class="update-cta-link">'+(u.cta||'Learn more →')+'</a>'+
+    '</div>'
+  )+
+'</div>';
       var dateStr = '';
       try { dateStr = new Date(u.date).toLocaleDateString('en-IN',{month:'long',year:'numeric'}); } catch(e){ dateStr = u.date; }
       var imgHtml = u.image ? '<div class="update-card-img"><img src="'+u.image+'" alt="'+u.title+'" loading="lazy"></div>' : '';
