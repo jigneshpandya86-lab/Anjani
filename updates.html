@@ -116,7 +116,7 @@ return '<div class="'+cls+'">'+
     renderUpdates(filtered);
   }
 
-  fetch('https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json')
+  fetch('https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json?v=' + Date.now())
     .then(function(r){ return r.json(); })
     .then(function(data){
       allUpdates = data;
