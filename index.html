@@ -214,7 +214,7 @@
   document.getElementById('hero-bottle').src = SITE.img('hero');
 
   // Load 3 preview updates
-  fetch('updates.json')
+  fetch('https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json')
     .then(function(r){ return r.json(); })
     .then(function(updates){
       var grid = document.getElementById('updates-preview-grid');
