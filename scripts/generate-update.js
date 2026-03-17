@@ -47,8 +47,13 @@ async function generateUpdate() {
   const text = data.candidates[0].content.parts[0].text.trim();
 
   // Strip any accidental markdown fences
-  const clean = text.replace(/```json|```/g, '').trim();
-  const newEntry = JSON.parse(clean);
+// Extract JSON object more aggressively
+const jsonMatch = text.match(/\{[\s\S]*\}/);
+if (!jsonMatch) {
+  throw new Error('No JSON object found in response: ' + text.substring(0, 200));
+}
+const clean = jsonMatch[0].trim();
+const newEntry = JSON.parse(clean);
 
   console.log('Generated:', newEntry.title);
 
