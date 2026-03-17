@@ -31,7 +31,7 @@ async function generateUpdate() {
       body: JSON.stringify({
         contents: [{ parts: [{ text: PROMPT }] }],
         generationConfig: {
-          maxOutputTokens: 300,   // Hard cap — keeps cost near zero
+          maxOutputTokens: 600,   // Hard cap — keeps cost near zero
           temperature: 0.8,
           topP: 0.9
         }
