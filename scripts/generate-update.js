@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
 
 const PROMPT = "You are a content writer for Anjani Water, a packaged drinking water supplier in Vadodara, Gujarat, India. Their brand is Anjani 200ml and they also supply Bisleri and Bailley. They serve weddings, party plots, caterers, offices and homes across Vadodara.\n\n" +
 "Today's date is " + today + ". The current month is " + month + " " + year + ".\n\n" +
-"Write ONE realistic update that connects a current Vadodara/Gujarat event, festival, season or local news to Anjani Water's business.\n\n" +
+"Write ONE realistic update that connects a current Vadodara/Gujarat event, festival, season or local news.\n\n" +
 "Examples of topics based on the month:\n" +
 "- March: Holi celebrations, summer starting, wedding bookings\n" +
 "- April: Summer heat wave, IPL season, Navratri prep\n" +
