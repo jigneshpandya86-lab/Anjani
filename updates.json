@@ -1,16 +1,5 @@
 [
   {
-    "title": "Vadodara Heat? Stay Hydrated!",
-    "body": "Vadodara's mercury is rising! Stay refreshed with Anjani Water, Bisleri, or Bailley. Perfect for all your needs.",
-    "type": "Local",
-    "tag": "Summer",
-    "emoji": "💧",
-    "date": "2026-03-17",
-    "cta": "Order Now ->",
-    "ctaLink": "contact.html",
-    "image": ""
-  },
-  {
     "title": "Vadodara's March Heat: Stay Cool!",
     "body": "Summer is here! Anjani Water delivers instant hydration for homes, offices & events in Vadodara.",
     "type": "offer",
@@ -22,56 +11,34 @@
     "image": ""
   },
   {
-    "title": "Vadodara Summer Ready? Hydrate with Anjani Water!",
-    "body": "As Vadodara's temperatures rise, stay cool and refreshed with Anjani Water. We deliver Anjani 200ml, Bisleri, and Bailley directly to your homes, offices, and events. Call 9925997750 for quick delivery across Vadodara!",
-    "type": "season",
-    "tag": "Summer Hydration",
-    "emoji": "☀️",
-    "date": "2026-03-25",
-    "cta": "Beat the Heat →",
-    "ctaLink": "contact.html",
-    "image": ""
-  },
-  {
-    "title": "Summer Bulk Deal – Stock Up Before the Wedding Season",
-    "body": "Get special pricing on Anjani 200ml bulk orders this summer. Wedding season is here — secure your water supply now before slots fill up. Call 9925997750 for a customised quote.",
-    "type": "offer",
-    "tag": "Special Offer",
-    "emoji": "☀️",
-    "date": "2025-04-01",
-    "cta": "Get Bulk Quote →",
-    "ctaLink": "contact.html",
-    "image": "https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/Images/update-summer-offer.jpg"
-  },
-  {
-    "title": "Fresh Stock Arrived – Anjani 200ml & Bailley Now Available",
-    "body": "New consignment of Anjani Premium 200ml and Bailley by Parle Agro is now in stock. Ready for immediate bulk dispatch across all Vadodara areas. WhatsApp us to confirm your order today.",
-    "type": "news",
-    "tag": "New Stock",
-    "emoji": "📦",
-    "date": "2025-03-20",
-    "cta": "Order Now →",
-    "ctaLink": "contact.html",
-    "image": "https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/Images/update-new-stock.jpg"
-  },
-  {
     "title": "Wedding Season Supply – Serving 50+ Events This Month",
-    "body": "March–May is peak wedding season in Vadodara. Anjani Water is proud to be the official water supplier for over 50 weddings and receptions this season. Book your event supply early to guarantee availability.",
+    "body": "March–May is peak wedding season in Vadodara. Book your event water supply early to guarantee availability.",
     "type": "season",
     "tag": "Wedding Season",
     "emoji": "💍",
-    "date": "2025-03-10",
+    "date": "2026-03-10",
     "cta": "Book for Your Wedding →",
     "ctaLink": "contact.html",
     "image": "https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/Images/update-wedding-supply.jpg"
   },
   {
+    "title": "Fresh Stock Arrived – Anjani 200ml & Bailley Now Available",
+    "body": "New consignment of Anjani Premium 200ml and Bailley is now in stock. Ready for immediate bulk dispatch across all Vadodara areas.",
+    "type": "news",
+    "tag": "New Stock",
+    "emoji": "📦",
+    "date": "2026-03-05",
+    "cta": "Order Now →",
+    "ctaLink": "contact.html",
+    "image": "https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/Images/update-new-stock.jpg"
+  },
+  {
     "title": "New Corporate Office Delivery Route – Gotri & Subhanpura Added",
-    "body": "We have expanded our daily office delivery route to include Gotri, Subhanpura and Sama. Corporate offices in these areas can now subscribe to weekly or monthly packaged water delivery. Contact us to set up your account.",
+    "body": "We have expanded our daily delivery route to include Gotri, Subhanpura and Sama. Contact us to set up your office account.",
     "type": "local",
     "tag": "Local News",
     "emoji": "💼",
-    "date": "2025-03-01",
+    "date": "2026-03-01",
     "cta": "Set Up Office Delivery →",
     "ctaLink": "contact.html",
     "image": "https://raw.githubusercontent.com/jigneshpandya86-lab/Anjani/main/Images/update-office-delivery.jpg"
