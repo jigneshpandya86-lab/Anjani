@@ -26,14 +26,15 @@ Examples of topics to pick from based on the month:
 - February: Valentine events, pre-wedding season
 
 IMPORTANT RULES:
+- Body must be 20 words maximum — very short and punchy
+- Title must be 8 words maximum
 - Use today's date ${today} as the "date" field — never a future date
 - Keep body to 2 sentences maximum
 - Must mention Vadodara specifically
 - Must feel like a real local business post
 
 Return ONLY a single-line minified JSON object with no line breaks, no markdown, no backticks. Just raw JSON starting with { and ending with }:
-{"title":"...","body":"...","type":"offer or news or season or local","tag":"2-3 word tag","emoji":"one emoji","date":"${today}","cta":"Short CTA →","ctaLink":"contact.html","image":""}`;
-
+{"title":"max 8 words","body":"max 20 words only, be very brief","type":"offer or news or season or local","tag":"2-3 word tag","emoji":"one emoji","date":"${today}","cta":"Short CTA →","ctaLink":"contact.html","image":""}
 async function generateUpdate() {
   console.log('Calling Gemini API...');
 
