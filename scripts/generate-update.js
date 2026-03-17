@@ -7,52 +7,30 @@ const today = new Date().toISOString().split('T')[0];
 const month = new Date().toLocaleString('en-IN', { month: 'long' });
 const year = new Date().getFullYear();
 
-const PROMPT =
-"You are a local content writer for Anjani Water, a packaged drinking water supplier in Vadodara, Gujarat, India.\n\n" +
-
+// UPDATED PROMPT: Now requests SEO fields (slug, metaDescription, keywords)
+const PROMPT = 
+"You are a local community reporter and SEO content writer for Anjani Water, a packaged drinking water supplier in Vadodara, Gujarat, India.\n\n" +
 "Today's date is " + today + ". Current month: " + month + " " + year + ".\n\n" +
-
-"Write ONE short update post about something happening IN or AROUND Vadodara that would be relevant to a broad local audience — residents, businesses, event organizers, families.\n\n" +
-
-"The post should feel like a helpful local news tip or community update — NOT just a product advertisement. It should naturally connect to the need for water, hydration, or events where water is needed.\n\n" +
-
-"Topics to pick from based on month and what is real in Vadodara/Gujarat:\n" +
-"- March: Holi mela at Sayaji Baug, summer heat starting, school exams ending, wedding season bookings\n" +
-"- April: Chaitra Navratri, summer camps, IPL matches watch parties, heat wave alerts\n" +
-"- May: Peak summer 42-45C in Vadodara, mango festivals, school summer vacations\n" +
-"- June: Pre-monsoon dust storms, Rath Yatra in Ahmedabad nearby, humidity spike\n" +
-"- July: Monsoon arrives, Sawan month, flooding in low areas, Janmashtami prep\n" +
-"- August: Independence Day events, Janmashtami celebrations in Vadodara, Ganesh Chaturthi prep\n" +
-"- September: Ganesh Chaturthi visarjan, Navratri rehearsals starting\n" +
-"- October: Navratri in Vadodara, one of Indias biggest, 9 nights, lakhs of people\n" +
-"- November: Diwali, post-Navratri weddings, winter starting\n" +
-"- December: Winter wedding season, year-end corporate parties, Christmas events\n" +
-"- January: Uttarayan kite festival, massive in Gujarat, makar sankranti, corporate events\n" +
-"- February: Valentine week events, pre-wedding functions, Vasant Panchami\n\n" +
-
+"Using your search capabilities, find one piece of REAL, CURRENT good news or an upcoming exciting event happening IN or AROUND Vadodara right now.\n\n" +
+"Write ONE short update post about this specific event or news that would be relevant to residents, businesses, or families.\n\n" +
+"The post should feel like a helpful, uplifting local news tip — NOT a direct product advertisement. Subtly connect the event/news to staying hydrated or event hydration planning.\n\n" +
 "IMPORTANT RULES:\n" +
 "- Date field must be exactly: " + today + "\n" +
-"- Title: maximum 9 words, catchy, local feel\n" +
-"- Body: maximum 25 words, mention Vadodara, helpful tone not salesy\n" +
-"- The post should feel useful to ANY Vadodara resident not just water customers\n" +
-"- type must be one of: offer, news, season, local, tip\n" +
-"- tag must be 2-3 words max\n" +
-"- emoji must be one single relevant emoji\n" +
-"- cta should be action-oriented and short\n" +
-"- image must be empty string\n\n" +
-
-"Good example topics:\n" +
-"- Uttarayan: Best rooftop spots in Vadodara for kite flying\n" +
-"- Summer: Heat wave advisory for Vadodara residents this week\n" +
-"- Navratri: Garba venue hydration tips for 9 nights\n" +
-"- Wedding season: Checklist for outdoor wedding planners in Vadodara\n" +
-"- Monsoon: What to check before hosting an outdoor event in rainy season\n\n" +
-
+"- Title: maximum 9 words, catchy, local feel, specific to the real news/event\n" +
+"- Body: maximum 25 words, MUST mention Vadodara and the specific event/news, helpful tone\n" +
+"- type: must be one of: event, news, local, tip\n" +
+"- tag: 2-3 words max\n" +
+"- emoji: one single relevant emoji\n" +
+"- cta: action-oriented and short\n" +
+"- image: empty string\n" +
+"- slug: a URL-friendly version of the title (lowercase, hyphen-separated)\n" +
+"- metaDescription: an SEO-optimized summary under 150 characters mentioning Vadodara and the event\n" +
+"- keywords: 3-5 comma-separated SEO keywords (e.g., 'Vadodara events, summer hydration, local news')\n\n" +
 "Return ONLY a single line minified JSON. No markdown, no explanation, no extra text. Start with { end with }.\n" +
-'Format: {"title":"...","body":"...","type":"local","tag":"Local News","emoji":"🌟","date":"' + today + '","cta":"Read More ->","ctaLink":"contact.html","image":""}';
+'Format: {"title":"...","body":"...","type":"local","tag":"...","emoji":"🌟","date":"' + today + '","cta":"...","ctaLink":"contact.html","image":"","slug":"...","metaDescription":"...","keywords":"..."}';
 
 async function generateUpdate() {
-  console.log('Calling Gemini API...');
+  console.log('Calling Gemini API with Search Grounding & SEO...');
 
   const response = await fetch(
     'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY,
@@ -61,9 +39,10 @@ async function generateUpdate() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: PROMPT }] }],
+        tools: [{ googleSearch: {} }],
         generationConfig: {
           maxOutputTokens: 2048,
-          temperature: 0.9,
+          temperature: 0.7, 
           topP: 0.95
         }
       })
@@ -86,9 +65,11 @@ async function generateUpdate() {
   const clean = jsonMatch[0].trim();
   const newEntry = JSON.parse(clean);
 
-  if (!newEntry.title || !newEntry.body) {
-    throw new Error('Invalid entry - missing title or body');
+  // Validate core fields AND SEO fields
+  if (!newEntry.title || !newEntry.body || !newEntry.slug || !newEntry.metaDescription) {
+    throw new Error('Invalid entry - missing core or SEO fields');
   }
+  
   if (newEntry.date !== today) {
     newEntry.date = today;
   }
@@ -96,7 +77,8 @@ async function generateUpdate() {
     newEntry.image = '';
   }
 
-  console.log('Generated:', newEntry.title);
+  console.log('Generated Title:', newEntry.title);
+  console.log('Generated SEO Slug:', newEntry.slug);
 
   let updates = [];
   if (fs.existsSync('updates.json')) {
