@@ -1,0 +1,23 @@
+name: Auto Generate Water Update
+
+on:
+  schedule:
+    - cron: '30 3 * * 1'   # Every Monday at 9:00 AM IST (3:30 UTC)
+  workflow_dispatch:        # Also allows manual trigger
+
+jobs:
+  generate-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate and push update
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/generate-update.js
