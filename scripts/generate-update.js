@@ -7,7 +7,7 @@ const PROMPT = `You are a content writer for Anjani Water, a packaged drinking w
 
 Generate ONE new weekly update relevant to Vadodara — it can be about local events (Navratri, Uttarayan, wedding season), weather (summer heat, monsoon), a business offer, new stock, or local area expansion. Keep it natural and local.
 
-Return ONLY a valid JSON object (no markdown, no backticks) with these exact fields:
+Return ONLY a single-line minified JSON object with no line breaks, no markdown, no backticks, no explanation. Just the raw JSON on one line starting with:
 {
   "title": "Short catchy title (max 10 words)",
   "body": "2-3 sentences. Mention Vadodara. Call 9925997750 if relevant.",
@@ -31,7 +31,7 @@ async function generateUpdate() {
       body: JSON.stringify({
         contents: [{ parts: [{ text: PROMPT }] }],
         generationConfig: {
-          maxOutputTokens: 600,   // Hard cap — keeps cost near zero
+          maxOutputTokens: 1024,   // Hard cap — keeps cost near zero
           temperature: 0.8,
           topP: 0.9
         }
