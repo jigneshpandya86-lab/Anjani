@@ -3,22 +3,36 @@ const fs = require('fs');
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const MAX_ITEMS = 12; // Keep only 12 posts to stay lean
 
+const today = new Date().toISOString().split('T')[0];
+const month = new Date().toLocaleString('en-IN', { month: 'long' });
+const year = new Date().getFullYear();
+
 const PROMPT = `You are a content writer for Anjani Water, a packaged drinking water supplier in Vadodara, Gujarat, India. Their brand is "Anjani 200ml" and they also supply Bisleri and Bailley. They serve weddings, party plots, caterers, offices and homes across Vadodara.
 
-Generate ONE new weekly update relevant to Vadodara — it can be about local events (Navratri, Uttarayan, wedding season), weather (summer heat, monsoon), a business offer, new stock, or local area expansion. Keep it natural and local.
+Today's date is ${today}. The current month is ${month} ${year}.
 
-Return ONLY a single-line minified JSON object with no line breaks, no markdown, no backticks, no explanation. Just the raw JSON on one line starting with:
-{
-  "title": "Short catchy title (max 10 words)",
-  "body": "2-3 sentences. Mention Vadodara. Call 9925997750 if relevant.",
-  "type": "offer" or "news" or "season" or "local",
-  "tag": "2-3 word tag label",
-  "emoji": "one relevant emoji",
-  "date": "${new Date().toISOString().split('T')[0]}",
-  "cta": "Short CTA text →",
-  "ctaLink": "contact.html",
-  "image": ""
-}`;
+Write ONE realistic update that connects a current Vadodara/Gujarat event, festival, season or local news to Anjani Water's business. 
+
+Examples of topics to pick from based on the month:
+- March: Holi celebrations, summer starting, wedding bookings
+- April: Summer heat wave, IPL season, Navratri prep
+- May: Peak summer, mango season, school events
+- June: Pre-monsoon, humidity, office hydration
+- July-September: Monsoon season, Ganesh Chaturthi
+- October: Navratri in Vadodara (very big!), Diwali prep
+- November: Wedding season peak, Diwali
+- December: Winter weddings, year end parties
+- January: Uttarayan kite festival, corporate events
+- February: Valentine events, pre-wedding season
+
+IMPORTANT RULES:
+- Use today's date ${today} as the "date" field — never a future date
+- Keep body to 2 sentences maximum
+- Must mention Vadodara specifically
+- Must feel like a real local business post
+
+Return ONLY a single-line minified JSON object with no line breaks, no markdown, no backticks. Just raw JSON starting with { and ending with }:
+{"title":"...","body":"...","type":"offer or news or season or local","tag":"2-3 word tag","emoji":"one emoji","date":"${today}","cta":"Short CTA →","ctaLink":"contact.html","image":""}`;
 
 async function generateUpdate() {
   console.log('Calling Gemini API...');
