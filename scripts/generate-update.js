@@ -28,7 +28,7 @@ const PROMPT = "You are a content writer for Anjani Water, a packaged drinking w
 "- Must mention Vadodara\n" +
 "- Must feel like a real local business post\n\n" +
 "Return ONLY a single line minified JSON object. No markdown, no explanation, no extra text. Start with { and end with }.\n" +
-'Example format: {"title":"Short title here","body":"Short body here. Max 20 words.","type":"offer","tag":"Special Offer","emoji":"💧","date":"' + today + '","cta":"Order Now ->","ctaLink":"contact.html","image":""}';
+'Example format: {"title":"Short title here","body":"Short body here. Max 20 words.","type":"Local","tag":"Local News","emoji":"💧","date":"' + today + '","cta":"Order Now ->","ctaLink":"contact.html","image":""}';
 
 async function generateUpdate() {
   console.log('Calling Gemini API...');
