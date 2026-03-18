@@ -253,6 +253,48 @@
 
 <footer id="site-footer"></footer>
 
+<!-- STAFF JOBS PANEL -->
+<div id="sjPanel" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#fff;border-radius:16px;width:100%;max-width:460px;overflow:hidden;font-family:system-ui,sans-serif">
+    <div style="padding:14px 16px;background:#1E293B;color:#fff;display:flex;justify-content:space-between;align-items:center">
+      <b>📋 Staff Jobs</b>
+      <span onclick="document.getElementById('sjPanel').style.display='none'" style="cursor:pointer;font-size:18px">✕</span>
+    </div>
+    <div style="padding:12px 14px;border-bottom:1px solid #e2e8f0;display:flex;gap:8px">
+      <input id="sjInp" placeholder="New task..." onkeydown="if(event.key==='Enter')sjAdd()" style="flex:1;padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none">
+      <button onclick="sjAdd()" style="background:#2563eb;color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:600">+</button>
+    </div>
+    <ul id="sjList" style="list-style:none;margin:0;padding:8px 14px;max-height:260px;overflow-y:auto"></ul>
+    <div style="padding:12px 14px;background:#f8fafc;border-top:1px solid #e2e8f0">
+      <div style="font-size:12px;color:#64748b;margin-bottom:8px">Phone: <input id="sjPh" value="919925997750" style="border:1px solid #e2e8f0;border-radius:6px;padding:3px 8px;font-size:12px;width:150px"></div>
+      <div style="display:flex;gap:8px">
+        <button onclick="sjWA()" style="flex:1;background:#25D366;color:#fff;border:none;border-radius:50px;padding:9px;font-size:12px;font-weight:600;cursor:pointer">💬 WhatsApp</button>
+        <button onclick="sjSMS()" style="flex:1;background:#2563eb;color:#fff;border:none;border-radius:50px;padding:9px;font-size:12px;font-weight:600;cursor:pointer">📱 SMS</button>
+        <button onclick="sjWA();setTimeout(sjSMS,800)" style="flex:1;background:#7c3aed;color:#fff;border:none;border-radius:50px;padding:9px;font-size:12px;font-weight:600;cursor:pointer">⚡ Both</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button onclick="document.getElementById('sjPanel').style.display='flex'" style="position:fixed;bottom:22px;left:22px;z-index:999;background:#1E293B;color:#fff;border:none;border-radius:50px;padding:11px 18px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.2)">📋 Staff Jobs</button>
+
+<script>
+var sjTasks=[{t:'Sanket 500ml',done:false},{t:'Bisleri 2 Box payment',done:false}];
+function sjRender(){
+  document.getElementById('sjList').innerHTML=sjTasks.map((x,i)=>
+    `<li style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:14px;${x.done?'opacity:.4;text-decoration:line-through':''}">
+      <span>${x.t}</span>
+      <button onclick="sjTasks[${i}].done=!sjTasks[${i}].done;sjRender()" style="background:#e2e8f0;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">${x.done?'↩':'✓'}</button>
+    </li>`).join('');
+}
+function sjAdd(){var v=document.getElementById('sjInp').value.trim();if(v){sjTasks.push({t:v,done:false});document.getElementById('sjInp').value='';sjRender();}}
+function sjMsg(){var p=sjTasks.filter(x=>!x.done);if(!p.length){alert('No pending tasks!');return null;}return '📋 *Pending Staff Tasks*\n\n'+p.map((x,i)=>(i+1)+'. '+x.t).join('\n')+'\n\nPlease complete and confirm.\n– Anjani Water';}
+function sjPh(){return (document.getElementById('sjPh').value||'').replace(/\D/g,'');}
+function sjWA(){var m=sjMsg();if(!m)return;var ph=sjPh();window.open(ph?`https://wa.me/${ph}?text=${encodeURIComponent(m)}`:`https://wa.me/?text=${encodeURIComponent(m)}`,'_blank');}
+function sjSMS(){var m=sjMsg();if(!m)return;var ph=sjPh();window.open(`sms:${ph?'+'+ph:''}?body=${encodeURIComponent(m)}`,'_blank');}
+sjRender();
+</script>
+
 <script src="site.js"></script>
 <script>
   SITE.init('index.html');
