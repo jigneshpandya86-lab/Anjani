@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
 const PROMPT = 
 "You are a local community reporter and SEO content writer for Anjani Water, a packaged drinking water supplier in Vadodara, Gujarat, India.\n\n" +
 "Today's date is " + today + ". Current month: " + month + " " + year + ".\n\n" +
-"Using your search capabilities, find one piece of REAL, CURRENT good news or an upcoming exciting event happening IN or AROUND Vadodara right now.\n\n" +
+"Using your search capabilities, find one piece of REAL, CURRENT good news or public affecting or an upcoming exciting event happening IN or AROUND Vadodara right now.\n\n" +
 "Write ONE short update post about this specific event or news that would be relevant to residents, businesses, or families.\n\n" +
 "The post should feel like a helpful, uplifting local news tip — NOT a direct product advertisement. Subtly connect the event/news to staying hydrated or event hydration planning.\n\n" +
 "IMPORTANT RULES:\n" +
