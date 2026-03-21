@@ -93,7 +93,9 @@ async function generateUpdate() {
   fs.writeFileSync('updates.json', JSON.stringify(updates, null, 2));
   console.log('updates.json now has ' + updates.length + ' entries.');
 }
-
+const purgeUrl = 'https://purge.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json';
+const purgeRes = await fetch(purgeUrl);
+console.log('jsDelivr purge status:', purgeRes.status);
 generateUpdate().catch(function(err) {
   console.error('Failed:', err);
   process.exit(1);
