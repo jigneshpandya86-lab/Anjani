@@ -22,12 +22,12 @@ const PROMPT =
 "- tag: 2-3 words max\n" +
 "- emoji: one single relevant emoji\n" +
 "- cta: action-oriented and short\n" +
-"- image: empty string\n" +
+"- image: a publicly available, relevant image URL related to the event or news (must be a direct image URL ending in .jpg, .jpeg, .png, or .webp). If no suitable public image is found, use empty string\n" +
 "- slug: a URL-friendly version of the title (lowercase, hyphen-separated)\n" +
 "- metaDescription: an SEO-optimized summary under 150 characters mentioning Vadodara and the event\n" +
 "- keywords: 3-5 comma-separated SEO keywords (e.g., 'Vadodara events, summer hydration, local news')\n\n" +
 "Return ONLY a single line minified JSON. No markdown, no explanation, no extra text. Start with { end with }.\n" +
-'Format: {"title":"...","body":"...","type":"local","tag":"...","emoji":"🌟","date":"' + today + '","cta":"...","ctaLink":"contact.html","image":"","slug":"...","metaDescription":"...","keywords":"..."}';
+'Format: {"title":"...","body":"...","type":"local","tag":"...","emoji":"🌟","date":"' + today + '","cta":"...","ctaLink":"contact.html","image":"<direct public URL or empty string>","slug":"...","metaDescription":"...","keywords":"..."}';
 
 async function generateUpdate() {
   console.log('Calling Gemini API with Search Grounding & SEO...');
