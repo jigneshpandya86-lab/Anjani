@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const MAX_ITEMS = 12;
