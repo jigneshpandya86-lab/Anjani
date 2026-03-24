@@ -3,17 +3,23 @@ import fs from 'fs';
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const MAX_ITEMS = 12;
 
-const today = new Date().toISOString().split('T')[0];
-const month = new Date().toLocaleString('en-IN', { month: 'long' });
-const year = new Date().getFullYear();
+const today = new Date();
+const start = today.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+const endDate = new Date(today);
+endDate.setDate(today.getDate() + 6);
+const end = endDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+const weekRange = start + " – " + end;
 
 // UPDATED PROMPT: Now requests SEO fields (slug, metaDescription, keywords)
 const PROMPT = 
 "You are a local community reporter and SEO content writer for Anjani Water, a packaged drinking water supplier in Vadodara, Gujarat, India.\n\n" +
-"Today's date is " + today + ". Current month: " + month + " " + year + ".\n\n" +
-"Using your search capabilities, find one piece of REAL, CURRENT good news or public affecting or an upcoming exciting event happening IN or AROUND Vadodara right now.\n\n" +
-"Write ONE short update post about this specific event or news that would be relevant to residents, businesses, or families.\n\n" +
-"The post should feel like a helpful, uplifting local news tip — NOT a direct product advertisement. Subtly connect the event/news to staying hydrated or event hydration planning.\n\n" +
+"Today's date is " + today + ". Current week: " + weekRange + ". Month: " + month + " " + year + ".\n\n" +
+"Using your search capabilities, find 3 REAL, CURRENT news stories or upcoming events happening IN or AROUND Vadodara this week — covering local events, civic developments, festivals, infrastructure, sports, or anything publicly relevant.\n\n" +
+"For each story, write ONE short update paragraph (60–80 words) that feels like a helpful local news tip. Each post should subtly connect to staying hydrated or event hydration planning — but NEVER sound like a product advertisement.\n\n" +
+"Format your response as:\n" +
+"STORY 1: [Headline]\n[Post body]\n\n" +
+"STORY 2: [Headline]\n[Post body]\n\n" +
+"STORY 3: [Headline]\n[Post body]\n\n" +
 "IMPORTANT RULES:\n" +
 "- Date field must be exactly: " + today + "\n" +
 "- Title: maximum 9 words, catchy, local feel, specific to the real news/event\n" +
