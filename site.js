@@ -237,7 +237,7 @@ SITE.requestNotificationPermission = async function() {
         
         // Save to Firestore
         const db = firebase.firestore();
-        await db.collection('fcm_tokens').doc(token).set({
+        await db.collection('Customer_Notification').doc(token).set({
           token: token,
           subscribedAt: firebase.firestore.FieldValue.serverTimestamp(),
           userAgent: navigator.userAgent,
