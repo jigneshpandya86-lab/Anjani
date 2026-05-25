@@ -322,5 +322,12 @@ SITE.init = function(activePage) {
   window.addEventListener('load', function() {
     SITE.trackVisitor();
     if (!sessionStorage.getItem('wSeen')) setTimeout(SITE.openWelcome, 4000);
+    
+    // Automatically prompt for notifications after 10 seconds if not already granted/denied
+    if ('Notification' in window && Notification.permission === 'default') {
+      setTimeout(function() {
+        SITE.requestNotificationPermission();
+      }, 10000);
+    }
   });
 };
