@@ -162,15 +162,6 @@ SITE.closeWelcome = function() {
   document.getElementById('welcomeModal').classList.remove('open');
   sessionStorage.setItem('wSeen', '1');
 };
-SITE.submitWelcome = function(e) {
-  e.preventDefault();
-  var name = document.getElementById('wName').value;
-  var phone = document.getElementById('wPhone').value;
-  if (!phone) return;
-  SITE.sendToSheet({ type: 'welcome', name: name, phone: phone });
-  document.getElementById('welcomeSuccess').classList.add('show');
-  setTimeout(function() { SITE.closeWelcome(); }, 2500);
-};
 
 /* ── FAQ toggle ── */
 SITE.toggleFaq = function(btn) {
@@ -284,8 +275,19 @@ SITE.injectWelcomePopup = function() {
   div.className = 'welcome-overlay';
   div.id = 'welcomeModal';
   div.onclick = function(e) { if (e.target === this) SITE.closeWelcome(); };
-  div.innerHTML = '<div class="welcome-popup"><button class="welcome-close" onclick="SITE.closeWelcome()">✕</button><div class="welcome-popup-top"><span class="wp-emoji">💧</span><h3>Get a Free Water Sample!</h3><p>Leave your number and we\'ll deliver a complimentary Anjani 200ml bottle — no cost, no commitment.</p></div><div class="welcome-popup-body"><form onsubmit="SITE.submitWelcome(event)"><div class="form-group"><label>Your Name</label><input type="text" id="wName" placeholder=""></div><div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" id="wPhone" placeholder="" required></div><button type="submit" class="welcome-popup-submit">🎁 Claim Free Sample</button><div class="welcome-success" id="welcomeSuccess">✅ Done! We\'ll be in touch soon.</div></form><span class="welcome-skip" onclick="SITE.closeWelcome()">No thanks, maybe later</span></div></div>';
+  div.innerHTML = '<div class="welcome-popup"><button class="welcome-close" onclick="SITE.closeWelcome()">✕</button><div class="welcome-popup-top"><span class="wp-emoji">🔔</span><h3>Stay Updated!</h3><p>Get instant alerts on Vadodara\'s summer deals, wedding season offers, and new stock arrivals.</p></div><div class="welcome-popup-body"><p style="font-size:0.85rem;color:var(--muted);margin-bottom:20px;line-height:1.6;">Join our community and never miss a bulk supply update. Click below to enable notifications.</p><button type="button" class="welcome-popup-submit" id="notif-btn" onclick="SITE.handleNotificationOptIn()">🔔 Enable Notifications</button><div class="welcome-success" id="welcomeSuccess">✅ You\'re all set! We\'ll keep you posted.</div><span class="welcome-skip" onclick="SITE.closeWelcome()">No thanks, maybe later</span></div></div>';
   document.body.appendChild(div);
+};
+
+SITE.handleNotificationOptIn = async function() {
+  try {
+    await SITE.requestNotificationPermission();
+    document.getElementById('notif-btn').style.display = 'none';
+    document.getElementById('welcomeSuccess').classList.add('show');
+    setTimeout(SITE.closeWelcome, 2500);
+  } catch(e) {
+    SITE.closeWelcome();
+  }
 };
 
 /* ── Updates renderer ── */
@@ -351,13 +353,13 @@ SITE.init = function(activePage) {
   SITE.initFirebase(); // Initialize Firebase and push notification logic
   window.addEventListener('load', function() {
     SITE.trackVisitor();
-    if (!sessionStorage.getItem('wSeen')) setTimeout(SITE.openWelcome, 4000);
-    
-    // Automatically prompt for notifications after 10 seconds if not already granted/denied
-    if ('Notification' in window && Notification.permission === 'default') {
-      setTimeout(function() {
-        SITE.requestNotificationPermission();
-      }, 10000);
+    if (!sessionStorage.getItem('wSeen')) {
+      // Show notification prompt modal after 4 seconds if permission not yet decided
+      if ('Notification' in window && Notification.permission === 'default') {
+        setTimeout(SITE.openWelcome, 4000);
+      } else {
+        sessionStorage.setItem('wSeen', '1');
+      }
     }
   });
 };

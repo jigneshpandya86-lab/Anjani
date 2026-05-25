@@ -286,22 +286,6 @@
 </div>
 
 <footer id="site-footer"></footer>
-<script>
-var sjTasks=[{t:'Sanket 500ml',done:false},{t:'Bisleri 2 Box payment',done:false}];
-function sjRender(){
-  document.getElementById('sjList').innerHTML=sjTasks.map((x,i)=>
-    `<li style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:14px;${x.done?'opacity:.4;text-decoration:line-through':''}">
-      <span>${x.t}</span>
-      <button onclick="sjTasks[${i}].done=!sjTasks[${i}].done;sjRender()" style="background:#e2e8f0;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">${x.done?'↩':'✓'}</button>
-    </li>`).join('');
-}
-function sjAdd(){var v=document.getElementById('sjInp').value.trim();if(v){sjTasks.push({t:v,done:false});document.getElementById('sjInp').value='';sjRender();}}
-function sjMsg(){var p=sjTasks.filter(x=>!x.done);if(!p.length){alert('No pending tasks!');return null;}return '📋 *Pending Staff Tasks*\n\n'+p.map((x,i)=>(i+1)+'. '+x.t).join('\n')+'\n\nPlease complete and confirm.\n– Anjani Water';}
-function sjPh(){return (document.getElementById('sjPh').value||'').replace(/\D/g,'');}
-function sjWA(){var m=sjMsg();if(!m)return;var ph=sjPh();window.open(ph?`https://wa.me/${ph}?text=${encodeURIComponent(m)}`:`https://wa.me/?text=${encodeURIComponent(m)}`,'_blank');}
-function sjSMS(){var m=sjMsg();if(!m)return;var ph=sjPh();window.open(`sms:${ph?'+'+ph:''}?body=${encodeURIComponent(m)}`,'_blank');}
-sjRender();
-</script>
 
 <script src="site.js"></script>
 <script>
