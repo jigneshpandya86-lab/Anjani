@@ -224,15 +224,27 @@ SITE.checkSubscriptionStatus = function() {
 };
 
 SITE.requestNotificationPermission = async function() {
+  console.log('SITE.requestNotificationPermission started');
   if (!('Notification' in window)) {
     alert('This browser does not support desktop notification');
     return;
   }
   try {
+    console.log('Requesting browser permission...');
     const permission = await Notification.requestPermission();
+    console.log('Permission status:', permission);
+    
     if (permission === 'granted') {
+      if (typeof firebase === 'undefined' || !firebase.apps.length) {
+        console.error('Firebase not initialized yet');
+        alert('Error: Firebase is still loading. Please wait a moment and try again.');
+        return;
+      }
+
+      console.log('Retrieving FCM token...');
       const messaging = firebase.messaging();
       const token = await messaging.getToken({ vapidKey: SITE.vapidKey });
+      
       if (token) {
         console.log('Token received:', token);
         
@@ -246,19 +258,24 @@ SITE.requestNotificationPermission = async function() {
           platform: navigator.platform
         }).then(function() {
           console.log('Token successfully saved to Firestore!');
+          alert('Success! Your device is now registered for notifications.');
         }).catch(function(error) {
-          console.error('Error saving token to Firestore:', error);
-          alert('Error: ' + error.message);
+          console.error('Firestore Error:', error);
+          alert('Firestore Error: ' + error.message);
         });
         
-        // Also keep legacy sheet if needed, or remove
+        // Also keep legacy sheet
         SITE.sendToSheet({ type: 'fcm_token', token: token }); 
-        
-        alert('Notifications enabled! You will now receive updates.');
+      } else {
+        console.warn('No token received');
+        alert('Warning: Could not generate a registration token. Check your browser settings.');
       }
+    } else {
+      console.warn('Permission denied by user');
     }
   } catch (err) {
-    console.error('Unable to get permission to notify.', err);
+    console.error('Fatal Error during registration:', err);
+    alert('Fatal Error: ' + err.message);
   }
 };
 
