@@ -99,6 +99,7 @@
       var dateStr = '';
       try { dateStr = new Date(u.date).toLocaleDateString('en-IN',{month:'long',year:'numeric'}); } catch(e){ dateStr = u.date; }
       var imgHtml = u.image ? '<div class="update-card-img"><img src="'+u.image+'" alt="'+u.title+'" loading="lazy"></div>' : '';
+      var link = u.slug ? ('article.html?slug=' + u.slug) : (u.ctaLink || 'contact.html');
       return '<div class="update-card '+(u.type||'offer')+' reveal">'+
         '<div class="update-card-top">'+
           '<span class="update-emoji">'+(u.emoji||'💧')+'</span>'+
@@ -108,7 +109,7 @@
         '<div class="update-card-body">'+
           '<div class="update-date">'+dateStr+'</div>'+
           '<p class="update-body-text">'+u.body+'</p>'+
-          '<a href="'+(u.ctaLink||'contact.html')+'" class="update-cta-link">'+(u.cta||'Learn more →')+'</a>'+
+          '<a href="'+link+'" class="update-cta-link">'+(u.cta||'Learn more →')+'</a>'+
         '</div></div>';
     }).join('');
     SITE.initReveal();

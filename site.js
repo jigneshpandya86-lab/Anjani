@@ -182,7 +182,7 @@ SITE.injectWA = function() {
 SITE.injectFooter = function() {
   var el = document.getElementById('site-footer');
   if (!el) return;
-  el.innerHTML = '<div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo">Anjani<span>Water</span></a><p>Vadodara\'s trusted bulk water bottle supplier — packaged drinking water for weddings, party plots, catering and offices. BIS certified.</p><div class="footer-social"><a href="' + SITE.wa + '" class="social-btn">💬</a><a href="tel:91' + SITE.phone + '" class="social-btn">📞</a><a href="mailto:' + SITE.email + '" class="social-btn">✉</a></div></div><div><h4>Products</h4><ul><li><a href="products.html">Anjani 200ml</a></li><li><a href="products.html">Bisleri</a></li><li><a href="products.html">Bailley</a></li><li><a href="products.html">Clear Water</a></li></ul></div><div><h4>Quick Links</h4><ul><li><a href="updates.html">Latest Updates</a></li><li><a href="contact.html">Place an Order</a></li><li><a href="contact.html#sample">Free Sample</a></li><li><a href="serve.html">Who We Serve</a></li><li><a href="contact.html#faq">FAQ</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:91' + SITE.phone + '">' + SITE.phone + '</a></li><li><a href="' + SITE.wa + '">WhatsApp Us</a></li><li><a href="mailto:' + SITE.email + '">' + SITE.email + '</a></li><li>Vadodara, Gujarat</li></ul></div></div><div class="footer-bottom"><span>© 2025 Anjani Premium Water by Annapurna Foods. All rights reserved.</span><span>Made with 💧 for Vadodara</span></div>';
+  el.innerHTML = '<div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo">Anjani<span>Water</span></a><p>Vadodara\'s trusted bulk water bottle supplier — packaged drinking water for weddings, party plots, catering and offices. BIS certified.</p><div class="footer-social"><a href="' + SITE.wa + '" class="social-btn" title="WhatsApp">💬</a><a href="tel:91' + SITE.phone + '" class="social-btn" title="Call Us">📞</a><a href="mailto:' + SITE.email + '" class="social-btn" title="Email Us">✉</a><a href="' + SITE.indiamart + '" class="social-btn" target="_blank" title="IndiaMART">🏭</a><a href="' + SITE.instagram + '" class="social-btn" target="_blank" title="Instagram">📸</a></div></div><div><h4>Products</h4><ul><li><a href="products.html">Anjani 200ml</a></li><li><a href="products.html">Bisleri</a></li><li><a href="products.html">Bailley</a></li><li><a href="products.html">Clear Water</a></li></ul></div><div><h4>Quick Links</h4><ul><li><a href="updates.html">Latest Updates</a></li><li><a href="contact.html">Place an Order</a></li><li><a href="contact.html#sample">Free Sample</a></li><li><a href="serve.html">Who We Serve</a></li><li><a href="contact.html#faq">FAQ</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:91' + SITE.phone + '">' + SITE.phone + '</a></li><li><a href="' + SITE.wa + '">WhatsApp Us</a></li><li><a href="mailto:' + SITE.email + '">' + SITE.email + '</a></li><li>Vadodara, Gujarat</li></ul></div></div><div class="footer-bottom"><span>© 2025 Anjani Premium Water by Annapurna Foods. All rights reserved.</span><span>Made with 💧 for Vadodara</span></div>';
 };
 
 /* ── Welcome popup HTML injection ── */
@@ -214,6 +214,7 @@ function renderUpdates(list) {
     var imgHtml = u.image
       ? '<div style="overflow:hidden;' + (first ? 'border-radius:0 12px 12px 0;' : 'height:140px;border-radius:12px 12px 0 0;') + '"><img src="' + u.image + '" alt="' + u.title + '" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>'
       : '';
+    var link = u.slug ? ('article.html?slug=' + u.slug) : (u.ctaLink || 'contact.html');
     var topHtml = '<div style="background:' + bg + ';padding:22px 20px 18px;' + (first ? 'border-radius:12px 0 0 12px;' : 'border-radius:12px 12px 0 0;') + '">' +
       '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">' +
       '<span style="font-size:1.3rem">' + (u.emoji || '💧') + '</span>' +
@@ -222,12 +223,12 @@ function renderUpdates(list) {
       '<h3 style="font-size:' + (first ? '1.1rem' : '0.92rem') + ';font-weight:700;color:#fff;line-height:1.3;margin-bottom:' + (first ? '12px' : '0') + ';">' + u.title + '</h3>' +
       (first ? '<p style="font-size:0.8rem;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:12px;">' + u.body + '</p>' +
         '<div style="font-size:0.72rem;color:rgba(255,255,255,0.6);margin-bottom:10px;">' + dateStr + '</div>' +
-        '<a href="' + (u.ctaLink || 'contact.html') + '" style="font-size:0.8rem;font-weight:700;color:#fff;text-decoration:underline;">' + (u.cta || 'Learn more →') + '</a>' : '') +
+        '<a href="' + link + '" style="font-size:0.8rem;font-weight:700;color:#fff;text-decoration:underline;">' + (u.cta || 'Learn more →') + '</a>' : '') +
       '</div>';
     var bodyHtml = !first ? '<div style="padding:14px 16px 18px;">' +
       '<div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">' + dateStr + '</div>' +
       '<p style="font-size:0.8rem;color:var(--text);line-height:1.65;margin-bottom:10px;">' + u.body + '</p>' +
-      '<a href="' + (u.ctaLink || 'contact.html') + '" style="font-size:0.78rem;font-weight:600;color:var(--ocean);">' + (u.cta || 'Learn more →') + '</a>' +
+      '<a href="' + link + '" style="font-size:0.78rem;font-weight:600;color:var(--ocean);">' + (u.cta || 'Learn more →') + '</a>' +
       '</div>' : '';
     var cardStyle = first
       ? 'border-radius:12px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 4px 20px rgba(0,0,0,0.1);'
