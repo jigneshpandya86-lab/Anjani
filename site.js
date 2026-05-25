@@ -45,7 +45,7 @@ var SITE = {
     messagingSenderId: "892497799371",
     appId: "1:892497799371:web:5671e248e6c8f05d16934e"
   },
-  vapidKey: 'xuuJbAanfFCIARML1kzrP1V-RJFIK4T_FJqhECGJtSM', 
+  vapidKey: 'BKVduKK_XrRzSOnFWbWPZfW95x_ptNZQkwJOV3rPGeVzGM4XpvwnWHHy5l0QKHf-p9YzVUxaH4CsddIrztTO-2c', 
 
   /* ── Navigation (used to build <nav> on every page) ── */
   nav: [
@@ -224,58 +224,35 @@ SITE.checkSubscriptionStatus = function() {
 };
 
 SITE.requestNotificationPermission = async function() {
-  console.log('SITE.requestNotificationPermission started');
   if (!('Notification' in window)) {
     alert('This browser does not support desktop notification');
     return;
   }
   try {
-    console.log('Requesting browser permission...');
     const permission = await Notification.requestPermission();
-    console.log('Permission status:', permission);
-    
     if (permission === 'granted') {
-      if (typeof firebase === 'undefined' || !firebase.apps.length) {
-        console.error('Firebase not initialized yet');
-        alert('Error: Firebase is still loading. Please wait a moment and try again.');
-        return;
-      }
+      if (typeof firebase === 'undefined' || !firebase.apps.length) return;
 
-      console.log('Retrieving FCM token...');
       const messaging = firebase.messaging();
       const token = await messaging.getToken({ vapidKey: SITE.vapidKey });
       
       if (token) {
-        console.log('Token received:', token);
-        
         // Save to Firestore
-        console.log('Attempting to save token to Firestore...');
         const db = firebase.firestore();
         await db.collection('Customer_Notification').doc(token).set({
           token: token,
           subscribedAt: firebase.firestore.FieldValue.serverTimestamp(),
           userAgent: navigator.userAgent,
           platform: navigator.platform
-        }).then(function() {
-          console.log('Token successfully saved to Firestore!');
-          alert('Success! Your device is now registered for notifications.');
-        }).catch(function(error) {
-          console.error('Firestore Error:', error);
-          alert('Firestore Error: ' + error.message);
         });
         
         // Also keep legacy sheet
         SITE.sendToSheet({ type: 'fcm_token', token: token }); 
-      } else {
-        console.warn('No token received');
-        alert('Warning: Could not generate a registration token. Check your browser settings.');
+        alert('Success! Your device is now registered for notifications.');
       }
-    } else {
-      console.warn('Permission denied by user');
     }
   } catch (err) {
-    console.error('Fatal Error during registration:', err);
-    alert('Fatal Error: ' + err.message);
+    console.error('Registration Error:', err);
   }
 };
 
