@@ -196,14 +196,19 @@ SITE.initFirebase = function() {
   if (typeof firebase === 'undefined') {
     var s1 = document.createElement('script'); s1.src = 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js';
     var s2 = document.createElement('script'); s2.src = 'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js';
+    var s3 = document.createElement('script'); s3.src = 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js';
     document.head.appendChild(s1);
     s1.onload = function() {
       document.head.appendChild(s2);
-      s2.onload = function() {
-        firebase.initializeApp(SITE.firebaseConfig);
-        const messaging = firebase.messaging();
-        SITE.setupNotifications(messaging);
-      };
+      document.head.appendChild(s3);
+      var checkDone = setInterval(function() {
+        if (typeof firebase.messaging !== 'undefined' && typeof firebase.firestore !== 'undefined') {
+          clearInterval(checkDone);
+          firebase.initializeApp(SITE.firebaseConfig);
+          const messaging = firebase.messaging();
+          SITE.setupNotifications(messaging);
+        }
+      }, 100);
     };
   }
 };
@@ -215,9 +220,6 @@ SITE.setupNotifications = function(messaging) {
 
 SITE.checkSubscriptionStatus = function() {
   if (!('Notification' in window)) return;
-  if (Notification.permission === 'granted') {
-    // Already granted
-  }
 };
 
 SITE.requestNotificationPermission = async function() {
@@ -232,8 +234,19 @@ SITE.requestNotificationPermission = async function() {
       const token = await messaging.getToken({ vapidKey: SITE.vapidKey });
       if (token) {
         console.log('Token received:', token);
-        // Send to your backend (Google Apps Script) to store
-        SITE.sendToSheet({ type: 'fcm_token', token: token });
+        
+        // Save to Firestore
+        const db = firebase.firestore();
+        await db.collection('fcm_tokens').doc(token).set({
+          token: token,
+          subscribedAt: firebase.firestore.FieldValue.serverTimestamp(),
+          userAgent: navigator.userAgent,
+          platform: navigator.platform
+        });
+        
+        // Also keep legacy sheet if needed, or remove
+        SITE.sendToSheet({ type: 'fcm_token', token: token }); 
+        
         alert('Notifications enabled! You will now receive updates.');
       }
     }
