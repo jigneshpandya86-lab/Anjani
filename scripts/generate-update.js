@@ -4,6 +4,8 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const MAX_ITEMS = 12;
 
 const today = new Date();
+const month = today.toLocaleString('default', { month: 'long' });
+const year = today.getFullYear();
 const start = today.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
 const endDate = new Date(today);
 endDate.setDate(today.getDate() + 6);
