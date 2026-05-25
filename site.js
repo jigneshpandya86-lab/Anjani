@@ -191,6 +191,16 @@ SITE.injectWA = function() {
   document.body.appendChild(div);
 };
 
+/* ── Bell float injection ── */
+SITE.injectBell = function() {
+  var div = document.createElement('div');
+  div.className = 'bell-float';
+  div.onclick = SITE.requestNotificationPermission;
+  div.setAttribute('aria-label', 'Enable Notifications');
+  div.innerHTML = '<span style="font-size:24px;">🔔</span><span class="bell-tooltip">Get Updates</span>';
+  document.body.appendChild(div);
+};
+
 /* ── Firebase Integration ── */
 SITE.initFirebase = function() {
   if (typeof firebase === 'undefined') {
@@ -329,6 +339,7 @@ SITE.init = function(activePage) {
   SITE.buildNav(activePage);
   SITE.injectFooter();
   SITE.injectWA();
+  SITE.injectBell();
   SITE.injectWelcomePopup();
   SITE.initReveal();
   SITE.initFirebase(); // Initialize Firebase and push notification logic
