@@ -33,6 +33,8 @@ var SITE = {
   phone:    '9925997750',
   wa:       'https://wa.me/919925997750?text=Hi%20Anjani%20Water!%20I%20would%20like%20to%20place%20an%20order.',
   email:    'annapurnafoods27@gmail.com',
+  indiamart: 'https://www.indiamart.com/annapurnafoods-vadodara',
+  instagram: 'https://www.instagram.com/anjaniwater/',
 
   /* ── Navigation (used to build <nav> on every page) ── */
   nav: [
