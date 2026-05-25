@@ -318,6 +318,7 @@ SITE.init = function(activePage) {
   SITE.injectWA();
   SITE.injectWelcomePopup();
   SITE.initReveal();
+  SITE.initFirebase(); // Initialize Firebase and push notification logic
   window.addEventListener('load', function() {
     SITE.trackVisitor();
     if (!sessionStorage.getItem('wSeen')) setTimeout(SITE.openWelcome, 4000);
