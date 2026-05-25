@@ -246,12 +246,18 @@ SITE.requestNotificationPermission = async function() {
         console.log('Token received:', token);
         
         // Save to Firestore
+        console.log('Attempting to save token to Firestore...');
         const db = firebase.firestore();
         await db.collection('Customer_Notification').doc(token).set({
           token: token,
           subscribedAt: firebase.firestore.FieldValue.serverTimestamp(),
           userAgent: navigator.userAgent,
           platform: navigator.platform
+        }).then(function() {
+          console.log('Token successfully saved to Firestore!');
+        }).catch(function(error) {
+          console.error('Error saving token to Firestore:', error);
+          alert('Error: ' + error.message);
         });
         
         // Also keep legacy sheet if needed, or remove
