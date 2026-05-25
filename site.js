@@ -180,11 +180,62 @@ SITE.injectWA = function() {
   document.body.appendChild(div);
 };
 
+/* ── Firebase Integration ── */
+SITE.initFirebase = function() {
+  if (typeof firebase === 'undefined') {
+    var s1 = document.createElement('script'); s1.src = 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js';
+    var s2 = document.createElement('script'); s2.src = 'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js';
+    document.head.appendChild(s1);
+    s1.onload = function() {
+      document.head.appendChild(s2);
+      s2.onload = function() {
+        firebase.initializeApp(SITE.firebaseConfig);
+        const messaging = firebase.messaging();
+        SITE.setupNotifications(messaging);
+      };
+    };
+  }
+};
+
+SITE.setupNotifications = function(messaging) {
+  // Logic to handle subscription
+  SITE.checkSubscriptionStatus();
+};
+
+SITE.checkSubscriptionStatus = function() {
+  if (!('Notification' in window)) return;
+  if (Notification.permission === 'granted') {
+    // Already granted
+  }
+};
+
+SITE.requestNotificationPermission = async function() {
+  if (!('Notification' in window)) {
+    alert('This browser does not support desktop notification');
+    return;
+  }
+  try {
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      const messaging = firebase.messaging();
+      const token = await messaging.getToken({ vapidKey: SITE.vapidKey });
+      if (token) {
+        console.log('Token received:', token);
+        // Send to your backend (Google Apps Script) to store
+        SITE.sendToSheet({ type: 'fcm_token', token: token });
+        alert('Notifications enabled! You will now receive updates.');
+      }
+    }
+  } catch (err) {
+    console.error('Unable to get permission to notify.', err);
+  }
+};
+
 /* ── Shared footer injection ── */
 SITE.injectFooter = function() {
   var el = document.getElementById('site-footer');
   if (!el) return;
-  el.innerHTML = '<div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo">Anjani<span>Water</span></a><p>Vadodara\'s trusted bulk water bottle supplier — packaged drinking water for weddings, party plots, catering and offices. BIS certified.</p><div class="footer-social"><a href="' + SITE.wa + '" class="social-btn" title="WhatsApp">💬</a><a href="tel:91' + SITE.phone + '" class="social-btn" title="Call Us">📞</a><a href="mailto:' + SITE.email + '" class="social-btn" title="Email Us">✉</a><a href="' + SITE.indiamart + '" class="social-btn" target="_blank" title="IndiaMART">🏭</a><a href="' + SITE.instagram + '" class="social-btn" target="_blank" title="Instagram">📸</a></div></div><div><h4>Products</h4><ul><li><a href="products.html">Anjani 200ml</a></li><li><a href="products.html">Bisleri</a></li><li><a href="products.html">Bailley</a></li><li><a href="products.html">Clear Water</a></li></ul></div><div><h4>Quick Links</h4><ul><li><a href="updates.html">Latest Updates</a></li><li><a href="contact.html">Place an Order</a></li><li><a href="contact.html#sample">Free Sample</a></li><li><a href="serve.html">Who We Serve</a></li><li><a href="contact.html#faq">FAQ</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:91' + SITE.phone + '">' + SITE.phone + '</a></li><li><a href="' + SITE.wa + '">WhatsApp Us</a></li><li><a href="mailto:' + SITE.email + '">' + SITE.email + '</a></li><li>Vadodara, Gujarat</li></ul></div></div><div class="footer-bottom"><span>© 2025 Anjani Premium Water by Annapurna Foods. All rights reserved.</span><span>Made with 💧 for Vadodara</span></div>';
+  el.innerHTML = '<div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo">Anjani<span>Water</span></a><p>Vadodara\'s trusted bulk water bottle supplier — packaged drinking water for weddings, party plots, catering and offices. BIS certified.</p><div class="footer-social"><a href="' + SITE.wa + '" class="social-btn" title="WhatsApp">💬</a><a href="tel:91' + SITE.phone + '" class="social-btn" title="Call Us">📞</a><a href="mailto:' + SITE.email + '" class="social-btn" title="Email Us">✉</a><a href="' + SITE.indiamart + '" class="social-btn" target="_blank" title="IndiaMART">🏭</a><a href="' + SITE.instagram + '" class="social-btn" target="_blank" title="Instagram">📸</a></div></div><div><h4>Products</h4><ul><li><a href="products.html">Anjani 200ml</a></li><li><a href="products.html">Bisleri</a></li><li><a href="products.html">Bailley</a></li><li><a href="products.html">Clear Water</a></li></ul></div><div><h4>Quick Links</h4><ul><li><a href="updates.html">Latest Updates</a></li><li><a href="contact.html">Place an Order</a></li><li><a href="contact.html#sample">Free Sample</a></li><li><a href="serve.html">Who We Serve</a></li><li><a href="contact.html#faq">FAQ</a></li><li><a href="javascript:void(0)" onclick="SITE.requestNotificationPermission()">🔔 Enable Notifications</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:91' + SITE.phone + '">' + SITE.phone + '</a></li><li><a href="' + SITE.wa + '">WhatsApp Us</a></li><li><a href="mailto:' + SITE.email + '">' + SITE.email + '</a></li><li>Vadodara, Gujarat</li></ul></div></div><div class="footer-bottom"><span>© 2025 Anjani Premium Water by Annapurna Foods. All rights reserved.</span><span>Made with 💧 for Vadodara</span></div>';
 };
 
 /* ── Welcome popup HTML injection ── */
