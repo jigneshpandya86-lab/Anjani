@@ -35,11 +35,25 @@
 <style>
 .updates-full-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
 .updates-full-grid .update-card:first-child { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; }
-.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+.updates-tools { display: grid; gap: 16px; margin-bottom: 28px; }
+.update-search-box { position: relative; display: grid; gap: 10px; padding: 18px; border: 1.5px solid #d0e8f5; border-radius: 18px; background: linear-gradient(135deg,#fff,#f4fbff); box-shadow: 0 4px 22px rgba(0,119,182,0.07); }
+.update-search-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ocean); }
+.update-search-row { display: flex; gap: 10px; align-items: center; }
+.update-search-input { flex: 1; min-width: 0; border: 1.5px solid #d0e8f5; border-radius: 999px; padding: 12px 16px; font: 600 0.9rem var(--font); color: var(--deep); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+.update-search-input:focus { border-color: var(--ocean); box-shadow: 0 0 0 4px rgba(0,119,182,0.10); }
+.update-search-clear { border: 0; background: var(--deep); color: #fff; border-radius: 999px; padding: 11px 16px; font: 700 0.78rem var(--font); cursor: pointer; transition: background 0.2s; }
+.update-search-clear:hover { background: var(--ocean); }
+.search-suggestions { display: flex; gap: 8px; flex-wrap: wrap; }
+.search-suggestion { border: 1px solid #d0e8f5; background: #fff; color: var(--muted); border-radius: 999px; padding: 5px 11px; font: 600 0.72rem var(--font); cursor: pointer; }
+.search-suggestion:hover { color: var(--ocean); border-color: var(--ocean); }
+.search-status { color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; }
 .filter-btn { padding: 6px 16px; border-radius: 50px; border: 1.5px solid #d0e8f5; background: #fff; font-family: var(--font); font-size: 0.78rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; }
 .filter-btn:hover, .filter-btn.active { background: var(--ocean); color: #fff; border-color: var(--ocean); }
+.no-results { grid-column: 1 / -1; color: var(--muted); background: var(--off); border: 1.5px dashed #d0e8f5; border-radius: 16px; padding: 24px; line-height: 1.7; }
+.no-results button { margin-top: 12px; border: 0; background: var(--ocean); color: #fff; border-radius: 999px; padding: 8px 16px; font: 700 0.78rem var(--font); cursor: pointer; }
 @media(max-width:900px){ .updates-full-grid{grid-template-columns:1fr 1fr} .updates-full-grid .update-card:first-child{grid-column:span 2;grid-template-columns:1fr} }
-@media(max-width:600px){ .updates-full-grid{grid-template-columns:1fr} .updates-full-grid .update-card:first-child{grid-column:span 1;display:block} }
+@media(max-width:600px){ .updates-full-grid{grid-template-columns:1fr} .updates-full-grid .update-card:first-child{grid-column:span 1;display:block} .update-search-row{flex-direction:column;align-items:stretch} }
 </style>
 </head>
 <body>
@@ -54,13 +68,29 @@
 
 <section style="background:#fff">
   <div class="section-inner">
-    <div class="filter-bar" id="filter-bar">
-      <button class="filter-btn active" onclick="filterUpdates('all',this)">All</button>
-      <button class="filter-btn" onclick="filterUpdates('offer',this)">Offers</button>
-      <button class="filter-btn" onclick="filterUpdates('news',this)">News</button>
-      <button class="filter-btn" onclick="filterUpdates('season',this)">Seasonal</button>
-      <button class="filter-btn" onclick="filterUpdates('tip',this)">Tips</button>
-      <button class="filter-btn" onclick="filterUpdates('local',this)">Local</button>
+    <div class="updates-tools" role="search" aria-label="Search updates and offers">
+      <div class="update-search-box">
+        <label class="update-search-label" for="updates-search">Search local updates</label>
+        <div class="update-search-row">
+          <input class="update-search-input" id="updates-search" type="search" placeholder="Try wedding, summer, stock, Gotri, office..." autocomplete="off">
+          <button class="update-search-clear" type="button" onclick="clearUpdateSearch()">Clear</button>
+        </div>
+        <div class="search-suggestions" aria-label="Popular searches">
+          <button class="search-suggestion" type="button" onclick="setUpdateSearch('wedding')">Wedding</button>
+          <button class="search-suggestion" type="button" onclick="setUpdateSearch('summer')">Summer</button>
+          <button class="search-suggestion" type="button" onclick="setUpdateSearch('stock')">Stock</button>
+          <button class="search-suggestion" type="button" onclick="setUpdateSearch('Vadodara')">Vadodara</button>
+        </div>
+        <div class="search-status" id="updates-search-status" aria-live="polite">Loading local updates…</div>
+      </div>
+      <div class="filter-bar" id="filter-bar" aria-label="Filter updates by category">
+        <button class="filter-btn active" onclick="filterUpdates('all',this)">All</button>
+        <button class="filter-btn" onclick="filterUpdates('offer',this)">Offers</button>
+        <button class="filter-btn" onclick="filterUpdates('news',this)">News</button>
+        <button class="filter-btn" onclick="filterUpdates('season',this)">Seasonal</button>
+        <button class="filter-btn" onclick="filterUpdates('tip',this)">Tips</button>
+        <button class="filter-btn" onclick="filterUpdates('local',this)">Local</button>
+      </div>
     </div>
     <div class="updates-full-grid" id="updates-full-grid">
       <p style="color:var(--muted);font-size:0.85rem" id="updates-loading">Loading updates...</p>
@@ -84,47 +114,173 @@
   SITE.init('updates.html');
 
   var allUpdates = [];
+  var activeUpdateType = 'all';
+  var updateSearchQuery = '';
+
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"]/g, function(ch) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[ch];
+    });
+  }
+
+  function safeUrl(value, fallback) {
+    var url = String(value || fallback || 'contact.html').trim();
+    if (/^(https?:|mailto:|tel:)/i.test(url) || /^[a-z0-9_./?=&%#-]+$/i.test(url)) return url;
+    return fallback || 'contact.html';
+  }
+
+  function normalizeSearch(value) {
+    return String(value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+
+  function updateSearchText(update) {
+    return [
+      update.title, update.tag, update.type, update.body, update.content,
+      update.keywords, update.cta, update.date
+    ].map(normalizeSearch).join(' ');
+  }
+
+  function scoreUpdate(update, terms) {
+    var weighted = [
+      normalizeSearch(update.title) + ' ' + normalizeSearch(update.tag) + ' ' + normalizeSearch(update.keywords),
+      updateSearchText(update)
+    ];
+    return terms.reduce(function(score, term) {
+      if (!weighted[1].includes(term)) return -1000;
+      if (weighted[0].includes(term)) return score + 6;
+      return score + 2;
+    }, 0);
+  }
+
+  function currentResults() {
+    var list = allUpdates.slice();
+    if (activeUpdateType !== 'all') {
+      list = list.filter(function(u) { return (u.type || '').toLowerCase() === activeUpdateType; });
+    }
+    var terms = normalizeSearch(updateSearchQuery).split(' ').filter(Boolean);
+    if (!terms.length) return list;
+
+    return list.map(function(update, index) {
+      return { update: update, index: index, score: scoreUpdate(update, terms) };
+    }).filter(function(item) {
+      return item.score > -1000;
+    }).sort(function(a, b) {
+      return (b.score - a.score) || (a.index - b.index);
+    }).map(function(item) {
+      return item.update;
+    });
+  }
+
+  function updateSearchStatus(count) {
+    var status = document.getElementById('updates-search-status');
+    if (!status) return;
+    if (!allUpdates.length) {
+      status.textContent = 'Loading local updates…';
+      return;
+    }
+    var category = activeUpdateType === 'all' ? 'all categories' : activeUpdateType + ' updates';
+    var query = updateSearchQuery.trim();
+    status.textContent = query
+      ? count + ' result' + (count === 1 ? '' : 's') + ' for “' + query + '” in ' + category + '.'
+      : 'Showing ' + count + ' local update' + (count === 1 ? '' : 's') + ' across ' + category + '.';
+  }
+
+  function applyUpdateSearch() {
+    var results = currentResults();
+    renderUpdates(results);
+    updateSearchStatus(results.length);
+    var params = new URLSearchParams(window.location.search);
+    if (updateSearchQuery.trim()) params.set('q', updateSearchQuery.trim());
+    else params.delete('q');
+    var nextUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+    window.history.replaceState({}, '', nextUrl);
+  }
 
   function filterUpdates(type, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    if (type === 'all') renderUpdates(allUpdates);
-    else renderUpdates(allUpdates.filter(u => (u.type||'').toLowerCase() === type));
+    activeUpdateType = type;
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    applyUpdateSearch();
+  }
+
+  function setUpdateSearch(query) {
+    var input = document.getElementById('updates-search');
+    updateSearchQuery = query || '';
+    if (input) input.value = updateSearchQuery;
+    applyUpdateSearch();
+  }
+
+  function clearUpdateSearch() {
+    setUpdateSearch('');
   }
 
   function renderUpdates(list) {
     var grid = document.getElementById('updates-full-grid');
-    if (!list.length) { grid.innerHTML = '<p style="color:var(--muted)">No updates found.</p>'; return; }
-    grid.innerHTML = list.map(function(u, i) {
+    if (!grid) return;
+    if (!list.length) {
+      grid.innerHTML = '<div class="no-results"><strong>No matching updates found.</strong><br>Try a different local area, event type, product brand, or season keyword.<br><button type="button" onclick="clearUpdateSearch()">Reset search</button></div>';
+      return;
+    }
+    grid.innerHTML = list.map(function(u) {
       var dateStr = '';
       try { dateStr = new Date(u.date).toLocaleDateString('en-IN',{month:'long',year:'numeric'}); } catch(e){ dateStr = u.date; }
-      var imgHtml = u.image ? '<div class="update-card-img"><img src="'+u.image+'" alt="'+u.title+'" loading="lazy"></div>' : '';
-      var link = u.slug ? ('article.html?slug=' + u.slug) : (u.ctaLink || 'contact.html');
-      return '<div class="update-card '+(u.type||'offer')+' reveal">'+
+      var title = escapeHtml(u.title);
+      var imageUrl = escapeHtml(safeUrl(u.image, ''));
+      var imgHtml = u.image ? '<div class="update-card-img"><img src="'+imageUrl+'" alt="'+title+'" loading="lazy"></div>' : '';
+      var link = u.slug ? ('article.html?slug=' + encodeURIComponent(u.slug)) : safeUrl(u.ctaLink, 'contact.html');
+      return '<div class="update-card '+escapeHtml(u.type||'offer')+' reveal">'+
         '<div class="update-card-top">'+
-          '<span class="update-emoji">'+(u.emoji||'💧')+'</span>'+
-          '<div class="update-type-badge">'+(u.tag||'Update')+'</div>'+
-          '<h3>'+u.title+'</h3>'+
+          '<span class="update-emoji">'+escapeHtml(u.emoji||'💧')+'</span>'+
+          '<div class="update-type-badge">'+escapeHtml(u.tag||'Update')+'</div>'+
+          '<h3>'+title+'</h3>'+
         '</div>'+imgHtml+
         '<div class="update-card-body">'+
-          '<div class="update-date">'+dateStr+'</div>'+
-          '<p class="update-body-text">'+u.body+'</p>'+
-          '<a href="'+link+'" class="update-cta-link">'+(u.cta||'Learn more →')+'</a>'+
+          '<div class="update-date">'+escapeHtml(dateStr)+'</div>'+
+          '<p class="update-body-text">'+escapeHtml(u.body)+'</p>'+
+          '<a href="'+escapeHtml(link)+'" class="update-cta-link">'+escapeHtml(u.cta||'Learn more →')+'</a>'+
         '</div></div>';
     }).join('');
     SITE.initReveal();
   }
 
-  // Load from JSON file — same as homepage
-  fetch('https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json')
-    .then(function(r){ return r.json(); })
+  function loadUpdatesFrom(url) {
+    return fetch(url).then(function(r) {
+      if (!r.ok) throw new Error('Could not load ' + url);
+      return r.json();
+    });
+  }
+
+  var searchInput = document.getElementById('updates-search');
+  searchInput.addEventListener('input', function(e) {
+    updateSearchQuery = e.target.value;
+    applyUpdateSearch();
+  });
+
+  var initialQuery = new URLSearchParams(window.location.search).get('q') || '';
+  if (initialQuery) {
+    updateSearchQuery = initialQuery;
+    searchInput.value = initialQuery;
+  }
+
+  // Prefer the local JSON file so on-site search reflects freshly deployed content;
+  // fall back to jsDelivr if local hosting is unavailable.
+  loadUpdatesFrom('updates.json')
+    .catch(function() { return loadUpdatesFrom('https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json'); })
     .then(function(data){
-      allUpdates = data;
-      renderUpdates(allUpdates);
-      document.getElementById('updates-loading').remove();
+      allUpdates = Array.isArray(data) ? data : [];
+      applyUpdateSearch();
+      var loading = document.getElementById('updates-loading');
+      if (loading) loading.remove();
     })
     .catch(function(){
-      document.getElementById('updates-loading').innerHTML = 'Could not load updates. <a href="contact.html" style="color:var(--ocean)">Contact us →</a>';
+      var loading = document.getElementById('updates-loading');
+      if (loading) loading.innerHTML = 'Could not load updates. <a href="contact.html" style="color:var(--ocean)">Contact us →</a>';
+      updateSearchStatus(0);
     });
 </script>
 </body>
