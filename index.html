@@ -306,7 +306,10 @@
   document.getElementById('hero-bottle').src = SITE.img('hero');
 
   // Load 3 preview updates
-  fetch('https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json')
+  var updatesUrl = (window.location.protocol === 'file:') ? 
+    'https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json' : 
+    'updates.json';
+  fetch(updatesUrl)
     .then(function(r){ return r.json(); })
     .then(function(updates){
       var grid = document.getElementById('updates-preview-grid');
