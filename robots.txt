@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anjaniwater.in/sitemap.xml
+Sitemap: https://www.anjaniwater.in/sitemap.xml
