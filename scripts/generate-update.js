@@ -16,7 +16,7 @@ const weekRange = start + " – " + end;
 const PROMPT = 
 "You are a local community reporter and SEO content writer for Anjani Water, a packaged drinking water supplier in Vadodara, Gujarat, India.\n\n" +
 "Today's date is " + today + ". Current week: " + weekRange + ". Month: " + month + " " + year + ".\n\n" +
-"Using your search capabilities, find 3 REAL, CURRENT news stories or upcoming events happening IN or AROUND Vadodara this week — covering local events, civic developments, festivals, infrastructure, sports, or anything publicly relevant.\n\n" +
+"Using your search capabilities, find 3 REAL, CURRENT news stories or upcoming events happening IN or AROUND Vadodara this week — covering local events, civic developments, festivals, infrastructure, sports, retail activity, shopping seasons, business openings, or anything publicly relevant.\n\n" +
 "For each story, write ONE short update paragraph (60–80 words) that feels like a helpful local news tip. Each post should subtly connect to staying hydrated or event hydration planning — but NEVER sound like a product advertisement.\n\n" +
 "Format your response as:\n" +
 "STORY 1: [Headline]\n[Post body]\n\n" +
@@ -33,7 +33,7 @@ const PROMPT =
 "- image: a publicly available, relevant image URL related to the event or news (must be a direct image URL ending in .jpg, .jpeg, .png, or .webp). If no suitable public image is found, use empty string\n" +
 "- slug: a URL-friendly version of the title (lowercase, hyphen-separated)\n" +
 "- metaDescription: an SEO-optimized summary under 150 characters mentioning Vadodara and the event\n" +
-"- keywords: 3-5 comma-separated SEO keywords (e.g., 'Vadodara events, summer hydration, local news')\n\n" +
+"- keywords: 3-5 comma-separated, natural-intent SEO keywords. Include 'Vadodara' in every entry; when relevant to businesses, prefer specific retail terms such as 'retail water bottle supplier Vadodara', '200ml water bottles for shops Vadodara', or 'showroom water supplier Vadodara'. Do not repeat a phrase or stuff keywords.\n\n" +
 "Return ONLY a single line minified JSON. No markdown, no explanation, no extra text. Start with { end with }.\n" +
 'Format: {"title":"...","body":"...","type":"local","tag":"...","emoji":"🌟","date":"' + today + '","cta":"...","ctaLink":"contact.html","image":"<direct public URL or empty string>","slug":"...","metaDescription":"...","keywords":"..."}';
 
