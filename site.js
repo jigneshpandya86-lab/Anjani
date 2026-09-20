@@ -156,13 +156,6 @@ SITE.trackVisitor = async function() {
   });
 };
 
-/* ── Welcome popup ── */
-SITE.openWelcome  = function() { document.getElementById('welcomeModal').classList.add('open'); };
-SITE.closeWelcome = function() {
-  document.getElementById('welcomeModal').classList.remove('open');
-  sessionStorage.setItem('wSeen', '1');
-};
-
 /* ── FAQ toggle ── */
 SITE.toggleFaq = function(btn) {
   var item = btn.closest('.faq-item');
@@ -263,27 +256,6 @@ SITE.injectFooter = function() {
   el.innerHTML = '<div class="footer-grid"><div class="footer-brand"><a href="index.html" class="nav-logo">Anjani<span>Water</span></a><p>Vadodara\'s trusted bulk water bottle supplier — packaged drinking water for weddings, party plots, catering and offices. BIS certified.</p><div class="footer-social"><a href="' + SITE.wa + '" class="social-btn" title="WhatsApp">💬</a><a href="tel:91' + SITE.phone + '" class="social-btn" title="Call Us">📞</a><a href="mailto:' + SITE.email + '" class="social-btn" title="Email Us">✉</a><a href="' + SITE.indiamart + '" class="social-btn" target="_blank" title="IndiaMART">🏭</a><a href="' + SITE.instagram + '" class="social-btn" target="_blank" title="Instagram">📸</a></div></div><div><h4>Products</h4><ul><li><a href="products.html">Anjani 200ml</a></li><li><a href="products.html">Bisleri</a></li><li><a href="products.html">Bailley</a></li><li><a href="products.html">Clear Water</a></li></ul></div><div><h4>Quick Links</h4><ul><li><a href="updates.html">Latest Updates</a></li><li><a href="contact.html">Place an Order</a></li><li><a href="contact.html#sample">Free Sample</a></li><li><a href="serve.html">Who We Serve</a></li><li><a href="contact.html#faq">FAQ</a></li><li><a href="javascript:void(0)" onclick="SITE.requestNotificationPermission()">🔔 Enable Notifications</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:91' + SITE.phone + '">' + SITE.phone + '</a></li><li><a href="' + SITE.wa + '">WhatsApp Us</a></li><li><a href="mailto:' + SITE.email + '">' + SITE.email + '</a></li><li>Vadodara, Gujarat</li></ul></div></div><div class="footer-bottom"><span>© 2025 Anjani Premium Water by Annapurna Foods. All rights reserved.</span><span>Made with 💧 for Vadodara</span></div>';
 };
 
-/* ── Welcome popup HTML injection ── */
-SITE.injectWelcomePopup = function() {
-  var div = document.createElement('div');
-  div.className = 'welcome-overlay';
-  div.id = 'welcomeModal';
-  div.onclick = function(e) { if (e.target === this) SITE.closeWelcome(); };
-  div.innerHTML = '<div class="welcome-popup"><button class="welcome-close" onclick="SITE.closeWelcome()">✕</button><div class="welcome-popup-top"><span class="wp-emoji">🔔</span><h3>Stay Updated!</h3><p>Get instant alerts on Vadodara\'s summer deals, wedding season offers, and new stock arrivals.</p></div><div class="welcome-popup-body"><p style="font-size:0.85rem;color:var(--muted);margin-bottom:20px;line-height:1.6;">Join our community and never miss a bulk supply update. Click below to enable notifications.</p><button type="button" class="welcome-popup-submit" id="notif-btn" onclick="SITE.handleNotificationOptIn()">🔔 Enable Notifications</button><div class="welcome-success" id="welcomeSuccess">✅ You\'re all set! We\'ll keep you posted.</div><span class="welcome-skip" onclick="SITE.closeWelcome()">No thanks, maybe later</span></div></div>';
-  document.body.appendChild(div);
-};
-
-SITE.handleNotificationOptIn = async function() {
-  try {
-    await SITE.requestNotificationPermission();
-    document.getElementById('notif-btn').style.display = 'none';
-    document.getElementById('welcomeSuccess').classList.add('show');
-    setTimeout(SITE.closeWelcome, 2500);
-  } catch(e) {
-    SITE.closeWelcome();
-  }
-};
-
 /* ── Updates renderer ── */
 var allUpdates = [];
 
@@ -342,18 +314,9 @@ SITE.init = function(activePage) {
   SITE.injectFooter();
   SITE.injectWA();
   SITE.injectBell();
-  SITE.injectWelcomePopup();
   SITE.initReveal();
   SITE.initFirebase(); // Initialize Firebase and push notification logic
   window.addEventListener('load', function() {
     SITE.trackVisitor();
-    if (!sessionStorage.getItem('wSeen')) {
-      // Show notification prompt modal after 4 seconds if permission not yet decided
-      if ('Notification' in window && Notification.permission === 'default') {
-        setTimeout(SITE.openWelcome, 4000);
-      } else {
-        sessionStorage.setItem('wSeen', '1');
-      }
-    }
   });
 };
