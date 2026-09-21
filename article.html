@@ -12,25 +12,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <!-- SEO meta tags — filled dynamically by JS once article is loaded -->
-<title id="page-title">Article | Anjani Water &amp; Bailey Water Vadodara</title>
+<title id="page-title">Article | Anjani Water &amp; Bailley Water Vadodara</title>
 <meta name="description" id="page-desc" content="Latest news and updates from Anjani Water Vadodara – bulk packaged drinking water supplier.">
-<meta name="keywords" id="page-kw" content="Anjani Water, Vadodara water supplier, bulk water bottles">
+<meta name="keywords" id="page-kw" content="Anjani Water, Vadodara water supplier, bulk water bottles, Bailley water Vadodara">
 <meta name="robots" content="index, follow">
 <link rel="canonical" id="page-canon" href="https://www.anjaniwater.in/article.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0077B6">
+<!-- Preconnect fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:title" id="og-title" content="Article | Anjani Water Vadodara">
 <meta property="og:description" id="og-desc" content="Latest news and updates from Anjani Water Vadodara.">
 <meta property="og:url" id="og-url" content="https://www.anjaniwater.in/article.html">
-<meta property="og:image" id="og-image" content="https://www.anjaniwater.in/Images/anjani-hero.png">
+<meta property="og:image" id="og-image" content="https://www.anjaniwater.in/Images/anjani-hero.webp">
 <meta property="og:site_name" content="Anjani Water Vadodara">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" id="tw-title" content="Article | Anjani Water Vadodara">
 <meta name="twitter:description" id="tw-desc" content="Latest news and updates from Anjani Water Vadodara.">
-<meta name="twitter:image" id="tw-image" content="https://www.anjaniwater.in/Images/anjani-hero.png">
+<meta name="twitter:image" id="tw-image" content="https://www.anjaniwater.in/Images/anjani-hero.webp">
 <!-- Structured Data (NewsArticle) — replaced dynamically -->
 <script type="application/ld+json" id="article-schema">{"@context":"https://schema.org"}</script>
+<script>
+  (function(){
+    try {
+      var p = new URLSearchParams(window.location.search);
+      var s = p.get('slug');
+      if (s) {
+        var c = document.getElementById('page-canon');
+        if (c) c.href = 'https://www.anjaniwater.in/article.html?slug=' + encodeURIComponent(s);
+      }
+    } catch(e) {}
+  })();
+</script>
 <link rel="stylesheet" href="style.css">
 <style>
 /* ─── ARTICLE PAGE ─── */
@@ -313,7 +332,7 @@
       }
 
       /* ── SEO meta tags ── */
-      var pageTitle = art.title + ' | Anjani Water & Bailey Water Vadodara';
+      var pageTitle = art.title + ' | Anjani Water & Bailley Water Vadodara';
       document.getElementById('page-title').textContent = pageTitle;
       var canonUrl = 'https://www.anjaniwater.in/article.html?slug=' + encodeURIComponent(slug);
       setMeta('page-desc',  'content', art.metaDescription || art.body);
@@ -350,7 +369,7 @@
           'url': 'https://www.anjaniwater.in/',
           'logo': {
             '@type': 'ImageObject',
-            'url': 'https://www.anjaniwater.in/Images/anjani-hero.png'
+            'url': 'https://www.anjaniwater.in/Images/anjani-hero.webp'
           }
         },
         'mainEntityOfPage': {

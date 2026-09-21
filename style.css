@@ -2,7 +2,7 @@
    ANJANI WATER — SHARED STYLESHEET
    All pages import this one file
 ═══════════════════════════════════════════════════ */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+/* Fonts are preconnected in HTML head for Core Web Vitals optimization */
 
 :root {
   --ocean: #0077B6;
@@ -60,6 +60,14 @@ section { padding: 72px 5%; }
 .section-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ocean); background: rgba(0,119,182,0.08); padding: 4px 12px; border-radius: 50px; margin-bottom: 10px; }
 .section-title { font-size: 2.2rem; font-weight: 700; color: var(--deep); line-height: 1.15; margin-bottom: 10px; }
 .section-sub { color: var(--muted); font-size: 0.9rem; line-height: 1.75; max-width: 540px; margin-bottom: 36px; }
+
+/* ─── PRIORITY DELIVERY AREAS ─── */
+.priority-areas { background: #fff; padding: 56px 5%; }
+.priority-areas-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 36px; }
+.priority-areas .section-sub { margin-bottom: 18px; max-width: 720px; }
+.priority-area-chips { margin-top: 0; }
+.priority-area-actions { display: flex; flex-direction: column; align-items: stretch; gap: 12px; min-width: 240px; }
+.priority-area-actions a { justify-content: center; text-align: center; }
 
 /* ─── BUTTONS ─── */
 .btn-primary { display: inline-flex; align-items: center; gap: 7px; background: var(--ocean); color: #fff; padding: 12px 24px; border-radius: 50px; font-weight: 600; font-size: 0.87rem; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 16px rgba(0,119,182,0.28); }
@@ -150,6 +158,8 @@ section { padding: 72px 5%; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .form-submit { width: 100%; padding: 12px; background: var(--ocean); color: #fff; border: none; border-radius: 50px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 5px; font-family: var(--font); }
 .form-submit:hover { background: var(--deep); }
+.form-consent { font-size: 0.74rem; color: var(--muted); line-height: 1.55; margin: 12px 0 0; }
+.form-consent a { color: var(--ocean); text-decoration: underline; }
 .success-msg { display: none; text-align: center; padding: 11px; background: #d4edda; color: #155724; border-radius: 9px; margin-top: 12px; font-size: 0.85rem; }
 .success-msg.show { display: block; }
 
@@ -179,40 +189,17 @@ section { padding: 72px 5%; }
 .sample-band .section-title { color: #fff; }
 .sample-band p { color: rgba(255,255,255,0.82); margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; font-size: 0.91rem; line-height: 1.75; }
 
-/* ─── MODAL ─── */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.48); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
-.modal-overlay.open { display: flex; }
-.modal { background: #fff; border-radius: 18px; padding: 32px; max-width: 450px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto; }
-.modal-close { position: absolute; top: 13px; right: 13px; background: var(--off); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; justify-content: center; }
-.modal h3 { font-size: 1.45rem; font-weight: 700; color: var(--deep); margin-bottom: 5px; }
-.modal > p { font-size: 0.83rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+/* ─── ACCESSIBILITY: KEYBOARD FOCUS ─── */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--ocean);
+  outline-offset: 2px;
+}
 
-/* ─── WELCOME POPUP ─── */
-.welcome-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.52); z-index: 3000; align-items: center; justify-content: center; padding: 20px; }
-.welcome-overlay.open { display: flex; }
-.welcome-popup { background: #fff; border-radius: 20px; max-width: 420px; width: 100%; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-.welcome-popup-top { background: linear-gradient(135deg,var(--deep),var(--ocean)); padding: 28px 28px 20px; text-align: center; color: #fff; }
-.welcome-popup-top .wp-emoji { font-size: 2.4rem; display: block; margin-bottom: 10px; }
-.welcome-popup-top h3 { font-size: 1.45rem; font-weight: 700; margin-bottom: 6px; }
-.welcome-popup-top p { font-size: 0.83rem; opacity: .85; line-height: 1.6; }
-.welcome-popup-body { padding: 22px 24px 24px; }
-.welcome-popup-body .form-group { margin-bottom: 12px; }
-.welcome-popup-body label { display: block; font-size: 0.67rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.welcome-popup-body input { width: 100%; padding: 10px 14px; border: 1.5px solid #d0e8f5; border-radius: 10px; font-family: var(--font); font-size: 0.9rem; color: var(--text); background: var(--off); outline: none; transition: border-color 0.2s; }
-.welcome-popup-body input:focus { border-color: var(--ocean); background: #fff; }
-.welcome-popup-submit { width: 100%; padding: 13px; background: var(--ocean); color: #fff; border: none; border-radius: 50px; font-size: 0.92rem; font-weight: 700; cursor: pointer; font-family: var(--font); transition: background 0.2s; margin-top: 4px; }
-.welcome-popup-submit:hover { background: var(--deep); }
-.welcome-skip { display: block; text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--muted); cursor: pointer; }
-.welcome-skip:hover { color: var(--ocean); }
-.welcome-close { position: absolute; top: 11px; right: 11px; background: rgba(255,255,255,0.15); border: none; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; color: #fff; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; }
-.welcome-success { display: none; text-align: center; padding: 11px; background: #d4edda; color: #155724; border-radius: 9px; margin-top: 12px; font-size: 0.85rem; }
-.welcome-success.show { display: block; }
-
-/* ─── WHATSAPP & BELL FLOAT ─── */
+/* ─── WHATSAPP & NOTIFICATION FLOAT ─── */
 .wa-float { position: fixed; bottom: 22px; right: 22px; z-index: 999; width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(37,211,102,0.45); animation: waPulse 2.5s ease-in-out infinite; }
-.bell-float { position: fixed; bottom: 86px; right: 22px; z-index: 999; width: 52px; height: 52px; background: var(--ocean); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,119,182,0.45); cursor: pointer; transition: transform 0.2s; }
-.bell-float:hover { transform: scale(1.1); }
-.bell-float .bell-tooltip { position: absolute; right: 64px; background: #333; color: #fff; padding: 5px 12px; border-radius: 6px; font-size: 0.72rem; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s; }
+.bell-float { position: fixed; bottom: 84px; right: 26px; z-index: 999; width: 44px; height: 44px; background: var(--ocean); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,119,182,0.35); cursor: pointer; transition: transform 0.2s, background 0.2s; }
+.bell-float:hover { transform: scale(1.08); background: var(--deep); }
+.bell-float .bell-tooltip { position: absolute; right: 54px; background: #1a2e3b; color: #fff; padding: 5px 12px; border-radius: 6px; font-size: 0.72rem; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s; }
 .bell-float:hover .bell-tooltip { opacity: 1; }
 .wa-tooltip { position: absolute; right: 62px; background: #1a2e3b; color: #fff; padding: 5px 11px; border-radius: 7px; font-size: 0.76rem; white-space: nowrap; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
 .wa-float:hover .wa-tooltip { opacity: 1; }
@@ -223,15 +210,16 @@ footer { background: var(--deep); color: #fff; padding: 44px 5% 20px; }
 .footer-grid { max-width: 1200px; margin: 0 auto 30px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; }
 .footer-brand .nav-logo { color: #fff; margin-bottom: 10px; display: inline-block; }
 .footer-brand .nav-logo span { color: var(--sky); }
-.footer-brand p { font-size: 0.81rem; opacity: .68; line-height: 1.7; margin-bottom: 18px; }
-footer h4 { font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--sky); margin-bottom: 12px; }
+.footer-brand p { font-size: 0.82rem; opacity: .85; line-height: 1.7; margin-bottom: 18px; }
+footer h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--sky); margin-bottom: 12px; }
 footer ul { display: flex; flex-direction: column; gap: 8px; }
-footer ul li, footer ul a { font-size: 0.81rem; opacity: .68; transition: opacity 0.2s; }
-footer ul a:hover { opacity: 1; }
+footer ul li, footer ul a { font-size: 0.82rem; opacity: .85; transition: opacity 0.2s; }
+footer ul a:hover { opacity: 1; text-decoration: underline; }
 .footer-social { display: flex; gap: 9px; }
-.social-btn { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: background 0.2s; }
-.social-btn:hover { background: rgba(255,255,255,0.22); }
-.footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; opacity: .55; }
+.social-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: background 0.2s; }
+.social-btn:hover { background: rgba(255,255,255,0.3); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; opacity: .80; }
+
 
 /* ─── REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
@@ -256,6 +244,12 @@ footer ul a:hover { opacity: 1; }
   .update-card.pinned { grid-column: span 2; grid-template-columns: 1fr; display: block; }
   .page-hero h1 { font-size: 2.2rem; }
   .page-hero { padding: 90px 5% 44px; }
+  .priority-areas-grid { grid-template-columns: 1fr; gap: 22px; }
+  .priority-area-actions { align-items: flex-start; min-width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
 
 @media (max-width: 768px) {
@@ -371,9 +365,8 @@ footer ul a:hover { opacity: 1; }
   .filter-bar { gap: 7px; }
   .filter-btn { padding: 5px 12px; font-size: 0.74rem; }
 
-  /* ── Welcome popup ── */
-  .welcome-popup { margin: 10px; }
-  .welcome-popup-top { padding: 22px 20px 16px; }
-  .welcome-popup-top h3 { font-size: 1.2rem; }
-  .welcome-popup-body { padding: 16px 18px 20px; }
+  /* ── Floating Action Buttons Mobile ── */
+  .wa-float { width: 46px; height: 46px; bottom: 16px; right: 16px; }
+  .bell-float { width: 38px; height: 38px; bottom: 70px; right: 20px; }
 }
+

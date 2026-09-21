@@ -3,12 +3,13 @@ import fs from 'fs';
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const MAX_ITEMS = 12;
 
-const today = new Date();
-const month = today.toLocaleString('default', { month: 'long' });
-const year = today.getFullYear();
-const start = today.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
-const endDate = new Date(today);
-endDate.setDate(today.getDate() + 6);
+const todayObj = new Date();
+const today = todayObj.toISOString().split('T')[0]; // YYYY-MM-DD
+const month = todayObj.toLocaleString('default', { month: 'long' });
+const year = todayObj.getFullYear();
+const start = todayObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+const endDate = new Date(todayObj);
+endDate.setDate(todayObj.getDate() + 6);
 const end = endDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 const weekRange = start + " – " + end;
 
@@ -78,7 +79,7 @@ async function generateUpdate() {
     throw new Error('Invalid entry - missing core or SEO fields');
   }
   
-  if (newEntry.date !== today) {
+  if (!newEntry.date || typeof newEntry.date !== 'string') {
     newEntry.date = today;
   }
   if (!newEntry.image) {
@@ -101,9 +102,7 @@ async function generateUpdate() {
   fs.writeFileSync('updates.json', JSON.stringify(updates, null, 2));
   console.log('updates.json now has ' + updates.length + ' entries.');
 }
-const purgeUrl = 'https://purge.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json';
-const purgeRes = await fetch(purgeUrl);
-console.log('jsDelivr purge status:', purgeRes.status);
+
 generateUpdate().catch(function(err) {
   console.error('Failed:', err);
   process.exit(1);

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="dropGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#90E0EF"/>
+      <stop offset="50%" stop-color="#0077B6"/>
+      <stop offset="100%" stop-color="#023E8A"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="#023E8A"/>
+  <!-- Water Droplet -->
+  <path d="M16 4 C16 4 7 15 7 21 C7 25.97 11.03 30 16 30 C20.97 30 25 25.97 25 21 C25 15 16 4 16 4 Z" fill="url(#dropGrad)"/>
+  <!-- Droplet shine -->
+  <path d="M16 6 C16 6 10 15 10 20 C10 21.5 10.5 23 11.5 24 C10.5 22 11 19 13 16 C15 13 16 6 16 6 Z" fill="url(#shine)"/>
+</svg>

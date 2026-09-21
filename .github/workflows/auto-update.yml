@@ -30,3 +30,8 @@ jobs:
           git add updates.json
           git commit -m "Auto update: $(date +'%Y-%m-%d')" || exit 0
           git push
+
+      - name: Purge jsDelivr cache
+        run: |
+          sleep 3
+          curl -s -X POST https://purge.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json || true

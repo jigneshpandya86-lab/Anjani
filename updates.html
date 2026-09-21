@@ -12,16 +12,21 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>Retail &amp; Bulk Water Bottle Updates in Vadodara | Anjani Water &amp; Bailey Water</title>
-<meta name="description" content="Retail water bottle supply, wholesale prices, seasonal offers and packaged drinking water updates for Vadodara shops, showrooms, offices and events.">
-<meta name="keywords" content="retail water bottle supplier Vadodara, 200ml water bottles for shops Vadodara, showroom water supplier Vadodara, bulk packaged drinking water Vadodara, wholesale water bottles Vadodara">
+<title>Water Bottle Sales &amp; Bailley Supply Updates in Vadodara | Anjani Water</title>
+<meta name="description" content="Wholesale 200ml water bottle deals, Anjani 200ml factory rates, and official Bailley water supply updates (Code: 031609) for Vadodara businesses and events.">
+<meta name="keywords" content="retail water bottle supplier Vadodara, Bailley water sales Vadodara, Anjani 200ml water sale Vadodara, 200ml water bottles for shops Vadodara, showroom water supplier Vadodara, bulk packaged drinking water Vadodara">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.anjaniwater.in/updates.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Retail &amp; Bulk Water Bottle Updates in Vadodara | Anjani Water">
+<meta property="og:title" content="Water Bottle Sales &amp; Bailley Supply Updates in Vadodara | Anjani Water">
 <meta property="og:description" content="Retail water supply ideas, wholesale stock updates and bulk 200ml water bottle deals for Vadodara businesses.">
 <meta property="og:url" content="https://www.anjaniwater.in/updates.html">
-<meta property="og:image" content="https://www.anjaniwater.in/Images/anjani-hero.png">
+<meta property="og:image" content="https://www.anjaniwater.in/Images/anjani-hero.webp">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,6 +38,7 @@
 }
 </script>
 <link rel="stylesheet" href="style.css">
+
 <style>
 .updates-full-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
 .updates-full-grid .update-card:first-child { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; }
@@ -75,7 +81,7 @@
     <span class="section-tag">Don't Miss Out</span>
     <h2 class="section-title">Get Bulk Deal Alerts</h2>
     <p>WhatsApp us to get notified about seasonal bulk deals, wedding season offers and new stock arrivals.</p>
-    <a href="https://wa.me/919925997750?text=Hi!%20Please%20add%20me%20for%20Anjani%20Water%20updates." target="_blank" class="btn-white">💬 Join WhatsApp Updates</a>
+    <a href="https://wa.me/919925997750?text=Hi!%20Please%20add%20me%20for%20Anjani%20Water%20updates." target="_blank" rel="noopener noreferrer" class="btn-white">💬 Join WhatsApp Updates</a>
   </div>
 </div>
 
@@ -87,36 +93,16 @@
   var allUpdates = [];
 
   function filterUpdates(type, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
-    if (type === 'all') renderUpdates(allUpdates);
-    else renderUpdates(allUpdates.filter(u => (u.type||'').toLowerCase() === type));
+    if (type === 'all') {
+      SITE.renderUpdates(allUpdates, 'updates-full-grid');
+    } else {
+      SITE.renderUpdates(allUpdates.filter(function(u) { return (u.type || '').toLowerCase() === type; }), 'updates-full-grid');
+    }
   }
 
-  function renderUpdates(list) {
-    var grid = document.getElementById('updates-full-grid');
-    if (!list.length) { grid.innerHTML = '<p style="color:var(--muted)">No updates found.</p>'; return; }
-    grid.innerHTML = list.map(function(u, i) {
-      var dateStr = '';
-      try { dateStr = new Date(u.date).toLocaleDateString('en-IN',{month:'long',year:'numeric'}); } catch(e){ dateStr = u.date; }
-      var imgHtml = u.image ? '<div class="update-card-img"><img src="'+u.image+'" alt="'+u.title+'" loading="lazy"></div>' : '';
-      var link = u.slug ? ('article.html?slug=' + u.slug) : (u.ctaLink || 'contact.html');
-      return '<div class="update-card '+(u.type||'offer')+' reveal">'+
-        '<div class="update-card-top">'+
-          '<span class="update-emoji">'+(u.emoji||'💧')+'</span>'+
-          '<div class="update-type-badge">'+(u.tag||'Update')+'</div>'+
-          '<h3>'+u.title+'</h3>'+
-        '</div>'+imgHtml+
-        '<div class="update-card-body">'+
-          '<div class="update-date">'+dateStr+'</div>'+
-          '<p class="update-body-text">'+u.body+'</p>'+
-          '<a href="'+link+'" class="update-cta-link">'+(u.cta||'Learn more →')+'</a>'+
-        '</div></div>';
-    }).join('');
-    SITE.initReveal();
-  }
-
-  // Load from JSON file — same as homepage
+  // Load from updates.json
   var updatesUrl = (window.location.protocol === 'file:') ? 
     'https://cdn.jsdelivr.net/gh/jigneshpandya86-lab/Anjani@main/updates.json' : 
     'updates.json';
@@ -124,11 +110,13 @@
     .then(function(r){ return r.json(); })
     .then(function(data){
       allUpdates = data;
-      renderUpdates(allUpdates);
-      document.getElementById('updates-loading').remove();
+      SITE.renderUpdates(allUpdates, 'updates-full-grid');
+      var loader = document.getElementById('updates-loading');
+      if (loader) loader.remove();
     })
     .catch(function(){
-      document.getElementById('updates-loading').innerHTML = 'Could not load updates. <a href="contact.html" style="color:var(--ocean)">Contact us →</a>';
+      var loader = document.getElementById('updates-loading');
+      if (loader) loader.innerHTML = 'Could not load updates. <a href="contact.html" style="color:var(--ocean)">Contact us →</a>';
     });
 </script>
 </body>
