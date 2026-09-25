@@ -20,6 +20,7 @@ var SITE = {
     bailley: 'bailley-bottle.webp',
     clear:   'clear-bottle.webp',
     ganesh:  'GaneshChaturthi.webp',
+    clients: 'OurClients.webp',
     update1: 'update-summer-offer.webp',
     update2: 'update-new-stock.webp',
     update3: 'update-wedding-supply.webp',
