@@ -318,6 +318,7 @@ SITE.injectFooter = function() {
           '<li><a href="serve.html">Who We Serve</a></li>' +
           '<li><a href="why.html">Why Choose Us</a></li>' +
           '<li><a href="privacy.html">Privacy Policy</a></li>' +
+          '<li><a href="returns.html">Return Policy</a></li>' +
         '</ul>' +
       '</div>' +
       '<div>' +
