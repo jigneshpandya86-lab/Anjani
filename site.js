@@ -67,12 +67,12 @@ SITE.buildNav = function(activePage) {
   if (!el) return;
   var links = SITE.nav.map(function(n) {
     var active = (n.href === activePage) ? ' active' : '';
-    return '<li><a href="' + n.href + '" class="nav-link' + active + '">' + n.label + '</a></li>';
+    return '<li><a href="' + n.href + '" class="nav-link' + active + '" onclick="SITE.closeMenu()">' + n.label + '</a></li>';
   }).join('');
   el.innerHTML =
-    '<a href="index.html" class="nav-logo" aria-label="Anjani Water Home">Anjani<span>Water</span></a>' +
+    '<a href="index.html" class="nav-logo" aria-label="Anjani Water Home" onclick="SITE.closeMenu()">Anjani<span>Water</span></a>' +
     '<ul class="nav-links" id="navLinks">' + links +
-    '<li><a href="contact.html#order" class="nav-cta">Order Now</a></li></ul>' +
+    '<li><a href="contact.html#order" class="nav-cta" onclick="SITE.closeMenu()">Order Now</a></li></ul>' +
     '<button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" onclick="SITE.toggleMenu()"><span></span><span></span><span></span></button>';
 };
 
@@ -91,6 +91,19 @@ SITE.closeMenu = function() {
   if (ham) ham.classList.remove('open');
   document.body.style.overflow = '';
 };
+
+// Close mobile menu on click outside or Escape key
+document.addEventListener('click', function(e) {
+  var nav = document.getElementById('navLinks'), ham = document.getElementById('hamburger');
+  if (nav && nav.classList.contains('open')) {
+    if (!nav.contains(e.target) && !ham.contains(e.target)) {
+      SITE.closeMenu();
+    }
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') SITE.closeMenu();
+});
 
 /* ── Shrink Navbar on Scroll ── */
 window.addEventListener('scroll', function() {
@@ -291,6 +304,7 @@ SITE.injectFooter = function() {
         '<ul>' +
           '<li><a href="products.html">Anjani 200ml Sale</a></li>' +
           '<li><a href="products.html#bailley">Bailley 200ml Supply</a></li>' +
+          '<li><a href="index.html#custom-branding">Custom Bottle Branding</a></li>' +
           '<li><a href="products.html">Bisleri 200ml</a></li>' +
           '<li><a href="products.html">Clear Water 200ml</a></li>' +
         '</ul>' +
