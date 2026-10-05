@@ -40,13 +40,12 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-.updates-full-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-.updates-full-grid .update-card:first-child { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; }
+.updates-full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
 .filter-btn { padding: 6px 16px; border-radius: 50px; border: 1.5px solid #d0e8f5; background: #fff; font-family: var(--font); font-size: 0.78rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; }
 .filter-btn:hover, .filter-btn.active { background: var(--ocean); color: #fff; border-color: var(--ocean); }
-@media(max-width:900px){ .updates-full-grid{grid-template-columns:1fr 1fr} .updates-full-grid .update-card:first-child{grid-column:span 2;grid-template-columns:1fr} }
-@media(max-width:600px){ .updates-full-grid{grid-template-columns:1fr} .updates-full-grid .update-card:first-child{grid-column:span 1;display:block} }
+@media(max-width:900px){ .updates-full-grid { grid-template-columns: 1fr 1fr; gap: 18px; } }
+@media(max-width:600px){ .updates-full-grid { grid-template-columns: 1fr; gap: 18px; } }
 </style>
 </head>
 <body>

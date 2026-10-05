@@ -352,7 +352,8 @@ SITE.renderUpdates = function(list, targetElementId) {
     } catch(e) { dateStr = u.date; }
 
     var typeClass = (u.type || 'offer').toLowerCase();
-    var imgHtml = u.image ? '<div class="update-card-img"><img src="' + u.image + '" alt="' + u.title + '" loading="lazy" width="400" height="180"></div>' : '';
+    var imgSrc = u.image || 'Images/anjani-hero.webp';
+    var imgHtml = '<div class="update-card-img"><img src="' + imgSrc + '" alt="' + (u.title || 'Water Update') + '" loading="lazy" width="400" height="180"></div>';
     var link = u.slug ? ('article.html?slug=' + encodeURIComponent(u.slug)) : (u.ctaLink || 'contact.html#order');
 
     return '<div class="update-card ' + typeClass + ' reveal">' +

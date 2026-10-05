@@ -120,14 +120,28 @@
 </script>
 <link rel="stylesheet" href="style.css">
 <style>
-.contact-info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 48px; }
-.contact-info-card { background: #fff; border-radius: var(--r); padding: 24px 20px; text-align: center; box-shadow: 0 3px 14px rgba(0,119,182,0.07); transition: transform 0.2s; }
-.contact-info-card:hover { transform: translateY(-3px); }
-.contact-info-card .ci-icon { font-size: 2rem; margin-bottom: 10px; }
-.contact-info-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--deep); margin-bottom: 5px; }
-.contact-info-card a, .contact-info-card p { font-size: 0.85rem; color: var(--ocean); font-weight: 500; }
+.contact-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 48px; }
+.contact-info-card {
+  background: #fff;
+  border-radius: var(--r);
+  border: 1px solid #e1eff8;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 3px 14px rgba(0,119,182,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 140px;
+}
+.contact-info-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,119,182,0.12); }
+.contact-info-card .ci-icon { font-size: 2rem; margin-bottom: 10px; flex-shrink: 0; }
+.contact-info-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--deep); margin-bottom: 5px; flex-shrink: 0; }
+.contact-info-card a, .contact-info-card p { font-size: 0.85rem; color: var(--ocean); font-weight: 500; margin: 0; }
 #sample { scroll-margin-top: 80px; }
-@media(max-width:600px){ .contact-info-grid{grid-template-columns:1fr} }
+@media(max-width:600px){ .contact-info-grid{grid-template-columns:1fr; gap:12px;} .contact-info-card{min-height:unset;height:auto;padding:18px 16px;} }
 </style>
 </head>
 <body>
