@@ -149,12 +149,72 @@
   box-shadow: 0 5px 22px rgba(0,119,182,0.09);
   background: #f4f8fb;
 }
-.location-map iframe { width: 100%; height: 480px; }
+.location-map iframe { width: 100%; height: 420px; }
 @media(max-width:600px) {
-  .location-map iframe { height: 380px; }
+  .location-map iframe { height: 340px; }
 }
 #sample { scroll-margin-top: 80px; }
 @media(max-width:600px){ .contact-info-grid{grid-template-columns:1fr; gap:12px;} .contact-info-card{min-height:unset;height:auto;padding:18px 16px;} }
+
+/* Unified conversational order wizard */
+.order-wizard-wrap { max-width: 850px; margin: 10px auto 0; }
+.wizard-heading { text-align:center; margin-bottom:28px; }
+.order-wizard { max-width:690px; margin:0 auto; background:#fff; border:1px solid #dcecf6; border-radius:22px; padding:clamp(18px,4vw,32px); box-shadow:0 14px 42px rgba(2,62,138,.10); }
+.wizard-topline { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:22px; }
+.wizard-brand { display:flex; align-items:center; gap:11px; color:var(--deep); }
+.wizard-brand-mark,.wizard-avatar { width:40px; height:40px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(135deg,var(--deep),var(--ocean)); color:#fff; font-family:var(--serif); font-weight:700; font-size:1.2rem; flex-shrink:0; }
+.wizard-brand strong { display:block; font-size:.92rem; }
+.wizard-brand small { display:block; color:var(--muted); font-size:.72rem; }
+.wizard-secure { color:#16835d; font-size:.72rem; font-weight:700; white-space:nowrap; }
+.wizard-progress { height:7px; border-radius:20px; background:#eaf3f8; overflow:hidden; }
+.wizard-progress span { display:block; height:100%; width:12.5%; border-radius:20px; background:linear-gradient(90deg,var(--ocean),#34b3cb); transition:width .25s ease; }
+.wizard-step-meta { display:flex; justify-content:space-between; margin:8px 0 24px; color:#78909f; font-size:.68rem; font-weight:700; letter-spacing:.08em; }
+.wizard-chat { display:flex; align-items:flex-start; gap:11px; margin-bottom:22px; }
+.wizard-avatar { width:34px; height:34px; border-radius:12px; font-size:1rem; }
+.wizard-bubble { background:#f0f7fc; border:1px solid #e1eff8; border-radius:4px 16px 16px 16px; padding:13px 16px; max-width:calc(100% - 48px); color:var(--deep); }
+.wizard-bubble strong { display:block; font-size:1rem; line-height:1.45; }
+.wizard-bubble p { color:var(--muted); font-size:.82rem; margin:4px 0 0; }
+.wizard-answer { min-height:112px; }
+.wizard-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.wizard-option { display:flex; align-items:center; gap:11px; width:100%; text-align:left; border:1.5px solid #dfebf3; border-radius:13px; background:#fff; padding:13px; color:var(--text); cursor:pointer; transition:.18s ease; font:inherit; }
+.wizard-option:hover { border-color:var(--ocean); background:#f7fbfe; transform:translateY(-1px); }
+.wizard-option.selected { border-color:var(--ocean); background:#edf8fd; box-shadow:0 0 0 2px rgba(0,119,182,.08); }
+.wizard-option-icon { width:36px; height:36px; display:grid; place-items:center; background:#eaf5fb; border-radius:10px; font-size:1.2rem; flex-shrink:0; }
+.wizard-option strong { display:block; color:var(--deep); font-size:.82rem; line-height:1.35; }
+.wizard-option small { display:block; color:var(--muted); font-size:.7rem; margin-top:3px; }
+.wizard-field { width:100%; border:1.5px solid #dce8f0; border-radius:12px; padding:14px 15px; font:inherit; font-size:.92rem; color:var(--text); background:#fff; outline:none; }
+.wizard-field:focus { border-color:var(--ocean); box-shadow:0 0 0 3px rgba(0,119,182,.1); }
+.wizard-field-label { display:block; font-size:.78rem; color:var(--deep); font-weight:700; margin:0 0 7px; }
+.wizard-field-help { font-size:.73rem; color:var(--muted); margin:7px 0 0; }
+.wizard-field-wrap { margin-bottom:14px; }
+.wizard-field textarea { min-height:100px; resize:vertical; }
+.wizard-two-fields { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.wizard-error { min-height:20px; color:#b42318; font-size:.78rem; margin-top:5px; }
+.wizard-actions { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:10px; }
+.wizard-back,.wizard-next { border:0; border-radius:50px; padding:12px 22px; font:inherit; font-size:.86rem; font-weight:700; cursor:pointer; }
+.wizard-back { background:#f0f5f8; color:#587080; }
+.wizard-back:disabled { opacity:.35; cursor:not-allowed; }
+.wizard-next { color:#fff; background:linear-gradient(135deg,var(--deep),var(--ocean)); box-shadow:0 5px 14px rgba(0,119,182,.2); }
+.wizard-next:hover { filter:brightness(1.08); transform:translateY(-1px); }
+.wizard-privacy { text-align:center; color:#8a9eaa; font-size:.68rem; margin:18px 0 0; }
+.wizard-privacy a { color:var(--ocean); text-decoration:underline; }
+.wizard-summary { background:#f5fafe; border:1px solid #dfedf6; border-radius:14px; padding:15px; }
+.wizard-summary-row { display:flex; justify-content:space-between; gap:14px; padding:8px 0; border-bottom:1px solid #e3eef5; font-size:.8rem; }
+.wizard-summary-row:last-child { border-bottom:0; }
+.wizard-summary-row span:first-child { color:var(--muted); }
+.wizard-summary-row strong { color:var(--deep); text-align:right; max-width:62%; overflow-wrap:anywhere; }
+.wizard-done { text-align:center; padding:22px 8px; }
+.wizard-done-icon { width:62px; height:62px; border-radius:50%; background:#e8f8f0; color:#16835d; display:grid; place-items:center; margin:0 auto 14px; font-size:1.8rem; }
+.wizard-done h3 { color:var(--deep); margin-bottom:8px; }
+.wizard-done p { color:var(--muted); font-size:.88rem; }
+@media(max-width:600px) {
+  .order-wizard { border-radius:17px; padding:17px 14px; }
+  .wizard-options { grid-template-columns:1fr; }
+  .wizard-two-fields { grid-template-columns:1fr; gap:0; }
+  .wizard-actions button { padding:12px 17px; }
+  .wizard-secure { font-size:.65rem; }
+}
+
 </style>
 </head>
 <body>
@@ -188,127 +248,31 @@
       </div>
     </div>
 
-    <!-- ORDER + QUERY FORMS -->
-    <div class="forms-grid">
-      <div class="form-card reveal" id="order">
-        <h3>📦 Place an Order</h3>
-        <p>Send your requirement and we’ll confirm stock, price and delivery availability before accepting the order.</p>
-        <form id="orderForm" onsubmit="SITE.submitForm(event,'orderForm','orderSuccess','order')">
-          <div class="form-row">
-            <div class="form-group"><label for="order-name">Full Name *</label><input type="text" id="order-name" name="name" placeholder="Ramesh Patel" required></div>
-            <div class="form-group"><label for="order-phone">Phone / WhatsApp *</label><input type="tel" id="order-phone" name="phone" placeholder="98765 43210" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label for="order-area">Delivery Area *</label><select id="order-area" name="area" required><option value="">Select area</option><option>Ajwa Road</option><option>Waghodia Road</option><option>Parivar Char Rasta</option><option>Mahavir Char Rasta</option><option>Kapurai Chokdi</option><option>Alkapuri</option><option>Sayajigunj</option><option>Gotri</option><option>Manjalpur</option><option>Other Vadodara area</option></select></div>
-            <div class="form-group"><label for="order-date">Required Delivery Date *</label><input type="date" id="order-date" name="deliveryDate" required></div>
-          </div>
-          <div class="form-group"><label for="order-address">Delivery Address *</label><input type="text" id="order-address" name="address" placeholder="Street, landmark, Vadodara" required></div>
-          <div class="form-row">
-            <div class="form-group"><label for="order-product">Product *</label>
-              <select id="order-product" name="product" required>
-                <option value="">Select product</option>
-                <option>Custom Branded 200ml Bottles - Marriages &amp; Weddings</option>
-                <option>Custom Branded 200ml Bottles - Birthdays &amp; Milestones</option>
-                <option>Custom Branded 200ml Bottles - Baby Shower (Shrimant / Godh Bharai)</option>
-                <option>Custom Branded 200ml Bottles - Anniversaries &amp; Others</option>
-                <option>Custom Branded 200ml Bottles - Corporate &amp; Summits</option>
-                <option>Anjani Premium Water 200ml (Factory Direct Sale)</option>
-                <option>Bailley 200ml by Parle Agro (Distributor Code: 031609)</option>
-                <option>Bisleri 200ml Water Bottle</option>
-                <option>Clear Premium 200ml Water Bottle</option>
-                <option>Mixed / Multiple Brands</option>
-              </select>
-            </div>
-            <div class="form-group"><label for="order-quantity">Quantity *</label><input type="text" id="order-quantity" name="quantity" placeholder="e.g. 10 cases / 240 bottles" required></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label for="order-type">Requirement Type</label>
-              <select id="order-type" name="orderType">
-                <option>Event / Wedding bulk supply</option>
-                <option>Office / Corporate supply</option>
-                <option>Shop / Showroom retail supply</option>
-                <option>One-time bulk order</option>
-                <option>Monthly subscription</option>
-                <option>Weekly recurring</option>
-              </select>
-            </div>
-            <div class="form-group"><label for="order-calltime">Best Time to Call</label>
-              <select id="order-calltime" name="callTime">
-                <option>Morning (9am–12pm)</option>
-                <option>Afternoon (12pm–4pm)</option>
-                <option>Evening (4pm–8pm)</option>
-                <option>Any time</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group"><label for="order-notes">Special Instructions</label><textarea id="order-notes" name="notes" placeholder="Any special requirements..."></textarea></div>
-          <p class="form-consent">By submitting, you agree that Anjani Water may contact you about this request. See our <a href="privacy.html">Privacy Policy</a> and <a href="returns.html">Return Policy</a>.</p>
-          <button type="submit" class="form-submit">💬 Submit &amp; Chat on WhatsApp</button>
-          <div class="success-msg" id="orderSuccess">✅ Your request is ready in WhatsApp. Please tap Send there so we can confirm your order.</div>
-        </form>
+    <!-- UNIFIED CHAT-STYLE ORDER WIZARD -->
+    <div class="order-wizard-wrap" id="order">
+      <div class="wizard-heading">
+        <span class="section-tag">A Simple, Guided Order</span>
+        <h2 class="section-title">Let’s Get Your Water Delivered</h2>
+        <p class="section-sub">Tell us what you need. We’ll guide you one step at a time and confirm availability personally.</p>
       </div>
-      <div class="form-card reveal">
-        <h3>💬 Send a Query</h3>
-        <p>Pricing, bulk deals, delivery area or anything else — ask away!</p>
-        <form id="queryForm" onsubmit="SITE.submitForm(event,'queryForm','querySuccess','query')">
-          <div class="form-row">
-            <div class="form-group"><label for="query-name">Your Name *</label><input type="text" id="query-name" name="name" placeholder="Meena Shah" required></div>
-            <div class="form-group"><label for="query-phone">Phone / WhatsApp *</label><input type="tel" id="query-phone" name="phone" placeholder="98765 43210" required></div>
-          </div>
-          <div class="form-group"><label for="query-email">Email (optional)</label><input type="email" id="query-email" name="email" placeholder="you@example.com"></div>
-          <div class="form-group"><label for="query-type">Query Type</label>
-            <select id="query-type" name="queryType">
-              <option>Custom Branding - Marriages &amp; Weddings</option>
-              <option>Custom Branding - Birthdays &amp; Milestone Celebrations</option>
-              <option>Custom Branding - Baby Shower (Shrimant / Godh Bharai)</option>
-              <option>Custom Branding - Anniversaries &amp; Other Events</option>
-              <option>Custom Branding - Corporate &amp; Summits</option>
-              <option>Anjani 200ml Factory Pricing</option>
-              <option>Bailley 200ml Supply (Distributor Code 031609)</option>
-              <option>Bulk / Wedding Order Rates</option>
-              <option>Corporate Office Delivery</option>
-              <option>Delivery Area Confirmation</option>
-              <option>Free Sample Request</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group"><label for="query-message">Your Message *</label><textarea id="query-message" name="message" placeholder="Tell us what you would like to know..." style="min-height:120px" required></textarea></div>
-          <div class="form-group"><label for="query-calltime">Best Time to Call</label>
-            <select id="query-calltime" name="callTime">
-              <option>Morning (9am–12pm)</option>
-              <option>Afternoon (12pm–4pm)</option>
-              <option>Evening (4pm–8pm)</option>
-              <option>Any time</option>
-            </select>
-          </div>
-          <p class="form-consent">By submitting, you agree that Anjani Water may contact you about this request. See our <a href="privacy.html">Privacy Policy</a> and <a href="returns.html">Return Policy</a>.</p>
-          <button type="submit" class="form-submit">💬 Submit &amp; Chat on WhatsApp</button>
-          <div class="success-msg" id="querySuccess">✅ Your query is ready in WhatsApp. Please tap Send there to reach us.</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FREE SAMPLE -->
-<section id="sample" style="background:#fff">
-  <div class="section-inner">
-    <span class="section-tag">First Time?</span>
-    <h2 class="section-title">🎁 Book a Free Sample</h2>
-    <p class="section-sub">Get a complimentary Anjani 200ml packaged drinking water bottle delivered to your door — no cost, no commitment. Only for Vadodara.</p>
-    <div style="max-width:480px">
-      <div class="form-card">
-        <h3>Request Your Free Sample</h3>
-        <p>We’ll confirm whether a sample can be delivered to your area and the earliest available slot.</p>
-        <form id="sampleForm" onsubmit="SITE.submitForm(event,'sampleForm','sampleSuccess','sample')">
-          <div class="form-group"><label for="sample-name">Full Name *</label><input type="text" id="sample-name" name="name" placeholder="Your name" required></div>
-          <div class="form-group"><label for="sample-phone">Phone / WhatsApp *</label><input type="tel" id="sample-phone" name="phone" placeholder="98765 43210" required></div>
-          <div class="form-group"><label for="sample-area">Delivery Area *</label><select id="sample-area" name="area" required><option value="">Select area</option><option>Ajwa Road</option><option>Waghodia Road</option><option>Parivar Char Rasta</option><option>Mahavir Char Rasta</option><option>Kapurai Chokdi</option><option>Other Vadodara area</option></select></div>
-          <div class="form-group"><label for="sample-address">Delivery Address *</label><input type="text" id="sample-address" name="address" placeholder="Your address in Vadodara" required></div>
-          <p class="form-consent">By submitting, you agree that Anjani Water may contact you about this request. See our <a href="privacy.html">Privacy Policy</a> and <a href="returns.html">Return Policy</a>.</p>
-          <button type="submit" class="form-submit">🎁 Request Free Sample</button>
-          <div class="success-msg" id="sampleSuccess">🎉 Your request is ready in WhatsApp. Please tap Send there to confirm it.</div>
-        </form>
+      <div class="order-wizard reveal" id="orderWizard" aria-live="polite">
+        <div class="wizard-topline">
+          <div class="wizard-brand"><span class="wizard-brand-mark">A</span><span><strong>Anjani Assistant</strong><small>Usually replies within 60 minutes</small></span></div>
+          <span class="wizard-secure">● Order enquiry</span>
+        </div>
+        <div class="wizard-progress"><span id="wizardProgress"></span></div>
+        <div class="wizard-step-meta"><span id="wizardStepLabel">STEP 1 OF 8</span><span id="wizardPercent">12%</span></div>
+        <div class="wizard-chat">
+          <div class="wizard-avatar">A</div>
+          <div class="wizard-bubble"><strong id="wizardQuestion">Hi! What can we help you with today?</strong><p id="wizardHint">Choose a product or select another type of request.</p></div>
+        </div>
+        <div id="wizardAnswer" class="wizard-answer"></div>
+        <div id="wizardError" class="wizard-error" role="alert"></div>
+        <div class="wizard-actions">
+          <button type="button" class="wizard-back" id="wizardBack" disabled>← Back</button>
+          <button type="button" class="wizard-next" id="wizardNext">Continue →</button>
+        </div>
+        <p class="wizard-privacy">Your details are used only to respond to this request. Read our <a href="privacy.html">Privacy Policy</a>.</p>
       </div>
     </div>
   </div>
@@ -358,5 +322,160 @@
 <footer id="site-footer"></footer>
 <script src="site.js"></script>
 <script>SITE.init('contact.html');</script>
+
+<script>
+(function () {
+  var root = document.getElementById('orderWizard');
+  if (!root) return;
+  var state = {
+    step: 0,
+    data: {
+      requestType: '',
+      product: '',
+      quantity: '',
+      query: '',
+      callTime: 'Any time',
+      deliveryDate: '',
+      name: '',
+      phone: '',
+      area: '',
+      address: ''
+    }
+  };
+  var products = [
+    {value:'Anjani Premium Water 200ml (Factory Direct Sale)',label:'Anjani Premium 200ml',sub:'Factory direct · Our flagship brand',icon:'💧'},
+    {value:'Bailley 200ml by Parle Agro (Distributor Code: 031609)',label:'Bailley 200ml',sub:'Official distributor supply',icon:'🔵'},
+    {value:'Bisleri 200ml Water Bottle',label:'Bisleri 200ml',sub:'Bulk water bottle supply',icon:'🟦'},
+    {value:'Clear Premium 200ml Water Bottle',label:'Clear 200ml',sub:'Bulk water bottle supply',icon:'💦'},
+    {value:'Mixed / Multiple Brands',label:'Mixed / Multiple Brands',sub:'Need more than one SKU',icon:'📦'},
+    {value:'Custom Branded 200ml Bottles',label:'Custom Branded Bottles',sub:'Wedding · Birthday · Corporate · Events',icon:'🎨'},
+    {value:'Free Sample — Anjani Premium Water 200ml',label:'Book a Free Sample',sub:'Request a complimentary Anjani sample',icon:'🎁'},
+    {value:'General Query',label:'Ask a Question',sub:'Pricing · Delivery · Product information',icon:'💬'}
+  ];
+  var questions = [
+    ['What would you like to order?','Choose a product or select a sample or general enquiry.'],
+    ['How much do you need?','Enter an approximate quantity. You can mention cases, boxes or bottles.'],
+    ['When is the best time to contact you?','Choose a convenient time for our team to call or message.'],
+    ['What date do you need it?','Choose your preferred delivery or follow-up date.'],
+    ['What name should we address you by?','Please enter your full name.'],
+    ['What is your WhatsApp number?','We’ll use this number to confirm your requirement.'],
+    ['Where should we deliver?','Enter the full address manually, including society, street and landmark.'],
+    ['Please review your request','Check the details before sending them to Anjani Water.']
+  ];
+  var answer=document.getElementById('wizardAnswer');
+  var question=document.getElementById('wizardQuestion');
+  var hint=document.getElementById('wizardHint');
+  var progress=document.getElementById('wizardProgress');
+  var stepLabel=document.getElementById('wizardStepLabel');
+  var percent=document.getElementById('wizardPercent');
+  var error=document.getElementById('wizardError');
+  var back=document.getElementById('wizardBack');
+  var next=document.getElementById('wizardNext');
+  var total=8;
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function selected(v){return state.data.product===v?' selected':'';}
+  function render(){
+    var s=state.step, d=state.data;
+    question.textContent=questions[s][0];
+    hint.textContent=questions[s][1];
+    error.textContent='';
+    progress.style.width=((s+1)/total*100)+'%';
+    stepLabel.textContent='STEP '+(s+1)+' OF '+total;
+    percent.textContent=Math.round((s+1)/total*100)+'%';
+    back.disabled=s===0;
+    next.textContent=s===7?'Send on WhatsApp →':'Continue →';
+    if(s===0){
+      answer.innerHTML='<div class="wizard-options">'+products.map(function(p){return '<button type="button" class="wizard-option'+selected(p.value)+'" data-product="'+esc(p.value)+'"><span class="wizard-option-icon">'+p.icon+'</span><span><strong>'+esc(p.label)+'</strong><small>'+esc(p.sub)+'</small></span></button>';}).join('')+'</div>';
+      answer.querySelectorAll('[data-product]').forEach(function(btn){btn.addEventListener('click',function(){d.product=btn.getAttribute('data-product');d.requestType=d.product==='General Query'?'query':d.product.indexOf('Free Sample')===0?'sample':'order';render();});});
+    } else if(s===1){
+      if(d.requestType==='query'){
+        answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-query">What would you like to know?</label><textarea class="wizard-field" id="wiz-query" placeholder="Type your question here...">'+esc(d.query)+'</textarea></div>';
+        bind('wiz-query','query');
+      } else {
+        var sample=d.requestType==='sample';
+        answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-qty">'+(sample?'How many sample bottles would you like?':'Approximate quantity')+'</label><input class="wizard-field" id="wiz-qty" type="text" value="'+esc(d.quantity||(sample?'1 sample bottle':''))+'" placeholder="'+(sample?'1 sample bottle':'e.g. 10 cases / 240 bottles')+'"><p class="wizard-field-help">'+(sample?'Sample requests are subject to delivery confirmation.':'You can enter cases, boxes or total bottles.')+'</p></div>';
+        if(sample&&!d.quantity)d.quantity='1 sample bottle';
+        bind('wiz-qty','quantity');
+      }
+    } else if(s===2){
+      answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-time">Preferred time</label><select class="wizard-field" id="wiz-time"><option>Any time</option><option>Morning (9am–12pm)</option><option>Afternoon (12pm–4pm)</option><option>Evening (4pm–8pm)</option></select></div>';
+      document.getElementById('wiz-time').value=d.callTime;
+      bind('wiz-time','callTime');
+    } else if(s===3){
+      answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-date">'+(d.requestType==='query'?'Preferred follow-up date (optional)':'Required delivery date')+'</label><input class="wizard-field" id="wiz-date" type="date" min="'+new Date().toISOString().slice(0,10)+'" value="'+esc(d.deliveryDate)+'"><p class="wizard-field-help">We’ll confirm the actual delivery slot with you.</p></div>';
+      bind('wiz-date','deliveryDate');
+    } else if(s===4){
+      answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-name">Full name</label><input class="wizard-field" id="wiz-name" type="text" autocomplete="name" value="'+esc(d.name)+'" placeholder="Enter your full name"></div>';
+      bind('wiz-name','name');
+    } else if(s===5){
+      answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-phone">Phone / WhatsApp number</label><input class="wizard-field" id="wiz-phone" type="tel" inputmode="tel" autocomplete="tel" value="'+esc(d.phone)+'" placeholder="10-digit mobile number"><p class="wizard-field-help">Indian mobile number preferred, including country code if outside India.</p></div>';
+      bind('wiz-phone','phone');
+    } else if(s===6){
+      answer.innerHTML='<div class="wizard-two-fields"><div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-area">Area / locality</label><select class="wizard-field" id="wiz-area"><option value="">Select area</option>'+['Ajwa Road','Waghodia Road','Parivar Char Rasta','Mahavir Char Rasta','Kapurai Chokdi','Alkapuri','Sayajigunj','Gotri','Manjalpur','Other Vadodara area'].map(function(x){return '<option>'+x+'</option>';}).join('')+'</select></div></div><div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-address">Full delivery address</label><textarea class="wizard-field" id="wiz-address" autocomplete="street-address" placeholder="House / shop no., building, street, society and landmark">'+esc(d.address)+'</textarea><p class="wizard-field-help">Manual entry for now — please include a nearby landmark so our delivery team can find you.</p></div>';
+      document.getElementById('wiz-area').value=d.area;
+      bind('wiz-area','area'); bind('wiz-address','address');
+    } else {
+      var rows=[
+        ['Request',d.requestType==='sample'?'Free sample':d.requestType==='query'?'General query':'Water order'],
+        ['Product / SKU',d.product],
+        [d.requestType==='query'?'Your question':'Quantity',d.requestType==='query'?d.query:d.quantity],
+        ['Preferred time',d.callTime],
+        ['Date',d.deliveryDate||'Not specified'],
+        ['Name',d.name],['Phone',d.phone],
+        ['Area',d.area||'Not specified'],['Address',d.address||'Not specified']
+      ];
+      answer.innerHTML='<div class="wizard-summary">'+rows.filter(function(r){return r[1];}).map(function(r){return '<div class="wizard-summary-row"><span>'+esc(r[0])+'</span><strong>'+esc(r[1])+'</strong></div>';}).join('')+'</div><p class="wizard-field-help" style="margin-top:12px">Tap “Send on WhatsApp” to open WhatsApp with these details. Please press Send in WhatsApp to submit your request.</p>';
+    }
+  }
+  function bind(id,key){var el=document.getElementById(id);if(el)el.addEventListener('input',function(){state.data[key]=el.value;});}
+  function validate(){
+    var d=state.data;
+    if(state.step===0&&!d.product)return 'Please choose a product or request type.';
+    if(state.step===1&&d.requestType==='query'&&!d.query.trim())return 'Please enter your question.';
+    if(state.step===1&&d.requestType!=='query'&&!d.quantity.trim())return 'Please enter the required quantity.';
+    if(state.step===4&&!d.name.trim())return 'Please enter your name.';
+    if(state.step===5&&!/^\+?[0-9\s()-]{10,16}$/.test(d.phone.trim()))return 'Please enter a valid phone number.';
+    if(state.step===6&&d.requestType!=='query'&&(!d.area||!d.address.trim()))return 'Please select your area and enter the full delivery address.';
+    return '';
+  }
+  function send(){
+    var d=state.data;
+    var payload={
+      type:d.requestType==='query'?'query':d.requestType==='sample'?'sample':'order',
+      product:d.product,quantity:d.quantity,query:d.query,callTime:d.callTime,
+      deliveryDate:d.deliveryDate,name:d.name,phone:d.phone,area:d.area,address:d.address,
+      timestamp:new Date().toISOString(),source:'Website conversational order wizard'
+    };
+    var lines=[
+      'Request: '+(d.requestType==='sample'?'Free Sample':d.requestType==='query'?'General Query':'Water Order'),
+      'SKU / Product: '+d.product,
+      d.requestType==='query'?'Question: '+d.query:'Quantity: '+d.quantity,
+      'Preferred time: '+d.callTime,
+      'Required date: '+(d.deliveryDate||'Not specified'),
+      'Name: '+d.name,'Phone: '+d.phone,
+      'Area: '+(d.area||'Not specified'),'Address: '+(d.address||'Not specified')
+    ];
+    var msg='Hi Anjani Water, I would like to submit this request:\n\n'+lines.join('\n')+'\n\nPlease confirm price, stock and delivery availability.';
+    window.open('https://wa.me/919925997750?text='+encodeURIComponent(msg),'_blank','noopener');
+    if(window.SITE&&typeof SITE.sendToSheet==='function') SITE.sendToSheet(payload);
+    answer.innerHTML='<div class="wizard-done"><div class="wizard-done-icon">✓</div><h3>Your request is ready!</h3><p>WhatsApp has opened with your details. Please tap <strong>Send</strong> there to reach Anjani Water. We’ll confirm availability and delivery with you.</p></div>';
+    question.textContent='Thank you, '+d.name+'!';
+    hint.textContent='One last tap in WhatsApp and your request will reach our team.';
+    progress.style.width='100%'; stepLabel.textContent='READY TO SEND'; percent.textContent='100%';
+    back.style.display='none'; next.style.display='none'; error.textContent='';
+  }
+  back.addEventListener('click',function(){if(state.step>0){state.step--;render();}});
+  next.addEventListener('click',function(){
+    var issue=validate(); if(issue){error.textContent=issue;return;}
+    if(state.step===7){send();return;}
+    state.step++;render();
+  });
+  var params=new URLSearchParams(window.location.search);
+  var preset=params.get('sku');
+  if(preset){var match=products.find(function(p){return p.value.toLowerCase().indexOf(preset.toLowerCase())!==-1||preset.toLowerCase().indexOf(p.value.toLowerCase())!==-1;});if(match){state.data.product=match.value;state.data.requestType=match.value==='General Query'?'query':match.value.indexOf('Free Sample')===0?'sample':'order';}}
+  render();
+})();
+</script>
+
 </body>
 </html>
