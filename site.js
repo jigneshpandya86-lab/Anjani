@@ -314,7 +314,7 @@ SITE.injectFooter = function() {
         '<ul>' +
           '<li><a href="updates.html">Latest Updates & Offers</a></li>' +
           '<li><a href="contact.html#order">Request a Quote</a></li>' +
-          '<li><a href="contact.html#sample">Free 200ml Sample</a></li>' +
+          '<li><a href="contact.html?sku=sample#order">Free 200ml Sample</a></li>' +
           '<li><a href="serve.html">Who We Serve</a></li>' +
           '<li><a href="why.html">Why Choose Us</a></li>' +
           '<li><a href="privacy.html">Privacy Policy</a></li>' +
