@@ -212,14 +212,13 @@ SITE.injectWA = function() {
 };
 
 /* ── Inject Notification Bell Button ── */
-SITE.injectBell = function() {
-  if (document.querySelector('.bell-float')) return;
-  var btn = document.createElement('button');
-  btn.className = 'bell-float';
-  btn.type = 'button';
-  btn.onclick = SITE.requestNotificationPermission;
-  btn.setAttribute('aria-label', 'Get Offer & Stock Alerts');
-  btn.innerHTML = '<span style="font-size:20px;" aria-hidden="true">🔔</span><span class="bell-tooltip">Get Alerts</span>';
+SITE.injectOrderButton = function() {
+  if (document.querySelector('.order-float')) return;
+  var btn = document.createElement('a');
+  btn.className = 'order-float';
+  btn.href = 'contact.html#order';
+  btn.setAttribute('aria-label', 'Order now from Anjani Water');
+  btn.innerHTML = '<span class="order-float-icon" aria-hidden="true">📦</span><span>Order Now</span>';
   document.body.appendChild(btn);
 };
 
@@ -379,6 +378,6 @@ SITE.init = function(activePage) {
   SITE.buildNav(activePage);
   SITE.injectFooter();
   SITE.injectWA();
-  SITE.injectBell();
+  SITE.injectOrderButton();
   SITE.initReveal();
 };
