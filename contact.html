@@ -386,7 +386,7 @@
     next.textContent=s===7?'Send on WhatsApp →':'Continue →';
     if(s===0){
       answer.innerHTML='<div class="wizard-options">'+products.map(function(p){return '<button type="button" class="wizard-option'+selected(p.value)+'" data-product="'+esc(p.value)+'"><span class="wizard-option-icon">'+p.icon+'</span><span><strong>'+esc(p.label)+'</strong><small>'+esc(p.sub)+'</small></span></button>';}).join('')+'</div>';
-      answer.querySelectorAll('[data-product]').forEach(function(btn){btn.addEventListener('click',function(){d.product=btn.getAttribute('data-product');d.requestType=d.product==='General Query'?'query':d.product.indexOf('Free Sample')===0?'sample':'order';render();});});
+      answer.querySelectorAll('[data-product]').forEach(function(btn){btn.addEventListener('click',function(){d.product=btn.getAttribute('data-product');d.requestType=d.product==='General Query'?'query':d.product.indexOf('Free Sample')===0?'sample':'order';state.step=1;render();});});
     } else if(s===1){
       if(d.requestType==='query'){
         answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-query">What would you like to know?</label><textarea class="wizard-field" id="wiz-query" placeholder="Type your question here...">'+esc(d.query)+'</textarea></div>';
@@ -400,7 +400,9 @@
     } else if(s===2){
       answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-time">Preferred time</label><select class="wizard-field" id="wiz-time"><option>Any time</option><option>Morning (9am–12pm)</option><option>Afternoon (12pm–4pm)</option><option>Evening (4pm–8pm)</option></select></div>';
       document.getElementById('wiz-time').value=d.callTime;
+      var timeSelect=document.getElementById('wiz-time');
       bind('wiz-time','callTime');
+      timeSelect.addEventListener('change',function(){state.data.callTime=timeSelect.value;state.step++;render();});
     } else if(s===3){
       answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-date">'+(d.requestType==='query'?'Preferred follow-up date (optional)':'Required delivery date')+'</label><input class="wizard-field" id="wiz-date" type="date" min="'+new Date().toISOString().slice(0,10)+'" value="'+esc(d.deliveryDate)+'"><p class="wizard-field-help">We’ll confirm the actual delivery slot with you.</p></div>';
       bind('wiz-date','deliveryDate');
@@ -473,7 +475,7 @@
   });
   var params=new URLSearchParams(window.location.search);
   var preset=params.get('sku');
-  if(preset){var match=products.find(function(p){return p.value.toLowerCase().indexOf(preset.toLowerCase())!==-1||preset.toLowerCase().indexOf(p.value.toLowerCase())!==-1;});if(match){state.data.product=match.value;state.data.requestType=match.value==='General Query'?'query':match.value.indexOf('Free Sample')===0?'sample':'order';}}
+  if(preset){var match=products.find(function(p){return p.value.toLowerCase().indexOf(preset.toLowerCase())!==-1||preset.toLowerCase().indexOf(p.value.toLowerCase())!==-1;});if(match){state.data.product=match.value;state.data.requestType=match.value==='General Query'?'query':match.value.indexOf('Free Sample')===0?'sample':'order';state.step=1;}}
   render();
 })();
 </script>
