@@ -485,7 +485,8 @@
   });
   var params=new URLSearchParams(window.location.search);
   var preset=params.get('sku');
-  if(preset){var match=products.find(function(p){return p.value.toLowerCase().indexOf(preset.toLowerCase())!==-1||preset.toLowerCase().indexOf(p.value.toLowerCase())!==-1;});if(match){state.data.product=match.value;state.data.skuCode=match.sku;state.data.requestType=match.value==='General Query'?'query':match.value.indexOf('Free Sample')===0?'sample':'order';state.step=1;}}
+  var presetSku={custom:'EVT-CUSTOM-200',wedding:'EVT-WED-200',marriage:'EVT-WED-200',birthday:'EVT-BDAY-200',shrimant:'EVT-SHRIMANT-200',babyshower:'EVT-SHRIMANT-200',anniversary:'EVT-ANNIV-200',corporate:'EVT-CORP-200',sample:'SAMPLE-ANJ-200',query:'QUERY'};
+  if(preset){var wantedSku=presetSku[preset.toLowerCase()]||'';var match=products.find(function(p){return wantedSku?p.sku===wantedSku:(p.value.toLowerCase().indexOf(preset.toLowerCase())!==-1||preset.toLowerCase().indexOf(p.value.toLowerCase())!==-1);});if(match){state.data.product=match.value;state.data.skuCode=match.sku;state.data.requestType=match.value==='General Query'?'query':match.value.indexOf('Free Sample')===0?'sample':'order';state.step=1;}}
   render();
 })();
 </script>
