@@ -433,6 +433,7 @@
     if(state.step===0&&!d.product)return 'Please choose a product or request type.';
     if(state.step===1&&d.requestType==='query'&&!d.query.trim())return 'Please enter your question.';
     if(state.step===1&&d.requestType!=='query'&&!d.quantity.trim())return 'Please enter the required quantity.';
+    if(state.step===3&&d.requestType!=='query'&&!d.deliveryDate)return 'Please choose your required delivery date.';
     if(state.step===4&&!d.name.trim())return 'Please enter your name.';
     if(state.step===5&&!/^\+?[0-9\s()-]{10,16}$/.test(d.phone.trim()))return 'Please enter a valid phone number.';
     if(state.step===6&&d.requestType!=='query'&&(!d.area||!d.address.trim()))return 'Please select your area and enter the full delivery address.';
