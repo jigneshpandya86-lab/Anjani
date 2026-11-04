@@ -140,6 +140,19 @@
 .contact-info-card .ci-icon { font-size: 2rem; margin-bottom: 10px; flex-shrink: 0; }
 .contact-info-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--deep); margin-bottom: 5px; flex-shrink: 0; }
 .contact-info-card a, .contact-info-card p { font-size: 0.85rem; color: var(--ocean); font-weight: 500; margin: 0; }
+.location-map {
+  width: 100%;
+  min-height: 320px;
+  overflow: hidden;
+  border: 1px solid #e1eff8;
+  border-radius: var(--r);
+  box-shadow: 0 5px 22px rgba(0,119,182,0.09);
+  background: #f4f8fb;
+}
+.location-map iframe { width: 100%; height: 480px; }
+@media(max-width:600px) {
+  .location-map iframe { height: 380px; }
+}
 #sample { scroll-margin-top: 80px; }
 @media(max-width:600px){ .contact-info-grid{grid-template-columns:1fr; gap:12px;} .contact-info-card{min-height:unset;height:auto;padding:18px 16px;} }
 </style>
@@ -297,6 +310,27 @@
           <div class="success-msg" id="sampleSuccess">🎉 Your request is ready in WhatsApp. Please tap Send there to confirm it.</div>
         </form>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE MAPS LOCATION LOCATOR -->
+<section id="find-us" style="background:#fff">
+  <div class="section-inner">
+    <span class="section-tag">Visit &amp; Locate Us</span>
+    <h2 class="section-title">Find Anjani Water</h2>
+    <p class="section-sub">Use our interactive Google Maps locator to explore our location and find us easily.</p>
+    <div class="location-map reveal">
+      <iframe
+        src="https://storage.googleapis.com/maps-solutions-0ppiuwszio/locator-plus/hwq3/locator-plus.html"
+        title="Anjani Water location map"
+        width="100%"
+        height="480"
+        style="border:0; display:block;"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 </section>
