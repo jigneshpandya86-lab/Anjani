@@ -501,16 +501,27 @@
     }
     function choosePrediction(prediction){
       if(!prediction)return;
-      prediction.toPlace().fetchFields({fields:['formattedAddress','location']}).then(function(place){
-        if(!place.location){if(status)status.textContent='Could not locate this result. Please enter the full address manually.';return;}
-        setLocation(place.location,place.formattedAddress||'');
-        searchInput.value=place.formattedAddress||'Selected Google Maps location';
-        autocompleteToken=null;
-      }).catch(function(error){
-        console.error('[Anjani Maps] Place details failed:',error);
-        var detail=error&&error.message?error.message:(error&&error.name?error.name:'Unknown error');
-        if(status)status.textContent='Google place details error: '+detail+'. Please enter the full address manually below.';
-      });
+      if(suggestionsBox)suggestionsBox.classList.remove('open');
+      if(status)status.textContent='Loading the selected address…';
+      try{
+        var selectedPlace=prediction.toPlace();
+        selectedPlace.fetchFields({fields:['formattedAddress','location']}).then(function(place){
+          if(!place.location){
+            if(status)status.textContent='Could not locate this result. Please choose another suggestion or enter the full address manually.';
+            return;
+          }
+          setLocation(place.location,place.formattedAddress||'');
+          searchInput.value=place.formattedAddress||'Selected Google Maps location';
+          autocompleteToken=null;
+        }).catch(function(error){
+          console.error('[Anjani Maps] Place details failed:',error);
+          var detail=error&&error.message?error.message:(error&&error.name?error.name:'Unknown error');
+          if(status)status.textContent='Google place details error: '+detail+'. Please choose another result or enter the full address manually.';
+        });
+      }catch(error){
+        console.error('[Anjani Maps] Could not select place prediction:',error);
+        if(status)status.textContent='This suggestion could not be selected. Please try another result or enter the full address manually.';
+      }
     }
     function searchPlaces(){
       var query=searchInput.value.trim();
@@ -542,7 +553,18 @@
           if(prediction.secondaryText){
             var small=document.createElement('small');small.textContent=prediction.secondaryText.toString();button.appendChild(small);
           }
-          button.addEventListener('click',function(){choosePrediction(prediction);});
+          // Handle touch and mouse selection before the input loses focus.
+          // Preventing the default pointer action keeps the suggestion tappable on mobile.
+          button.addEventListener('pointerdown',function(event){
+            event.preventDefault();
+            choosePrediction(prediction);
+          });
+          button.addEventListener('keydown',function(event){
+            if(event.key==='Enter'||event.key===' '){
+              event.preventDefault();
+              choosePrediction(prediction);
+            }
+          });
           suggestionsBox.appendChild(button);
         });
         suggestionsBox.classList.toggle('open',list.length>0);
