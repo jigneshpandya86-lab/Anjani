@@ -883,3 +883,137 @@ footer ul a:hover { opacity: 1; text-decoration: underline; }
   .article-body img { max-height: 260px; margin: 16px auto; }
   .product-img img { max-width: 72%; max-height: 132px; }
 }
+
+ 
+/* ─── MOBILE-FIRST POLISH: ALL SITE PAGES ───
+   Shared refinements for compact cards, readable content and touch targets.
+   Desktop rules remain unchanged.
+*/
+@media (max-width: 900px) {
+  .section-inner { min-width: 0; }
+  .priority-areas-grid { grid-template-columns: minmax(0,1fr); gap: 18px; }
+  .priority-area-actions { min-width: 0; width: 100%; flex-direction: row; flex-wrap: wrap; }
+  .priority-area-actions a { flex: 1 1 190px; }
+  .footer-grid { gap: 22px; }
+  .product-card, .update-card, .usecase-card, .testi-card,
+  .client-card, .branding-card, .form-card, .page-link-card,
+  .pillar-card { min-width: 0; }
+}
+
+@media (max-width: 768px) {
+  nav { padding-left: 4%; padding-right: 4%; min-height: 62px; }
+  nav.scrolled { padding-left: 4%; padding-right: 4%; }
+  .nav-logo { font-size: 1.28rem; }
+  .page-hero h1 { max-width: 760px; margin-left: auto; margin-right: auto; }
+  .page-hero p { max-width: 620px; }
+  .footer-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .priority-area-actions a { min-height: 46px; }
+}
+
+@media (max-width: 600px) {
+  /* Keep the page compact without making text or controls hard to use. */
+  section { padding-top: 42px; padding-bottom: 42px; }
+  .section-inner { width: 100%; }
+  .section-tag { margin-bottom: 8px; }
+  .section-title { line-height: 1.2; overflow-wrap: anywhere; }
+  .section-sub { margin-bottom: 22px; }
+  .page-hero { padding-top: 82px; padding-bottom: 32px; }
+  .page-hero-tag { margin-bottom: 10px; }
+  .page-hero h1 { line-height: 1.16; margin-bottom: 9px; }
+  .page-hero p { line-height: 1.6; }
+
+  /* Compact, consistent card spacing across Home, Products, Updates,
+     Who We Serve, Why Choose Us and Contact pages. */
+  .products-grid, .updates-grid, .usecases-grid, .testimonials-grid,
+  .clients-grid, .branding-grid, .pages-grid, .pillars-grid,
+  .updates-preview-grid { gap: 12px !important; }
+
+  .product-card, .update-card, .usecase-card, .testi-card,
+  .client-card, .branding-card, .form-card, .page-link-card,
+  .pillar-card, .contact-info-card {
+    border-radius: 13px;
+    min-width: 0;
+  }
+  .product-body { padding: 15px 14px 16px; }
+  .product-name { font-size: 1.08rem; line-height: 1.25; margin-bottom: 6px; }
+  .product-desc { font-size: .8rem; line-height: 1.6; margin-bottom: 9px; }
+  .product-price { margin-bottom: 11px; }
+  .product-img { height: 142px; }
+  .product-img img { max-height: 122px; }
+  .product-order { min-height: 44px; }
+
+  .update-card-top { padding: 14px 14px 11px; }
+  .update-card-top h3 { font-size: .92rem; line-height: 1.3; }
+  .update-card-top .update-emoji { top: 13px; right: 13px; font-size: 1.35rem; }
+  .update-card-img, .update-card-img img { height: 150px; }
+  .update-card-body { padding: 12px 14px 14px; }
+  .update-body-text { font-size: .8rem; line-height: 1.6; margin-bottom: 10px; }
+
+  .usecase-card { padding: 15px 14px; min-height: 0; }
+  .usecase-icon { font-size: 1.45rem; margin-bottom: 7px; }
+  .usecase-card h4 { font-size: .9rem; margin-bottom: 4px; }
+  .usecase-card p { font-size: .79rem; line-height: 1.55; }
+  .testi-card { padding: 15px 14px; }
+  .testi-text { font-size: .8rem; line-height: 1.6; margin-bottom: 10px; }
+  .testi-author { padding-top: 9px; }
+  .client-card { padding: 12px; gap: 10px; }
+  .client-emblem { width: 40px; height: 40px; border-radius: 11px; }
+  .client-name { font-size: .94rem; }
+  .client-type { font-size: .73rem; margin-bottom: 4px; }
+  .branding-card { padding: 16px 14px; min-height: 0; }
+  .branding-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .branding-card h3 { font-size: 1rem; margin-bottom: 5px; }
+  .branding-card p { font-size: .8rem; line-height: 1.55; }
+  .branding-steps-banner { padding: 18px 14px; margin-top: 20px; }
+  .branding-steps-header { margin-bottom: 15px; }
+  .branding-step { padding: 11px 12px; }
+  .page-link-card, .pillar-card { padding: 16px 14px; }
+  .form-card { padding: 17px 14px; }
+  .form-card h3 { font-size: 1.2rem; }
+  .contact-info-grid { gap: 9px !important; }
+  .contact-info-card { padding: 12px 13px !important; }
+
+  /* Better text wrapping and no accidental horizontal page overflow. */
+  .section-inner, .page-hero, .priority-areas, .sample-band,
+  .article-body, .faq-list, .footer-grid, .footer-bottom { min-width: 0; }
+  .article-body { overflow-wrap: anywhere; }
+  .article-body p, .article-body li { line-height: 1.7; }
+  .article-body h2 { font-size: 1.35rem; }
+  .article-body h3 { font-size: 1.1rem; }
+  .compare-table-wrap { max-width: 100%; }
+  .compare-table { min-width: 480px; }
+  .priority-area-actions { flex-direction: column; gap: 9px; }
+  .priority-area-actions a { width: 100%; flex: auto; }
+  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+  footer { padding: 34px 5% 18px; }
+  footer h4 { margin-bottom: 8px; }
+  .footer-grid > div { min-width: 0; }
+  .footer-bottom { overflow-wrap: anywhere; }
+  .faq-list { gap: 9px; }
+  .faq-q { padding: 13px 14px; }
+  .faq-a { padding: 0 14px 13px; }
+  .sample-band { padding: 40px 4%; }
+  .sample-band .section-title { font-size: clamp(1.4rem,5vw,1.8rem); }
+  .usecase-brands { gap: 7px; margin-top: 18px; }
+  .brand-chip { max-width: 100%; overflow-wrap: anywhere; }
+  .social-btn { flex: 0 0 42px; }
+  .wa-float { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+  .order-float { bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+}
+
+@media (max-width: 380px) {
+  nav { padding-left: 14px; padding-right: 14px; }
+  .nav-logo { font-size: 1.18rem; }
+  .page-hero h1 { font-size: 1.62rem; }
+  .section-title { font-size: 1.42rem; }
+  .product-body, .update-card-body { padding-left: 12px; padding-right: 12px; }
+  .compare-table { min-width: 460px; }
+  .footer-bottom { font-size: .69rem; }
+}
+
+/* Prevent mobile browsers from zooming the page on form focus. */
+@media (max-width: 600px) {
+  input, select, textarea, button { font-family: var(--font); }
+  input, select, textarea { font-size: 16px; }
+  button, a { -webkit-tap-highlight-color: rgba(0,119,182,.12); }
+}
