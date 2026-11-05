@@ -1,6 +1,11 @@
 name: Auto Generate Water Update
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/generate-update.js'
+      - '.github/workflows/auto-update.yml'
   schedule:
     - cron: '30 3 * * 1'   # Every Monday at 9:00 AM IST (3:30 UTC)
   workflow_dispatch:        # Also allows manual trigger
@@ -16,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Generate update
         env:
