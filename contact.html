@@ -525,8 +525,15 @@
           }).catch(function(){showFallback();});
         });
         if(status)status.textContent='Search for a place and choose a Google suggestion, or tap anywhere on the map to drop a delivery pin.';
-        if(state.data.mapUrl&&state.data.address&&deliveryGeocoder){
-          // Existing values are retained when navigating back through the order steps.
+        if(state.data.mapUrl){
+          try{
+            var savedUrl=new URL(state.data.mapUrl);
+            var savedCoords=(savedUrl.searchParams.get('query')||'').split(',');
+            if(savedCoords.length===2){
+              var savedLat=Number(savedCoords[0]),savedLng=Number(savedCoords[1]);
+              if(Number.isFinite(savedLat)&&Number.isFinite(savedLng))setLocation({lat:savedLat,lng:savedLng},state.data.address);
+            }
+          }catch(ignore){}
         }
       }).catch(function(){showFallback();});
     }
