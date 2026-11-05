@@ -1,7 +1,11 @@
 import fs from 'fs';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+if (!GEMINI_API_KEY) {
+  throw new Error('GEMINI_API_KEY secret is missing. Add it in repository Settings > Secrets and variables > Actions.');
+}
 const MAX_ITEMS = 12;
+const GEMINI_MODEL = 'gemini-3.6-flash';
 
 const todayObj = new Date();
 const today = todayObj.toISOString().split('T')[0]; // YYYY-MM-DD
@@ -42,7 +46,7 @@ async function generateUpdate() {
   console.log('Calling Gemini API with Search Grounding & SEO...');
 
   const response = await fetch(
-    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY,
+    'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + encodeURIComponent(GEMINI_API_KEY),
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -63,7 +67,13 @@ async function generateUpdate() {
   }
 
   const data = await response.json();
-  const text = data.candidates[0].content.parts[0].text.trim();
+  const candidate = data.candidates && data.candidates[0];
+  const text = candidate && candidate.content && Array.isArray(candidate.content.parts)
+    ? candidate.content.parts.map(function(part) { return part.text || ''; }).join('\n').trim()
+    : '';
+  if (!text) {
+    throw new Error('Gemini returned no text content. Response: ' + JSON.stringify(data).substring(0, 1000));
+  }
   console.log('Raw response:', text.substring(0, 300));
 
   const jsonMatch = text.match(/\{[\s\S]*\}/);
