@@ -444,7 +444,7 @@
       answer.innerHTML='<div class="wizard-summary">'+rows.filter(function(r){return r[1];}).map(function(r){return '<div class="wizard-summary-row"><span>'+esc(r[0])+'</span><strong>'+esc(r[1])+'</strong></div>';}).join('')+'</div><p class="wizard-field-help" style="margin-top:12px">Tap “Send on WhatsApp” to open WhatsApp with these details. Please press Send in WhatsApp to submit your request.</p>';
     }
   }
-  function bind(id,key){var el=document.getElementById(id);if(el)el.addEventListener('input',function(){state.data[key]=el.value;});}
+  function bind(id,key){var el=document.getElementById(id);if(el){var eventName=el.tagName==='SELECT'?'change':'input';el.addEventListener(eventName,function(){state.data[key]=el.value;});}}
   function validate(){
     var d=state.data;
     if(state.step===0&&!d.product)return 'Please choose a product or request type.';
