@@ -564,18 +564,38 @@
     if(status)status.textContent='You can type here immediately. Google suggestions will appear as you type; manual address entry is always available below.';
     if(!mapsLoadPromise){
       mapsLoadPromise=new Promise(function(resolve,reject){
-        if(window.google&&google.maps&&google.maps.importLibrary){resolve();return;}
+        if(window.google&&google.maps&&typeof google.maps.importLibrary==='function'){resolve();return;}
+        // Use Google's official Dynamic Library Import bootstrap. A plain script tag
+        // does not reliably install importLibrary on pages with other Maps loaders.
         var existing=document.querySelector('script[data-anjani-maps]');
         if(existing){
-          existing.addEventListener('load',resolve,{once:true});
-          existing.addEventListener('error',reject,{once:true});
+          existing.addEventListener('load',function(){
+            if(window.google&&google.maps&&typeof google.maps.importLibrary==='function')resolve();
+            else reject(new Error('Google Maps loaded without the importLibrary loader.'));
+          },{once:true});
+          existing.addEventListener('error',function(){reject(new Error('Google Maps JavaScript script failed to load.'));},{once:true});
           return;
         }
-        var script=document.createElement('script');
-        script.dataset.anjaniMaps='1';
-        script.src='https://maps.googleapis.com/maps/api/js?key='+encodeURIComponent(mapsApiKey)+'&v=weekly&loading=async';
-        script.async=true;script.defer=true;script.onload=resolve;script.onerror=reject;
-        document.head.appendChild(script);
+        (function(config){
+          var h,a,k,p='The Google Maps JavaScript API',c='google',l='importLibrary',q='__ib__',m=document,b=window;
+          b=b[c]||(b[c]={});
+          var d=b.maps||(b.maps={}),libraries=new Set,params=new URLSearchParams;
+          var load=function(){return h||(h=new Promise(async function(ok,fail){
+            a=m.createElement('script');
+            params.set('libraries',Array.from(libraries).join(','));
+            for(k in config)params.set(k.replace(/[A-Z]/g,function(t){return '_'+t[0].toLowerCase();}),config[k]);
+            params.set('callback',c+'.maps.'+q);
+            a.src='https://maps.'+c+'apis.com/maps/api/js?'+params.toString();
+            d[q]=ok;
+            a.onerror=function(){h=fail(new Error(p+' could not load.'));};
+            a.dataset.anjaniMaps='1';
+            a.nonce=m.querySelector('script[nonce]')?.nonce||'';
+            m.head.append(a);
+          }));};
+          if(d[l]){reject(new Error('Another Google Maps loader is already installed.'));return;}
+          d[l]=function(name){libraries.add(name);return load().then(function(){return d[l](name);});};
+          d[l]('places').then(resolve).catch(reject);
+        })({key:mapsApiKey,v:'weekly'});
       });
     }
     mapsLoadPromise.then(function(){
