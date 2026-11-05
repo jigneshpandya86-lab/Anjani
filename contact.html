@@ -221,6 +221,20 @@
 
 .wizard-delivery-map{width:100%;height:230px;margin-top:12px;border:1px solid #dce8f0;border-radius:13px;overflow:hidden;background:#edf3f7}.wizard-delivery-map.map-unavailable{display:none}.wizard-place-picker{position:relative;width:100%;min-height:54px;border:1.5px solid #dce8f0;border-radius:12px;background:#fff;padding:6px 10px;display:block}.wizard-place-picker:focus-within{border-color:var(--ocean);box-shadow:0 0 0 3px rgba(0,119,182,.1)}.wizard-place-search{display:block!important;width:100%;min-height:40px!important;padding:8px 4px!important;border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;color:var(--text)!important;font:inherit!important;font-size:16px!important}.wizard-place-search:focus{outline:0!important;box-shadow:none!important}.wizard-place-suggestions{display:none;position:absolute;z-index:1000;top:calc(100% + 5px);left:0;right:0;max-height:260px;overflow-y:auto;background:#fff;border:1px solid #dce8f0;border-radius:12px;box-shadow:0 12px 28px rgba(2,62,138,.16)}.wizard-place-suggestions.open{display:block}.wizard-place-suggestion{display:block;width:100%;padding:12px 14px;border:0;border-bottom:1px solid #edf2f6;background:#fff;text-align:left;color:var(--deep);font:inherit;font-size:.84rem;line-height:1.4;cursor:pointer}.wizard-place-suggestion:last-child{border-bottom:0}.wizard-place-suggestion:active,.wizard-place-suggestion:hover{background:#f0f7fc}.wizard-place-suggestion small{display:block;color:var(--muted);font-size:.72rem;margin-top:3px}
 .wizard-quantity-fields{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(120px,1fr);gap:10px;align-items:center}.wizard-quantity-fields .wizard-field{min-width:0}@media(max-width:420px){.wizard-quantity-fields{grid-template-columns:minmax(0,1.2fr) minmax(110px,1fr);gap:8px}}
+
+/* Compact, expandable page heading cards */
+.compact-expand-card{max-width:100%;margin:0 auto;border:1px solid #dcecf6;border-radius:14px;background:rgba(255,255,255,.94);box-shadow:0 4px 16px rgba(2,62,138,.06);text-align:left;}
+.compact-expand-card>summary{list-style:none;display:flex;align-items:center;gap:10px;min-height:54px;padding:10px 16px;cursor:pointer;position:relative;}
+.compact-expand-card>summary::-webkit-details-marker{display:none;}
+.compact-expand-card>summary h1,.compact-expand-card>summary h2{flex:1;min-width:0;margin:0!important;font-size:clamp(.92rem,2.3vw,1.12rem)!important;line-height:1.3!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.compact-expand-card>summary .page-hero-tag,.compact-expand-card>summary .section-tag{flex-shrink:0;margin:0;font-size:.65rem;}
+.expand-indicator{flex-shrink:0;color:var(--ocean);font-size:1.25rem;line-height:1;transition:transform .2s ease;}
+.compact-expand-card[open]>summary .expand-indicator{transform:rotate(180deg);}
+.compact-expand-content{padding:0 16px 13px;border-top:1px solid #edf3f7;}
+.compact-expand-content p{margin:10px 0 0!important;font-size:.82rem;line-height:1.55;}
+.page-hero .compact-expand-card{max-width:850px;}
+.wizard-heading .compact-expand-card{max-width:680px;}
+@media(max-width:600px){.compact-expand-card>summary{min-height:48px;padding:9px 11px;gap:7px}.compact-expand-card>summary h1,.compact-expand-card>summary h2{font-size:.88rem!important}.compact-expand-card>summary .page-hero-tag,.compact-expand-card>summary .section-tag{font-size:.58rem}.compact-expand-content{padding:0 11px 10px}}
 </style>
 </head>
 <body>
@@ -228,9 +242,10 @@
 <nav id="navbar"></nav>
 
 <div class="page-hero">
-  <span class="page-hero-tag">Buy &amp; Order Online</span>
-  <h1>Buy Packaged Drinking Water in Vadodara</h1>
-  <p>Request a bulk quote for your wedding, catering business, shop or office. Share your area, quantity and delivery date so we can confirm stock and delivery.</p>
+  <details class="compact-expand-card">
+    <summary><span class="page-hero-tag">Buy &amp; Order Online</span><h1>Buy Packaged Drinking Water in Vadodara</h1><span class="expand-indicator" aria-hidden="true">⌄</span></summary>
+    <div class="compact-expand-content"><p>Request a bulk quote for your wedding, catering business, shop or office. Share your area, quantity and delivery date so we can confirm stock and delivery.</p></div>
+  </details>
 </div>
 
 <!-- CONTACT INFO -->
@@ -241,9 +256,10 @@
     <!-- UNIFIED CHAT-STYLE ORDER WIZARD -->
     <div class="order-wizard-wrap" id="order">
       <div class="wizard-heading">
-        <span class="section-tag">A Simple, Guided Order</span>
-        <h2 class="section-title">Let’s Get Your Water Delivered</h2>
-        <p class="section-sub">Choose your product or event type. Your selection is recorded with a dedicated SKU so we can understand your requirement and respond with the right quote.</p>
+        <details class="compact-expand-card">
+          <summary><span class="section-tag">A Simple, Guided Order</span><h2 class="section-title">Let’s Get Your Water Delivered</h2><span class="expand-indicator" aria-hidden="true">⌄</span></summary>
+          <div class="compact-expand-content"><p class="section-sub">Choose your product or event type. Your selection is recorded with a dedicated SKU so we can understand your requirement and respond with the right quote.</p></div>
+        </details>
       </div>
       <div class="order-wizard reveal" id="orderWizard" aria-live="polite">
         <div class="wizard-topline">
@@ -522,6 +538,8 @@
         includedRegionCodes:['in'],
         language:'en',
         region:'in',
+        // Restrict autocomplete results to the Vadodara urban delivery area.
+        locationRestriction:{north:22.43,south:22.22,east:73.27,west:73.08},
         origin:{lat:22.3072,lng:73.1812},
         sessionToken:autocompleteToken
       }).then(function(response){
@@ -606,7 +624,8 @@
       var maps=libs[1];
       deliveryMap=new maps.Map(mapHost,{
         center:{lat:22.3072,lng:73.1812},zoom:12,mapTypeControl:false,
-        streetViewControl:false,fullscreenControl:true,clickableIcons:false
+        streetViewControl:false,fullscreenControl:true,clickableIcons:false,
+        restriction:{latLngBounds:{north:22.43,south:22.22,east:73.27,west:73.08},strictBounds:true}
       });
       deliveryGeocoder=new google.maps.Geocoder();
       deliveryMap.addListener('click',function(event){if(event.latLng)reverseGeocode(event.latLng);});
