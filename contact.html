@@ -503,8 +503,10 @@
         setLocation(place.location,place.formattedAddress||'');
         searchInput.value=place.formattedAddress||'Selected Google Maps location';
         autocompleteToken=null;
-      }).catch(function(){
-        if(status)status.textContent='Could not load that place. Please keep or enter the full address manually.';
+      }).catch(function(error){
+        console.error('[Anjani Maps] Place details failed:',error);
+        var detail=error&&error.message?error.message:(error&&error.name?error.name:'Unknown error');
+        if(status)status.textContent='Google place details error: '+detail+'. Please enter the full address manually below.';
       });
     }
     function searchPlaces(){
@@ -540,10 +542,12 @@
         });
         suggestionsBox.classList.toggle('open',list.length>0);
         if(status)status.textContent=list.length?'Choose the correct address from the Google suggestions, or tap the map to place a pin.':'No matching suggestions yet. Try a shorter search or enter the full address manually below.';
-      }).catch(function(){
+      }).catch(function(error){
         if(requestId!==searchSequence)return;
+        console.error('[Anjani Maps] Places autocomplete request failed:',error);
         if(suggestionsBox){suggestionsBox.innerHTML='';suggestionsBox.classList.remove('open');}
-        if(status)status.textContent='Google search is not responding. You can still enter the complete delivery address manually below.';
+        var detail=error&&error.message?error.message:(error&&error.name?error.name:'Unknown error');
+        if(status)status.textContent='Google Places autocomplete error: '+detail+'. Check that Places API (New) is enabled and allowed for this key. Manual address entry is still available.';
       });
     }
     searchInput.addEventListener('input',function(){
@@ -597,10 +601,18 @@
           }
         }catch(ignore){}
       }
-    }).catch(function(){
-      showFallback('Google Maps could not connect. The search box remains editable, and you can enter the full delivery address manually below.');
+    }).catch(function(error){
+      console.error('[Anjani Maps] Maps/Places library initialization failed:',error);
+      var detail=error&&error.message?error.message:(error&&error.name?error.name:'Unknown error');
+      showFallback('Google Maps initialization error: '+detail+'. Check the API key restrictions and enabled APIs. You can still enter the full address manually below.');
     });
   }
+  // Google calls this callback when the Maps JavaScript API key fails authentication.
+  window.gm_authFailure=function(){
+    console.error('[Anjani Maps] Google Maps authentication failed. Check key restrictions, API restrictions and billing.');
+    var status=document.getElementById('wiz-place-status');
+    if(status)status.textContent='Google Maps authentication failed. Check this key’s website restrictions and allowed APIs in Google Cloud. Manual address entry remains available.';
+  };
   function bind(id,key){var el=document.getElementById(id);if(el){var eventName=el.tagName==='SELECT'?'change':'input';el.addEventListener(eventName,function(){state.data[key]=el.value;});}}
   function validate(){
     var d=state.data;
