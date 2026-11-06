@@ -523,8 +523,15 @@
           if(resolvedAddress)fillDeliveryAddress(resolvedAddress);
           if(place.location){
             setLocation(place.location,resolvedAddress);
-          }else if(status){
-            status.textContent='Address filled in. Map coordinates were not returned; you can still edit the address below.';
+          }
+          // Keep a shareable Google Maps URL even if the API omits coordinates.
+          if(place.id){
+            state.data.mapUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(resolvedAddress||suggestedAddress||'Vadodara Gujarat')+'&query_place_id='+encodeURIComponent(place.id);
+          }else if(!state.data.mapUrl&&(resolvedAddress||suggestedAddress)){
+            state.data.mapUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(resolvedAddress||suggestedAddress);
+          }
+          if(!place.location&&status){
+            status.textContent='Address filled in. Map coordinates were not returned; a Google Maps search link has been saved with the address.';
           }
           searchInput.value=resolvedAddress||suggestedAddress;
           autocompleteToken=null;
@@ -702,6 +709,10 @@
   }
   function send(){
     var d=state.data;
+    // Always include a Google Maps link in WhatsApp. Prefer the selected pin;
+    // otherwise create a Maps search link from the address the customer entered.
+    var mapsLink=d.mapUrl|| (d.address ? 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(d.address+', Vadodara, Gujarat') : '');
+    d.mapUrl=mapsLink;
     var payload={
       type:d.requestType==='query'?'query':d.requestType==='sample'?'sample':'order',
       product:d.product,skuCode:d.skuCode,leadCategory:d.requestType==='sample'?'SAMPLE':d.requestType==='query'?'QUERY':d.skuCode.indexOf('EVT-')===0?'EVENT':'BULK',quantity:d.quantity,quantityUnit:d.quantityUnit,query:d.query,callTime:d.callTime,
@@ -715,7 +726,7 @@
       'Preferred time: '+d.callTime,
       'Required date: '+(d.deliveryDate||'Not specified'),
       'Name: '+d.name,'Phone: '+d.phone,
-      'Area: '+(d.area||'Not specified'),'Address: '+(d.address||'Not specified'),d.mapUrl?'Google Maps location: '+d.mapUrl:''
+      'Area: '+(d.area||'Not specified'),'Address: '+(d.address||'Not specified'),mapsLink?'Google Maps location: '+mapsLink:''
     ];
     var msg='Hi Anjani Water, I would like to submit this request:\n\n'+lines.join('\n')+'\n\nPlease confirm price, stock and delivery availability.';
     window.open('https://wa.me/919925997750?text='+encodeURIComponent(msg),'_blank','noopener');
