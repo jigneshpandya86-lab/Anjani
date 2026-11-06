@@ -510,8 +510,13 @@
             if(status)status.textContent='Could not locate this result. Please choose another suggestion or enter the full address manually.';
             return;
           }
-          setLocation(place.location,place.formattedAddress||'');
-          searchInput.value=place.formattedAddress||'Selected Google Maps location';
+          // Always copy the selected Google result into the editable delivery address.
+          var resolvedAddress=place.formattedAddress||(prediction.text?prediction.text.toString():'');
+          setLocation(place.location,resolvedAddress);
+          state.data.address=resolvedAddress;
+          var addressField=document.getElementById('wiz-address');
+          if(addressField)addressField.value=resolvedAddress;
+          searchInput.value=resolvedAddress||'Selected Google Maps location';
           autocompleteToken=null;
         }).catch(function(error){
           console.error('[Anjani Maps] Place details failed:',error);
