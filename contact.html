@@ -499,33 +499,54 @@
         }
       });
     }
+    function fillDeliveryAddress(address){
+      if(!address)return;
+      state.data.address=address;
+      var field=document.getElementById('wiz-address');
+      if(field){
+        field.value=address;
+        field.dispatchEvent(new Event('input',{bubbles:true}));
+      }
+    }
     function choosePrediction(prediction){
       if(!prediction)return;
       if(suggestionsBox)suggestionsBox.classList.remove('open');
-      if(status)status.textContent='Loading the selected address…';
+      // Fill immediately from the selected suggestion so the address field
+      // is populated even before the Place Details request completes.
+      var suggestedAddress=prediction.text?prediction.text.toString():'';
+      if(suggestedAddress)fillDeliveryAddress(suggestedAddress);
+      if(status)status.textContent='Address selected. Fetching the full Google Maps address…';
       try{
         var selectedPlace=prediction.toPlace();
         selectedPlace.fetchFields({fields:['formattedAddress','location']}).then(function(place){
-          if(!place.location){
-            if(status)status.textContent='Could not locate this result. Please choose another suggestion or enter the full address manually.';
-            return;
+          var resolvedAddress=place.formattedAddress||suggestedAddress;
+          if(resolvedAddress)fillDeliveryAddress(resolvedAddress);
+          if(place.location){
+            setLocation(place.location,resolvedAddress);
+          }else if(status){
+            status.textContent='Address filled in. Map coordinates were not returned; you can still edit the address below.';
           }
-          // Always copy the selected Google result into the editable delivery address.
-          var resolvedAddress=place.formattedAddress||(prediction.text?prediction.text.toString():'');
-          setLocation(place.location,resolvedAddress);
-          state.data.address=resolvedAddress;
-          var addressField=document.getElementById('wiz-address');
-          if(addressField)addressField.value=resolvedAddress;
-          searchInput.value=resolvedAddress||'Selected Google Maps location';
+          searchInput.value=resolvedAddress||suggestedAddress;
           autocompleteToken=null;
+          if(status&&place.location)status.textContent='Address filled in below. You can edit it to add your flat / shop number or landmark.';
         }).catch(function(error){
           console.error('[Anjani Maps] Place details failed:',error);
-          var detail=error&&error.message?error.message:(error&&error.name?error.name:'Unknown error');
-          if(status)status.textContent='Google place details error: '+detail+'. Please choose another result or enter the full address manually.';
+          if(suggestedAddress){
+            fillDeliveryAddress(suggestedAddress);
+            if(status)status.textContent='Selected address filled in below. The full address could not be retrieved, but you can edit it.';
+          }else{
+            var detail=error&&error.message?error.message:(error&&error.name?error.name:'Unknown error');
+            if(status)status.textContent='Google place details error: '+detail+'. Please enter the full address manually below.';
+          }
         });
       }catch(error){
         console.error('[Anjani Maps] Could not select place prediction:',error);
-        if(status)status.textContent='This suggestion could not be selected. Please try another result or enter the full address manually.';
+        if(suggestedAddress){
+          fillDeliveryAddress(suggestedAddress);
+          if(status)status.textContent='Selected address filled in below. You can edit it as needed.';
+        }else if(status){
+          status.textContent='This suggestion could not be selected. Please enter the full address manually below.';
+        }
       }
     }
     function searchPlaces(){
