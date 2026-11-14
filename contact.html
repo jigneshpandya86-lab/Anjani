@@ -338,7 +338,7 @@
   var root = document.getElementById('orderWizard');
   if (!root) return;
   var state = {
-    step: 0,
+    step: -1,
     data: {
       requestType: '',
       product: '',
@@ -390,19 +390,36 @@
   var back=document.getElementById('wizardBack');
   var next=document.getElementById('wizardNext');
   var total=8;
+  var customerStorageKey='anjani_customer_profile_v1';
+  var isNewCustomer=false;
+  function normalizedPhone(v){var n=String(v||'').replace(/\D/g,'');return n.length===12&&n.slice(0,2)==='91'?n.slice(2):n;}
+  function readLocalProfile(phone){
+    try{var p=JSON.parse(localStorage.getItem(customerStorageKey)||'null');return p&&p.phone===phone?p:null;}catch(e){return null;}
+  }
+  function saveLocalProfile(){
+    var d=state.data, phone=normalizedPhone(d.phone);
+    if(!/^[6-9][0-9]{9}$/.test(phone))return;
+    try{localStorage.setItem(customerStorageKey,JSON.stringify({phone:phone,name:d.name,address:d.address,area:d.area,mapUrl:d.mapUrl,updatedAt:new Date().toISOString()}));}catch(e){}
+  }
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function selected(v){return state.data.product===v?' selected':'';}
   function render(){
     var s=state.step, d=state.data;
-    question.textContent=questions[s][0];
-    hint.textContent=questions[s][1];
+    question.textContent=s===-1?'What is your mobile number?':s===-2?'Create your customer profile':questions[s][0];
+    hint.textContent=s===-1?'Enter your 10-digit Indian mobile number to begin.':s===-2?'Enter your name to create your customer profile before placing your first request.':questions[s][1];
     error.textContent='';
-    progress.style.width=((s+1)/total*100)+'%';
-    stepLabel.textContent='STEP '+(s+1)+' OF '+total;
-    percent.textContent=Math.round((s+1)/total*100)+'%';
-    back.disabled=s===0;
+    progress.style.width=(s<0?5:((s+1)/total*100))+'%';
+    stepLabel.textContent=s<0?'CUSTOMER PROFILE':'STEP '+(s+1)+' OF '+total;
+    percent.textContent=s<0?'START':Math.round((s+1)/total*100)+'%';
+    back.disabled=s===-1;
     next.textContent=s===7?'Send on WhatsApp →':'Continue →';
-    if(s===0){
+    if(s===-1){
+      answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-customer-phone">Mobile / WhatsApp number</label><input class="wizard-field" id="wiz-customer-phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="13" value="'+esc(d.phone)+'" placeholder="10-digit mobile number"><p class="wizard-field-help">No OTP or PIN. Your saved details are recognised on this browser; on another device, please enter your address again.</p></div>';
+      bind('wiz-customer-phone','phone');
+    } else if(s===-2){
+      answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-customer-name">Full name</label><input class="wizard-field" id="wiz-customer-name" type="text" autocomplete="name" value="'+esc(d.name)+'" placeholder="Your full name"></div><p class="wizard-field-help">This creates your customer profile. You can confirm or edit your details during checkout.</p>';
+      bind('wiz-customer-name','name');
+    } else if(s===0){
       answer.innerHTML='<div class="wizard-options">'+products.map(function(p){return '<button type="button" class="wizard-option'+selected(p.value)+'" data-product="'+esc(p.value)+'" data-sku="'+esc(p.sku)+'"><span class="wizard-option-icon">'+p.icon+'</span><span><strong>'+esc(p.label)+'</strong><small>'+esc(p.sub)+'</small></span></button>';}).join('')+'</div>';
       answer.querySelectorAll('[data-product]').forEach(function(btn){btn.addEventListener('click',function(){d.product=btn.getAttribute('data-product');d.skuCode=btn.getAttribute('data-sku');d.requestType=d.product==='General Query'?'query':d.product.indexOf('Free Sample')===0?'sample':'order';state.step=1;render();});});
     } else if(s===1){
@@ -730,6 +747,7 @@
     ];
     var msg='Hi Anjani Water, I would like to submit this request:\n\n'+lines.join('\n')+'\n\nPlease confirm price, stock and delivery availability.';
     window.open('https://wa.me/919925997750?text='+encodeURIComponent(msg),'_blank','noopener');
+    saveLocalProfile();
     if(window.SITE&&typeof SITE.sendToSheet==='function') SITE.sendToSheet(payload);
     answer.innerHTML='<div class="wizard-done"><div class="wizard-done-icon">✓</div><h3>Your request is ready!</h3><p>WhatsApp has opened with your details. Please tap <strong>Send</strong> there to reach Anjani Water. We’ll confirm availability and delivery with you.</p></div>';
     question.textContent='Thank you, '+d.name+'!';
@@ -737,8 +755,28 @@
     progress.style.width='100%'; stepLabel.textContent='READY TO SEND'; percent.textContent='100%';
     back.style.display='none'; next.style.display='none'; error.textContent='';
   }
-  back.addEventListener('click',function(){if(state.step>0){state.step--;render();}});
+  back.addEventListener('click',function(){
+    if(state.step===0){state.step=isNewCustomer?-2:-1;render();return;}
+    if(state.step===-2){state.step=-1;render();return;}
+    if(state.step>0){state.step--;render();}
+  });
   next.addEventListener('click',function(){
+    if(state.step===-1){
+      var phone=normalizedPhone(state.data.phone);
+      if(!/^[6-9][0-9]{9}$/.test(phone)){error.textContent='Enter a valid 10-digit Indian mobile number.';return;}
+      state.data.phone=phone;
+      var profile=readLocalProfile(phone);
+      isNewCustomer=!profile;
+      state.data.name=profile?profile.name:'';
+      state.data.address=profile?profile.address:'';
+      state.data.area=profile?profile.area:'';
+      state.data.mapUrl=profile?profile.mapUrl:'';
+      state.step=profile?0:-2;render();return;
+    }
+    if(state.step===-2){
+      if(!state.data.name.trim()){error.textContent='Please enter your name to create your profile.';return;}
+      state.step=0;render();return;
+    }
     var issue=validate(); if(issue){error.textContent=issue;return;}
     if(state.step===7){send();return;}
     state.step++;render();
