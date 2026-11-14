@@ -286,7 +286,7 @@ SITE.injectFooter = function() {
     '<div class="footer-grid">' +
       '<div class="footer-brand">' +
         '<a href="index.html" class="nav-logo" aria-label="Anjani Water Home">Anjani<span>Water</span></a>' +
-        '<p>Vadodara’s trusted water bottle supplier. Specializing exclusively in Anjani Premium 200ml packaged drinking water for weddings, caterers, party plots, showrooms and corporate offices for weddings, caterers, party plots, showrooms and corporate offices.</p>' +
+        '<p>Vadodara’s trusted water bottle supplier. Specializing exclusively in Anjani Premium 200ml packaged drinking water for weddings, caterers, party plots, showrooms and corporate offices.</p>' +
         '<div class="footer-social">' +
           '<a href="' + SITE.wa + '" class="social-btn" title="WhatsApp" aria-label="WhatsApp Anjani Water">💬</a>' +
           '<a href="tel:91' + SITE.phone + '" class="social-btn" title="Call Us" aria-label="Call Anjani Water">📞</a>' +
