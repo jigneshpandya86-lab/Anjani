@@ -314,8 +314,7 @@ SITE.injectFooter = function() {
           '<li><a href="updates.html">Latest Updates & Offers</a></li>' +
           '<li><a href="contact.html#order">Request a Quote</a></li>' +
           '<li><a href="contact.html?sku=sample#order">Free 200ml Sample</a></li>' +
-          '<li><a href="serve.html">Who We Serve</a></li>
-          <li><a href="200ml-water-bottle-for-weddings-vadodara.html">Wedding &amp; Event Water Supply</a></li>' +
+          '<li><a href="serve.html">Who We Serve</a></li>' +
           '<li><a href="why.html">Why Choose Us</a></li>' +
           '<li><a href="privacy.html">Privacy Policy</a></li>' +
           '<li><a href="returns.html">Return Policy</a></li>' +
