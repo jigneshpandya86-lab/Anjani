@@ -1017,3 +1017,83 @@ footer ul a:hover { opacity: 1; text-decoration: underline; }
   input, select, textarea { font-size: 16px; }
   button, a { -webkit-tap-highlight-color: rgba(0,119,182,.12); }
 }
+
+
+/* ─── MOBILE COMPACT CARD DENSITY ───
+   Keep cards readable while showing more choices per screen.
+   Product hero remains full width; browseable card collections use two columns.
+*/
+@media (max-width: 600px) {
+  .updates-grid, .usecases-grid, .testimonials-grid, .clients-grid,
+  .branding-grid, .pages-grid, .pillars-grid, .updates-preview-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+  .updates-grid > *, .usecases-grid > *, .testimonials-grid > *,
+  .clients-grid > *, .branding-grid > *, .pages-grid > *,
+  .pillars-grid > *, .updates-preview-grid > * { min-width: 0; }
+
+  .update-card { border-radius: 11px; }
+  .update-card-top { padding: 11px 11px 9px; min-height: 0; }
+  .update-card-top h3 { font-size: .84rem; line-height: 1.25; padding-right: 12px; }
+  .update-type-badge { font-size: .55rem; letter-spacing: .7px; padding: 2px 7px; margin-bottom: 6px; }
+  .update-card-top .update-emoji { top: 9px; right: 9px; font-size: 1.05rem; }
+  .update-card-img, .update-card-img img { height: 104px; }
+  .update-card-body { padding: 10px 11px 11px; }
+  .update-date { font-size: .58rem; letter-spacing: .5px; margin-bottom: 5px; }
+  .update-body-text { font-size: .73rem; line-height: 1.45; margin-bottom: 6px; }
+  .update-cta-link { font-size: .72rem; min-height: 34px; }
+
+  .usecase-card { padding: 12px 11px; min-height: 0; border-left-width: 3px; border-radius: 11px; }
+  .usecase-icon { font-size: 1.25rem; margin-bottom: 5px; }
+  .usecase-card h4 { font-size: .82rem; line-height: 1.25; }
+  .usecase-card p { font-size: .72rem; line-height: 1.45; }
+
+  .testi-card { padding: 12px 11px; border-radius: 11px; }
+  .testi-stars { font-size: .78rem; margin-bottom: 5px; }
+  .testi-text { font-size: .72rem; line-height: 1.45; margin-bottom: 7px; }
+  .testi-author { gap: 7px; padding-top: 7px; }
+  .testi-avatar { width: 29px; height: 29px; font-size: .72rem; }
+  .testi-name { font-size: .74rem; }
+  .testi-loc { font-size: .64rem; }
+
+  .client-card { padding: 10px; gap: 8px; min-height: 0; border-radius: 11px; align-items: flex-start; }
+  .client-emblem { width: 34px; height: 34px; font-size: 1rem; border-radius: 9px; }
+  .client-name { font-size: .82rem; line-height: 1.2; }
+  .client-type { font-size: .66rem; line-height: 1.3; }
+  .client-badge { font-size: .56rem; padding: 2px 6px; }
+
+  .branding-card { padding: 13px 11px; min-height: 0; border-radius: 11px; }
+  .branding-icon { font-size: 1.5rem; margin-bottom: 6px; }
+  .branding-card h3 { font-size: .88rem; line-height: 1.25; }
+  .branding-card p { font-size: .73rem; line-height: 1.45; }
+
+  .page-link-card, .pillar-card { padding: 13px 11px; border-radius: 11px; }
+  .section-title { margin-bottom: 8px; }
+  .section-sub { margin-bottom: 16px; }
+
+  /* Keep the main Anjani product presentation spacious and legible. */
+  .products-grid { grid-template-columns: 1fr !important; }
+  .product-card.featured { grid-column: auto; }
+  .product-body { padding: 15px 14px; }
+  .product-img { height: 132px; }
+  .product-img img { max-height: 112px; }
+
+  /* Compact but comfortable touch controls. */
+  .filter-bar { flex-wrap: wrap; }
+  .filter-btn { min-height: 36px; padding: 6px 10px; }
+}
+
+@media (min-width: 381px) and (max-width: 600px) {
+  .update-card-img, .update-card-img img { height: 116px; }
+}
+
+@media (max-width: 360px) {
+  .updates-grid, .usecases-grid, .testimonials-grid, .clients-grid,
+  .branding-grid, .pages-grid, .pillars-grid, .updates-preview-grid { gap: 8px !important; }
+  .update-card-top h3 { font-size: .79rem; }
+  .update-body-text, .usecase-card p, .testi-text, .branding-card p { font-size: .68rem; }
+  .client-card { display: block; }
+  .client-emblem { margin-bottom: 6px; }
+}
