@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════
    ANJANI WATER — CORE SITE CONTROLLER & CONFIG
-   Packaged Drinking Water & Bailley Water Sales in Vadodara
-   Official Bailley Distributor Code: 031609
+   Anjani Premium 200ml Packaged Drinking Water in Vadodara
+   Anjani Premium 200ml – Single-brand focus
 ═══════════════════════════════════════════════════ */
 
 var SITE = {
@@ -16,9 +16,6 @@ var SITE = {
   images: {
     hero:    'anjani-hero.webp',
     anjani:  'anjani-200ml.webp',
-    bisleri: 'bisleri-bottle.webp',
-    bailley: 'bailley-bottle.webp',
-    clear:   'clear-bottle.webp',
     ganesh:  'GaneshChaturthi.webp',
     clients: 'OurClients.webp',
     update1: 'update-summer-offer.webp',
@@ -289,7 +286,7 @@ SITE.injectFooter = function() {
     '<div class="footer-grid">' +
       '<div class="footer-brand">' +
         '<a href="index.html" class="nav-logo" aria-label="Anjani Water Home">Anjani<span>Water</span></a>' +
-        '<p>Vadodara’s trusted water bottle supplier. Specializing in factory-direct Anjani 200ml packaged water sales and official Parle Agro Bailley 200ml distribution (Code: 031609) for weddings, caterers, party plots, showrooms and corporate offices.</p>' +
+        '<p>Vadodara’s trusted water bottle supplier. Specializing exclusively in Anjani Premium 200ml packaged drinking water for weddings, caterers, party plots, showrooms and corporate offices for weddings, caterers, party plots, showrooms and corporate offices.</p>' +
         '<div class="footer-social">' +
           '<a href="' + SITE.wa + '" class="social-btn" title="WhatsApp" aria-label="WhatsApp Anjani Water">💬</a>' +
           '<a href="tel:91' + SITE.phone + '" class="social-btn" title="Call Us" aria-label="Call Anjani Water">📞</a>' +
@@ -302,10 +299,7 @@ SITE.injectFooter = function() {
         '<h4>Water Sales</h4>' +
         '<ul>' +
           '<li><a href="products.html">Anjani 200ml Sale</a></li>' +
-          '<li><a href="products.html#bailley">Bailley 200ml Supply</a></li>' +
           '<li><a href="index.html#custom-branding">Custom Bottle Branding</a></li>' +
-          '<li><a href="products.html">Bisleri 200ml</a></li>' +
-          '<li><a href="products.html">Clear Water 200ml</a></li>' +
         '</ul>' +
       '</div>' +
       '<div>' +
@@ -332,7 +326,7 @@ SITE.injectFooter = function() {
     '</div>' +
     '<div class="footer-bottom">' +
       '<span>© 2026 Anjani Premium Water by Annapurna Foods. All rights reserved.</span>' +
-      '<span>Official Bailley Distributor (031609) · Vadodara 200ml Specialist</span>' +
+      '<span>Anjani Premium 200ml Specialist · Vadodara</span>' +
     '</div>';
 };
 
