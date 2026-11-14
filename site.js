@@ -70,7 +70,7 @@ SITE.buildNav = function(activePage) {
     '<a href="index.html" class="nav-logo" aria-label="Anjani Water Home" onclick="SITE.closeMenu()">Anjani<span>Water</span></a>' +
     '<ul class="nav-links" id="navLinks">' + links +
     '<li><a href="contact.html#order" class="nav-cta" onclick="SITE.closeMenu()">Order Now</a></li></ul>' +
-    '<button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" onclick="SITE.toggleMenu()"><span></span><span></span><span></span></button>';
+    '<button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation menu" aria-controls="navLinks" aria-expanded="false" onclick="SITE.toggleMenu()"><span></span><span></span><span></span></button>';
 };
 
 /* ── Mobile Menu Controls ── */
@@ -79,13 +79,14 @@ SITE.toggleMenu = function() {
   if (!nav || !ham) return;
   var open = nav.classList.toggle('open');
   ham.classList.toggle('open', open);
+  ham.setAttribute('aria-expanded', open ? 'true' : 'false');
   document.body.style.overflow = open ? 'hidden' : '';
 };
 
 SITE.closeMenu = function() {
   var nav = document.getElementById('navLinks'), ham = document.getElementById('hamburger');
   if (nav) nav.classList.remove('open');
-  if (ham) ham.classList.remove('open');
+  if (ham) { ham.classList.remove('open'); ham.setAttribute('aria-expanded', 'false'); }
   document.body.style.overflow = '';
 };
 
