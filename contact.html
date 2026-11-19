@@ -346,7 +346,7 @@
       quantity: '',
       quantityUnit: 'Boxes',
       query: '',
-      callTime: 'Any time',
+      callTime: '',
       deliveryDate: '',
       name: '',
       phone: '',
@@ -431,11 +431,17 @@
         bind('wiz-qty-unit','quantityUnit');
       }
     } else if(s===2){
-      answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-time">Preferred time</label><select class="wizard-field" id="wiz-time"><option>Any time</option><option>Morning (9am–12pm)</option><option>Afternoon (12pm–4pm)</option><option>Evening (4pm–8pm)</option></select></div>';
-      document.getElementById('wiz-time').value=d.callTime;
+      var timeSlots=[];
+      for(var hour=7;hour<22;hour++){
+        var nextHour=hour+1;
+        var startLabel=(hour%12||12)+':00 '+(hour<12?'AM':'PM');
+        var endLabel=(nextHour%12||12)+':00 '+(nextHour<12?'AM':'PM');
+        timeSlots.push(startLabel+' – '+endLabel);
+      }
+      answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-time">Preferred delivery time</label><select class="wizard-field" id="wiz-time" required><option value="">Select an hourly slot</option>'+timeSlots.map(function(slot){return '<option value="'+slot+'"'+(d.callTime===slot?' selected':'')+'>'+slot+'</option>';}).join('')+'</select><p class="wizard-field-help">Choose a one-hour delivery window between 7:00 AM and 10:00 PM.</p></div>';
       var timeSelect=document.getElementById('wiz-time');
       bind('wiz-time','callTime');
-      timeSelect.addEventListener('change',function(){state.data.callTime=timeSelect.value;state.step++;render();});
+      timeSelect.addEventListener('change',function(){if(!timeSelect.value)return;state.data.callTime=timeSelect.value;state.step++;render();});
     } else if(s===3){
       answer.innerHTML='<div class="wizard-field-wrap"><label class="wizard-field-label" for="wiz-date">'+(d.requestType==='query'?'Preferred follow-up date (optional)':'Required delivery date')+'</label><input class="wizard-field" id="wiz-date" type="date" min="'+new Date().toISOString().slice(0,10)+'" value="'+esc(d.deliveryDate)+'"><p class="wizard-field-help">We’ll confirm the actual delivery slot with you.</p></div>';
       bind('wiz-date','deliveryDate');
@@ -714,6 +720,7 @@
     if(state.step===1&&d.requestType==='query'&&!d.query.trim())return 'Please enter your question.';
     if(state.step===1&&d.requestType!=='query'&&(!d.quantity.trim()||!Number.isFinite(Number(d.quantity))||Number(d.quantity)<1||!Number.isInteger(Number(d.quantity))))return 'Please enter a whole-number quantity of at least 1.';
     if(state.step===1&&d.requestType!=='query'&&!['Boxes','Pieces'].includes(d.quantityUnit))return 'Please select Boxes or Pieces.';
+    if(state.step===2&&!d.callTime)return 'Please select your preferred one-hour delivery slot.';
     if(state.step===3&&d.requestType!=='query'&&!d.deliveryDate)return 'Please choose your required delivery date.';
     if(state.step===4&&!d.name.trim())return 'Please enter your name.';
     if(state.step===5&&!/^\+?[0-9\s()-]{10,16}$/.test(d.phone.trim()))return 'Please enter a valid phone number.';
